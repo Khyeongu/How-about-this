@@ -163,7 +163,7 @@
                                     <Label fx:id="dueDateText" maxHeight="40.0" maxWidth="160.0" minHeight="40.0" minWidth="130.0" prefHeight="40.0" prefWidth="160.0" text="2021.03.31 ~ 2021.04.05" />
                                     <ImageView fx:id="heartImg" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
                                        <image>
-                                          <Image url="@../images/heart_blank.png" />
+                                          <Image url="@../images/hart2.png" />
                                        </image>
                                        <HBox.margin>
                                           <Insets right="10.0" />
