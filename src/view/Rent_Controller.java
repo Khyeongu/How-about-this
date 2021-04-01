@@ -87,7 +87,7 @@ public class Rent_Controller implements Initializable {
     	heartImg.setOnMouseClicked(event ->{
     		if(heart) {
     			try {
-					Image image = new Image(new FileInputStream("src/images/heart_blank.png"));
+					Image image = new Image(new FileInputStream("src/images/hart2.png"));
 					heartImg.setImage(image);
 	    			heart = false;
     			} catch (FileNotFoundException e) {
@@ -97,7 +97,7 @@ public class Rent_Controller implements Initializable {
     		} 
     		else {
     			try {
-					Image image = new Image(new FileInputStream("src/images/heart.png"));
+					Image image = new Image(new FileInputStream("src/images/hart1.png"));
 					heartImg.setImage(image);
 	    			heart = true;
     			} catch (FileNotFoundException e) {
