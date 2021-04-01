@@ -31,7 +31,7 @@ public class Rent_Controller implements Initializable {
     private ImageView productImg;
 	
 	@FXML
-    private ImageView dueDateText;
+    private Label dueDateText;
 	
 	@FXML
     private Label titleText;
