@@ -24,12 +24,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SideBar_Controller implements Initializable {
-	
 	@FXML
 	private AnchorPane ap;
 
     @FXML
     private VBox pnItems = null;
+    
+    @FXML
+	private Button btnMyPost;
+	
+	@FXML
+	private Button btnMyZzim;
+	
     @FXML
     private Button btnHome;
 
@@ -80,13 +86,19 @@ public class SideBar_Controller implements Initializable {
         if (actionEvent.getSource() == btnSignout) {
         	loadPage("SignOut");
         }
+        if (actionEvent.getSource() == btnMyPost) {
+        	loadPage("MyPost");
+        }
+        if (actionEvent.getSource() == btnMyZzim) {
+        	loadPage("MyZzim");
+        }
     }
     
 	private void loadPage(String page) {
 		try {
-			System.out.println("../view/"+ page + ".fxml");
+			System.out.println("../view/" + page + ".fxml");
 			Node node;
-			node = (Node)FXMLLoader.load(getClass().getResource("../view/"+ page + ".fxml"));
+			node = (Node) FXMLLoader.load(getClass().getResource("../view/" + page + ".fxml"));
 			ap.getChildren().setAll(node);
 		} catch (IOException ex) {
 			Logger.getLogger(SideBar_Controller.class.getName()).log(Level.SEVERE, null, ex);

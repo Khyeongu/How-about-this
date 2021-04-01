@@ -1,3 +1,7 @@
+.root { 
+	-fx-font-family: "Jalnan"; 
+}
+
 .button
 {
 -fx-background-color : #E72C4B;
@@ -9,4 +13,20 @@
 .button:pressed
 {
 -fx-background-color : #fffff;
+}
+
+
+/* #title, #btn{
+    -fx-font-family: "Jalnan";
+    -fx-font-weight: bold;
+    -fx-font-size: 24
+} */
+#lab_ctg {
+	 -fx-font-size: 17px;
+}
+#labZzim {
+	-fx-font-size: 20px;
+}
+#labMyPost {
+	-fx-font-size: 20px;
 }
