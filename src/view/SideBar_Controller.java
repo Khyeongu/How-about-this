@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -84,7 +85,7 @@ public class SideBar_Controller implements Initializable {
         	loadPage("Settings");
         }
         if (actionEvent.getSource() == btnSignout) {
-        	loadPage("SignOut");
+        	Platform.exit();
         }
         if (actionEvent.getSource() == btnMyPost) {
         	loadPage("MyPost");
