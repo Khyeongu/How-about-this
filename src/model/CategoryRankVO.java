@@ -3,6 +3,11 @@ package model;
 public class CategoryRankVO {
 	private int id;
 	private String name;
+
+	public CategoryRankVO(){
+		this.id = 0;
+		this.name = "";
+	}
 	
 	public int getId() {
 		return id;
@@ -16,4 +21,5 @@ public class CategoryRankVO {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 }
