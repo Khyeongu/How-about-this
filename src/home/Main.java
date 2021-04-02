@@ -13,14 +13,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-    	/**
-    	* 안티앨리어싱 적용(폰트를 부드럽게)
-    	*/
-    	System.setProperty("prism.lcdtext", "false"); // 폰트파일 로드전에 실행
+ 
+    	System.setProperty("prism.lcdtext", "false"); 
 
     	Font.loadFont(getClass().getResourceAsStream("Jalnan.ttf"), 10);
 
-        Parent root = FXMLLoader.load(getClass().getResource("../view/SideBar.fxml"));
+    	Parent root = FXMLLoader.load(getClass().getResource("../view/Login.fxml"));
+
         primaryStage.setScene(new Scene(root));
         //set stage borderless
         primaryStage.initStyle(StageStyle.UNDECORATED);
