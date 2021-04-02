@@ -12,11 +12,9 @@ public class Main extends Application {
     private double x, y;
 
     @Override
-    public void start(Stage primaryStage) throws Exception {\
-    	/**
-    	* 안티앨리어싱 적용(폰트를 부드럽게)
-    	*/
-    	System.setProperty("prism.lcdtext", "false"); // 폰트파일 로드전에 실행
+    public void start(Stage primaryStage) throws Exception {
+ 
+    	System.setProperty("prism.lcdtext", "false"); 
 
     	Font.loadFont(getClass().getResourceAsStream("Jalnan.ttf"), 10);
 
