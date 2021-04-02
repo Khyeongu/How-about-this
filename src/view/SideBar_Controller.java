@@ -82,10 +82,12 @@ public class SideBar_Controller implements Initializable {
         	loadPage("Post");
         }
         if (actionEvent.getSource() == btnSettings) {
-        	loadPage("Settings");
+        	//loadPage("Settings");
+        	loadPage("Review");
         }
         if (actionEvent.getSource() == btnSignout) {
-        	Platform.exit();
+        	//Platform.exit();
+        	loadPage("Grade");
         }
         if (actionEvent.getSource() == btnMyPost) {
         	loadPage("MyPost");
