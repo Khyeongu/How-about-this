@@ -50,7 +50,7 @@
                <children>
                   <ScrollPane prefHeight="514.0" prefWidth="628.0">
                      <content>
-                        <VBox prefHeight="511.0" prefWidth="624.0" />
+                        <VBox fx:id="boardListVBox" prefHeight="511.0" prefWidth="624.0" />
                      </content>
                   </ScrollPane>
                </children>

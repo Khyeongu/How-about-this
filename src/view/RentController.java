@@ -1,8 +1,13 @@
 package view;
 
 import java.net.URL;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+import database.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +17,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import model.BoardDAO;
+import model.BoardVO;
+import oracle.jdbc.OracleTypes;
 
 public class RentController implements Initializable {
 	// 카테고리별 버튼
@@ -55,35 +64,71 @@ public class RentController implements Initializable {
 	private Button btnFloating;
 	@FXML
 	private Label lab_ctg;
+	@FXML
+	private VBox boardListVBox;
+	
+	// 객체 생성
+	private BoardDAO boardDAO = new BoardDAO();
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		boardDAO.getAllBoardList();
+	}
 	
 	// 카테고리별 버튼이 눌렸을 떄
 	public void ctgBtnClicked(ActionEvent actionEvent) {
+		int ctgId = 1;
+		
 		if (actionEvent.getSource() == btnAll) {
-			// 리스트 내용과 정렬 방식 쿼리문(pl/sql)
+			boardDAO.getAllBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnDigital) {
+			ctgId = 2;
+			boardDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnInterior) {
+			ctgId = 3;
+			boardDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnKids) {
+			ctgId = 4;
+			boardDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnSports) {
+			ctgId = 5;
+			boardDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnWomanThing) {
+			ctgId = 6;
+			boardDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnWomanCloth) {
+			ctgId = 7;
+			boardDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnManThing) {
+			ctgId = 8;
+			boardDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnHobby) {
+			ctgId = 9;
+			boardDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnBeauty) {
+			ctgId = 10;
+			boardDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnPet) {
+			ctgId = 11;
+			boardDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnBook) {
+			ctgId = 12;
+			boardDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnPlant) {
+			ctgId = 13;
+			boardDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		}	
 	}
@@ -111,12 +156,6 @@ public class RentController implements Initializable {
 	// 다른 페이지로 이동 메소드
 	private void loadPage(String page) {
 		try {
-//			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../view/" + page + ".fxml"));
-//			Parent root1 = (Parent) fxmlLoader.load();
-//			Stage stage = new Stage();
-//			stage.setScene(new Scene(root1));
-//			stage.setTitle("hahhoho");
-//			stage.show();
 			System.out.println("../view/" + page + ".fxml");
 			Node node;
 			node = (Node) FXMLLoader.load(getClass().getResource("../view/" + page + ".fxml"));
@@ -124,10 +163,5 @@ public class RentController implements Initializable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// 전체 카테고리의 리스트를 정렬하여 보여주기(select -, -, -, -,... from 게시글 테이블sort by id desc); - 전체 리스트는 최근순
 	}
 }
