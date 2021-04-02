@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="576.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MyPostController">
+   <children>
+      <VBox prefHeight="576.0" prefWidth="793.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="97.0" prefWidth="793.0">
+               <children>
+                  <Label fx:id="labMyPost" alignment="CENTER" prefHeight="67.0" prefWidth="213.0" text="내 게시물">
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ComboBox fx:id="comboBox" onAction="#comboChanged" prefHeight="27.0" prefWidth="135.0" promptText="최근순">
+                     <HBox.margin>
+                        <Insets left="400.0" top="25.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+            </HBox>
+            <ScrollPane prefHeight="517.0" prefWidth="793.0">
+               <content>
+                  <VBox prefHeight="495.0" prefWidth="779.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

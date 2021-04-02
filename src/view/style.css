@@ -1,4 +1,7 @@
 
+.root { 
+	-fx-font-family: "Jalnan"; 
+}
 
 
 .button
@@ -13,11 +16,6 @@
 .button:pressed
 {
 -fx-background-color : #fffff;
-}
-
-
-.label {
--fx-font-family: "Jalnan"; /* NanumSquare */
 }
 
 .chart-plot-background {
@@ -39,4 +37,19 @@
 }
 .default-color0.chart-line-symbol { 
 	-fx-background-color: #E72C4B, white;
+}
+
+/* #title, #btn{
+    -fx-font-family: "Jalnan";
+    -fx-font-weight: bold;
+    -fx-font-size: 24
+} */
+#lab_ctg {
+	 -fx-font-size: 17px;
+}
+#labZzim {
+	-fx-font-size: 20px;
+}
+#labMyPost {
+	-fx-font-size: 20px;
 }
