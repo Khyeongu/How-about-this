@@ -58,22 +58,23 @@ public class BoardDAO {
 	
 	/*
 	 * 채경
-	 * 카테고리별 boardList 출력 메소드 카테고리별 게시물 페이지
+	 * 렌트 게시글 검색어 프로시저
 	 */	
-	public void getOneCtgBoardList(int ctgId) {
-		String runSP = "{ call select_one_category_board(?, ?) }";
+	public void boardListBySearch(String keyWord) {
+		String runSP = "{ call select_by_search_board(?, ?, ?) }";
 
 		try {
 			conn = DBConnection.getConnection();
 			callableStatement = conn.prepareCall(runSP);
-			
-			callableStatement.setInt(1, ctgId); // 카테고리id 받아와서 할당하는 부분
-			callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
+
+			callableStatement.setString(1, keyWord);
+			callableStatement.setString(2, keyWord);
+			callableStatement.registerOutParameter(3, OracleTypes.CURSOR);
 			System.out.println();
 			
 			try {
 				callableStatement.execute();
-				ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
+				ResultSet resultSet = (ResultSet) callableStatement.getObject(3);
 				
 				while (resultSet.next()) {
 					boardVO.setTitle(resultSet.getString(1));
@@ -86,8 +87,12 @@ public class BoardDAO {
 					System.out.println("time: " + boardVO.getTime());
 					System.out.println();
 				}
+				
+				System.out.println("성공");
+
 			} catch (SQLException e) {
 				System.out.println("프로시저에서 에러 발생!");
+				// System.err.format("SQL State: %s", e.getSQLState());
 				System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 			}
 		} catch (SQLException e) {
@@ -95,5 +100,6 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
+
 	}
 }

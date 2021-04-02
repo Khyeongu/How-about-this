@@ -7,8 +7,8 @@ public class ReviewVO {
 	private String content;
 	private float grade;
 	private Date time;
-	private int userId;
-
+	private int memberId;
+	
 	public int getId() {
 		return id;
 	}
@@ -33,10 +33,10 @@ public class ReviewVO {
 	public void setTime(Date time) {
 		this.time = time;
 	}
-	public int getUserId() {
-		return userId;
+	public int getMemberId() {
+		return memberId;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
 	}
 }

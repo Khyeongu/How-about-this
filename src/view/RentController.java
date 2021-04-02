@@ -1,13 +1,8 @@
 package view;
 
 import java.net.URL;
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import database.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import model.BoardDAO;
-import model.BoardVO;
-import oracle.jdbc.OracleTypes;
+import model.CategoryDAO;
 
 public class RentController implements Initializable {
 	// 카테고리별 버튼
@@ -69,6 +63,7 @@ public class RentController implements Initializable {
 	
 	// 객체 생성
 	private BoardDAO boardDAO = new BoardDAO();
+	private CategoryDAO categoryDAO = new CategoryDAO();
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -84,51 +79,51 @@ public class RentController implements Initializable {
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnDigital) {
 			ctgId = 2;
-			boardDAO.getOneCtgBoardList(ctgId);
+			categoryDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnInterior) {
 			ctgId = 3;
-			boardDAO.getOneCtgBoardList(ctgId);
+			categoryDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnKids) {
 			ctgId = 4;
-			boardDAO.getOneCtgBoardList(ctgId);
+			categoryDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnSports) {
 			ctgId = 5;
-			boardDAO.getOneCtgBoardList(ctgId);
+			categoryDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnWomanThing) {
 			ctgId = 6;
-			boardDAO.getOneCtgBoardList(ctgId);
+			categoryDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnWomanCloth) {
 			ctgId = 7;
-			boardDAO.getOneCtgBoardList(ctgId);
+			categoryDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnManThing) {
 			ctgId = 8;
-			boardDAO.getOneCtgBoardList(ctgId);
+			categoryDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnHobby) {
 			ctgId = 9;
-			boardDAO.getOneCtgBoardList(ctgId);
+			categoryDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnBeauty) {
 			ctgId = 10;
-			boardDAO.getOneCtgBoardList(ctgId);
+			categoryDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnPet) {
 			ctgId = 11;
-			boardDAO.getOneCtgBoardList(ctgId);
+			categoryDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnBook) {
 			ctgId = 12;
-			boardDAO.getOneCtgBoardList(ctgId);
+			categoryDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnPlant) {
 			ctgId = 13;
-			boardDAO.getOneCtgBoardList(ctgId);
+			categoryDAO.getOneCtgBoardList(ctgId);
 			System.out.println("pressed");
 		}	
 	}
@@ -136,7 +131,9 @@ public class RentController implements Initializable {
 	// find아이콘 click시
 	public void findClicked(ActionEvent actionEvent) {
 		if (actionEvent.getSource() == btnFinder) {
-			System.out.println("right");
+			String findTxt = textField.getText();
+			System.out.println(findTxt);
+			boardDAO.boardListBySearch(findTxt);
 			findWindow();
 		}
 	}
