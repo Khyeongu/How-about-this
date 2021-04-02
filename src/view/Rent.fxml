@@ -95,170 +95,33 @@
                   <Insets />
                </HBox.margin>
             </VBox>
-            <ScrollPane maxWidth="623.0" minHeight="576.0" minWidth="623.0" prefHeight="576.0" prefWidth="623.0">
-               <content>
-                  <VBox maxHeight="-Infinity" maxWidth="610.0" minWidth="610.0" prefWidth="610.0">
-                     <children>
-                        <BorderPane prefHeight="40.0" prefWidth="610.0">
-                           <left>
-                              <ImageView fx:id="backImg" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" BorderPane.alignment="CENTER">
-                                 <image>
-                                    <Image url="@../images/back.png" />
-                                 </image>
-                              </ImageView>
-                           </left>
-                           <right>
-                              <ImageView fx:id="updateImg" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" BorderPane.alignment="CENTER">
-                                 <image>
-                                    <Image url="@../images/pencil.png" />
-                                 </image>
-                                 <BorderPane.margin>
-                                    <Insets right="10.0" />
-                                 </BorderPane.margin>
-                              </ImageView>
-                           </right>
-                           <center>
-                              <Label fx:id="titleText" alignment="CENTER" maxHeight="40.0" maxWidth="500.0" minHeight="40.0" minWidth="500.0" prefHeight="40.0" prefWidth="500.0" text="iPad Pro 3rd Generation" BorderPane.alignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="18.0" />
-                                 </font>
-                              </Label>
-                           </center>
-                        </BorderPane>
-                        <BorderPane maxHeight="250.0" maxWidth="610.0" minHeight="250.0" minWidth="600.0" prefHeight="250.0" prefWidth="600.0" style="-fx-background-color: #EEEEEE;">
-                           <center>
-                              <ImageView fx:id="productImg" fitHeight="222.0" fitWidth="229.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                 <image>
-                                    <Image url="@../images/product.png" />
-                                 </image>
-                                 <viewport>
-                                    <Rectangle2D />
-                                 </viewport>
-                              </ImageView>
-                           </center>
-                        </BorderPane>
-                        <BorderPane maxHeight="60.0" maxWidth="600.0" minHeight="60.0" minWidth="600.0" prefHeight="60.0" prefWidth="600.0">
-                           <left>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <ImageView fx:id="profileImg" fitHeight="56.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                                       <image>
-                                          <Image url="@../images/jimmy-fallon.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                    <Label text="Nick Name">
-                                       <HBox.margin>
-                                          <Insets left="10.0" />
-                                       </HBox.margin>
-                                    </Label>
-                                 </children>
-                              </HBox>
-                           </left>
-                           <right>
-                              <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <Label fx:id="dueDateText" maxHeight="40.0" maxWidth="160.0" minHeight="40.0" minWidth="130.0" prefHeight="40.0" prefWidth="160.0" text="2021.03.31 ~ 2021.04.05" />
-                                    <ImageView fx:id="heartImg" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-                                       <image>
-                                          <Image url="@../images/hart2.png" />
-                                       </image>
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin>
-                                    </ImageView>
-                                 </children>
-                              </HBox>
-                           </right>
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <opaqueInsets>
-                              <Insets top="10.0" />
-                           </opaqueInsets>
-                        </BorderPane>
-                        <Line endX="509.29290771484375" endY="-2.574920654296875E-5" startX="-100.0">
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Line>
-                        <BorderPane maxHeight="30.0" maxWidth="600.0" minHeight="30.0" minWidth="600.0" prefHeight="30.0" prefWidth="600.0">
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                           <opaqueInsets>
-                              <Insets top="5.0" />
-                           </opaqueInsets>
-                           <left>
-                              <Label fx:id="explainTitleText" text="iPad Pro 3rd Generation" BorderPane.alignment="CENTER">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                                 <BorderPane.margin>
-                                    <Insets left="10.0" />
-                                 </BorderPane.margin>
-                              </Label>
-                           </left>
-                           <right>
-                              <Label fx:id="priceText" text="Time Per Price : 15000won" BorderPane.alignment="CENTER">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                           </right>
-                        </BorderPane>
-                        <BorderPane maxHeight="20.0" maxWidth="600.0" minHeight="20.0" minWidth="600.0" prefHeight="20.0" prefWidth="600.0">
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                           <opaqueInsets>
-                              <Insets top="10.0" />
-                           </opaqueInsets>
-                           <left>
-                              <Label fx:id="phoneNoText" text="Phone Number : 010-0000-0000" BorderPane.alignment="CENTER">
-                                 <BorderPane.margin>
-                                    <Insets left="10.0" />
-                                 </BorderPane.margin>
-                              </Label>
-                           </left>
-                           <right>
-                              <Label fx:id="statusText" text="Status : O" BorderPane.alignment="CENTER" />
-                           </right>
-                        </BorderPane>
-                        <Line endX="503.29290771484375" endY="-0.8284271955490112" startX="-100.0">
-                           <VBox.margin>
-                              <Insets top="5.0" />
-                           </VBox.margin>
-                        </Line>
-                        <BorderPane maxWidth="600.0" minWidth="600.0" prefWidth="600.0">
-                           <opaqueInsets>
-                              <Insets top="10.0" />
-                           </opaqueInsets>
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                           <center>
-                              <Label fx:id="contentText" text="Content : This is iPad Pro 3rd Generation!!" BorderPane.alignment="CENTER" />
-                           </center>
-                        </BorderPane>
-                        <BorderPane maxWidth="600.0" minWidth="600.0" prefWidth="600.0">
-                           <center>
-                              <TextArea fx:id="conmentArea" prefHeight="200.0" prefWidth="200.0" promptText="Comment Area" BorderPane.alignment="CENTER" />
-                           </center>
-                           <opaqueInsets>
-                              <Insets top="30.0" />
-                           </opaqueInsets>
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </BorderPane>
-                     </children>
-                  </VBox>
-               </content>
-            </ScrollPane>
-      	</children>
-      </HBox>
+            <AnchorPane layoutX="162.0" prefHeight="59.0" prefWidth="628.0">
+               <children>
+                  <Button fx:id="btnFinder" layoutX="472.0" layoutY="16.0" mnemonicParsing="false" onAction="#findClicked" prefHeight="29.0" prefWidth="33.0">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #ffa959;">
+                           <image>
+                              <Image url="@../../bin/images/icons8_Search_52px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <AnchorPane />
+                  <TextField fx:id="textField" layoutX="3.0" layoutY="12.0" prefHeight="39.0" prefWidth="460.0" promptText=" 검색어를 입력하세요." />                  
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="162.0" layoutY="59.0" prefHeight="514.0" prefWidth="628.0">
+               <children>
+                  <ScrollPane prefHeight="514.0" prefWidth="628.0">
+                     <content>
+                        <VBox fx:id="boardListVBox" prefHeight="511.0" prefWidth="624.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+            <Button fx:id="btnFloating" layoutX="744.0" layoutY="527.0" mnemonicParsing="false" onAction="#btnFloatingClicked" opacity="0.45" prefHeight="39.0" prefWidth="41.0" style="-fx-background-radius: 5em; -fx-background-color: #ffbe82;" text="+" />
+         </children>
+      </AnchorPane>
+
    </children>
 </AnchorPane>
