@@ -1,7 +1,11 @@
+
+
+
 .button
 {
 -fx-background-color : #E72C4B;
 -fx-text-fill : #FFFFFF;
+-fx-font-family: "Jalnan";
 }
 .button:hover{
 -fx-background-color : #C01632;
@@ -9,4 +13,30 @@
 .button:pressed
 {
 -fx-background-color : #fffff;
+}
+
+
+.label {
+-fx-font-family: "Jalnan"; /* NanumSquare */
+}
+
+.chart-plot-background {
+    -fx-background-color: #ffffff;
+}
+.chart-vertical-grid-lines {
+    -fx-stroke: #AFABAB;
+}
+.chart-horizontal-grid-lines {
+    -fx-stroke: #AFABAB;
+}
+.chart-alternative-row-fill {
+    -fx-fill: #FDEDF0;
+    -fx-stroke: transparent;
+    -fx-stroke-width: 0;
+}
+.default-color0.chart-series-line { 
+	-fx-stroke: #E72C4B;
+}
+.default-color0.chart-line-symbol { 
+	-fx-background-color: #E72C4B, white;
 }
