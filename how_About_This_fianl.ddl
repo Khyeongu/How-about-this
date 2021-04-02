@@ -1,7 +1,7 @@
--- ª˝º∫¿⁄ Oracle SQL Developer Data Modeler 20.4.0.374.0801
---   ¿ßƒ°:        2021-04-02 10:30:33 KST
---   ªÁ¿Ã∆Æ:      Oracle Database 11g
---   ¿Ø«¸:      Oracle Database 11g
+-- ÏÉùÏÑ±Ïûê Oracle SQL Developer Data Modeler 20.4.0.374.0801
+--   ÏúÑÏπò:        2021-04-02 10:30:33 KST
+--   ÏÇ¨Ïù¥Ìä∏:      Oracle Database 11g
+--   Ïú†Ìòï:      Oracle Database 11g
 
 
 
@@ -39,7 +39,7 @@ CREATE TABLE board (
     category_id  NUMBER(3) NOT NULL,
     member_id    NUMBER(10) NOT NULL
 )
-PARTITION BY RANGE(time) (   -- Partitoned Table ªÁøÎ
+PARTITION BY RANGE(time) (   -- Partitoned Table ÏÇ¨Ïö©
 	PARTITION y_2018 VALUES LESS THAN(TO_DATE('2018-12-31 23:59:59','YYYY/MM/DD HH24:MI:SS')),
 	PARTITION y_2019 VALUES LESS THAN(TO_DATE('2019-12-31 23:59:59','YYYY/MM/DD HH24:MI:SS')),
 	PARTITION y_2020 VALUES LESS THAN(TO_DATE('2020-12-31 23:59:59','YYYY/MM/DD HH24:MI:SS')),
@@ -116,6 +116,7 @@ CREATE TABLE traderecord (
     board_id   NUMBER(10) NOT NULL,
     time       DATE NOT NULL,
     member_id  NUMBER(10) NOT NULL,
+	category_id NUMBER(3) NOT NULL,
 	PRIMARY KEY (member_id,board_id)
 	)
 ORGANIZATION INDEX;
@@ -171,7 +172,7 @@ ALTER TABLE zzim
 
 
 
--- Oracle SQL Developer Data Modeler ø‰æ‡ ∫∏∞Ìº≠: 
+-- Oracle SQL Developer Data Modeler ÏöîÏïΩ Î≥¥Í≥†ÏÑú: 
 -- 
 -- CREATE TABLE                             7
 -- CREATE INDEX                             1
