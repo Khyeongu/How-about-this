@@ -17,7 +17,7 @@
       </Text>
       <ImageView fitHeight="104.0" fitWidth="102.0" layoutX="70.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/top-three.png" />
+            <Image url="@../images/category_rank.png" />
          </image>
       </ImageView>
       <TableView fx:id="categoryRank_tableview" layoutX="70.0" layoutY="186.0" prefHeight="376.0" prefWidth="655.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;">
