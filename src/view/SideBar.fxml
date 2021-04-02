@@ -35,7 +35,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../bin/images/post2.png" />
+                        <Image url="@../../bin/images/mypost.png" />
                      </image></ImageView>
                </graphic>
                <font>
@@ -52,7 +52,7 @@
                <graphic>
                   <ImageView fitHeight="32.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../bin/images/hart1.png" />
+                        <Image url="@../../bin/images/heart.png" />
                      </image>
                   </ImageView>
                </graphic>

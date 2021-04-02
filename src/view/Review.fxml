@@ -10,34 +10,36 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.collections.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #ffffff;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Review_controller">
    <children>
       <ImageView fitHeight="115.0" fitWidth="150.0" layoutX="221.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/user%20icon.PNG" />
+            <Image url="@../images/user_icon.PNG" />
          </image>
       </ImageView>
-      <Label layoutX="361.0" layoutY="87.0" prefHeight="43.0" prefWidth="108.0" text="닉네임">
-         <font>
-            <Font name="Jalnan" size="36.0" />
-         </font>
-      </Label>
       <Label layoutX="355.0" layoutY="146.0" prefHeight="34.0" prefWidth="60.0" text="평점">
          <font>
             <Font name="Jalnan" size="25.0" />
          </font>
       </Label>
-      <TextField layoutX="98.0" layoutY="211.0" prefHeight="30.0" prefWidth="574.0" text="리뷰를 작성해주세요." />
-      <Button layoutX="684.0" layoutY="211.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="52.0" text="작성" />
-      <TableView layoutX="98.0" layoutY="258.0" prefHeight="304.0" prefWidth="574.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;">
+      <TextField fx:id="review_text" layoutX="98.0" layoutY="211.0" prefHeight="30.0" prefWidth="574.0" promptText="리뷰를 작성해주세요." />
+      <Button fx:id="btnPost" layoutX="684.0" layoutY="211.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="52.0" text="작성" />
+      <TableView fx:id="review_tableview" layoutX="98.0" layoutY="258.0" prefHeight="304.0" prefWidth="574.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;">
         <columns>
-          <TableColumn prefWidth="75.0" text="No." />
-          <TableColumn prefWidth="514.0" text="리뷰 내용" />
+          <TableColumn fx:id="review_number" prefWidth="75.0" text="No." />
+          <TableColumn fx:id="review_contents" prefWidth="514.0" text="리뷰 내용" />
         </columns>
       </TableView>
-      <TextField layoutX="430.0" layoutY="146.0" prefHeight="34.0" prefWidth="52.0" />
-      <ChoiceBox fx:id="review_choiceBox" layoutX="25.0" layoutY="213.0" prefHeight="26.0" prefWidth="67.0" /> 
+      <TextField fx:id="review_grade" editable="false" layoutX="415.0" layoutY="146.0" prefHeight="34.0" prefWidth="52.0">
+         <font>
+            <Font size="16.0" />
+         </font></TextField>
+      <ChoiceBox fx:id="review_choiceBox" layoutX="25.0" layoutY="213.0" prefHeight="26.0" prefWidth="67.0" />
+      <TextField fx:id="review_user" editable="false" layoutX="360.0" layoutY="81.0" prefHeight="49.0" prefWidth="110.0">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </TextField> 
    </children>
 </Pane>
