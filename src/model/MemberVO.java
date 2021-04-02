@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class UserVO {
+public class MemberVO {
 	private int id;
 	private String loginId;
 	private String loginPassword;

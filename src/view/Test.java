@@ -12,20 +12,22 @@ import oracle.jdbc.OracleTypes;
 public class Test {
 
 	public static void main(String[] args) {
-		BoardVO boardVO = new BoardVO();
-		String runSP = "{ call select_one_category_board(?, ?) }";
+
+		String runSP = "{ call select_by_search_board(?, ?, ?) }";
 
 		try {
 			Connection conn = DBConnection.getConnection();
 			CallableStatement callableStatement = conn.prepareCall(runSP);
 
-			callableStatement.setInt(1, 1);
-			callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
+			callableStatement.setString(1, "하");
+			callableStatement.setString(2, "하");
+			callableStatement.registerOutParameter(3, OracleTypes.CURSOR);
 			System.out.println();
 			
 			try {
+				BoardVO boardVO = new BoardVO();
 				callableStatement.execute();
-				ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
+				ResultSet resultSet = (ResultSet) callableStatement.getObject(3);
 				
 				while (resultSet.next()) {
 					boardVO.setTitle(resultSet.getString(1));
@@ -37,6 +39,7 @@ public class Test {
 					System.out.println("image_url: " + boardVO.getImageUrl());
 					System.out.println("time: " + boardVO.getTime());
 					System.out.println();
+
 				}
 				
 				System.out.println("성공");
@@ -53,5 +56,3 @@ public class Test {
 		} 
 	}
 }
-
-

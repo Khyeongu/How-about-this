@@ -3,15 +3,15 @@ package model;
 import java.util.Date;
 
 public class TradeRecordVO {
-	private int userId;
+	private int memberId;
 	private int boardId;
 	private Date time;
 	
-	public int getUserId() {
-		return userId;
+	public int getMemberId() {
+		return memberId;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
 	}
 	public int getBoardId() {
 		return boardId;
