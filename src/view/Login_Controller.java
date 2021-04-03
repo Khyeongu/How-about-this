@@ -16,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import model.MemberDAO;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,6 +25,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Login_Controller implements Initializable {
+	
+	private double x,y;
 	
 	@FXML
 	private AnchorPane ap;
@@ -79,6 +82,8 @@ public class Login_Controller implements Initializable {
 	@FXML
 	private Button signUpBtn;
 	
+	private MemberDAO memberDAO = new MemberDAO();
+	
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -88,25 +93,40 @@ public class Login_Controller implements Initializable {
     
     public void testClick(ActionEvent actionEvent) {
         if (actionEvent.getSource() == loginBtn) {
-        	if(idField.getText().equals("test") && pwField.getText().equals("test")) {
+        	String id = idField.getText();
+        	String pw = pwField.getText();
+        	
+        	if(memberDAO.loginCheck(id, pw)) {
         		try{
             	    FXMLLoader loader = new FXMLLoader(getClass().getResource("./SideBar.fxml"));
             	    Parent root = (Parent) loader.load();
             	    Stage stage = new Stage();
+            	    stage.initStyle(StageStyle.UNDECORATED);
             	    stage.setTitle("Home");
             	    stage.setScene(new Scene(root));
+            	    
+            	  //drag it here
+                    root.setOnMousePressed(event -> {
+                        x = event.getSceneX();
+                        y = event.getSceneY();
+                    });
+                    root.setOnMouseDragged(event -> {
+
+                        stage.setX(event.getScreenX() - x);
+                        stage.setY(event.getScreenY() - y);
+
+                    });
+            	    
             	    stage.show();
             	    // get a handle to the stage
             	    Stage stageNow = (Stage) loginBtn.getScene().getWindow();
             	    // do what you have to do
             	    stageNow.close();
             	  }catch(Exception e) {
-            	  
+            		  e.printStackTrace();
             	  }
         	}
-        	else {
-        		warningText.setVisible(true);
-        	}
+        	else warningText.setVisible(true);
         }
         if (actionEvent.getSource() == signUpBtn) {
         	try{
@@ -117,7 +137,7 @@ public class Login_Controller implements Initializable {
         	    stage.setScene(new Scene(root));
         	    stage.show();
         	  }catch(Exception e) {
-        	  
+        		  e.printStackTrace();
         	  }
         }
         if (actionEvent.getSource() == idField) {
