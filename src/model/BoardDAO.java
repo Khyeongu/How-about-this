@@ -4,8 +4,11 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import database.DBConnection;
+import javafx.collections.ObservableList;
 import oracle.jdbc.OracleTypes;
 
 public class BoardDAO {
@@ -14,15 +17,14 @@ public class BoardDAO {
 	private Connection conn;
 	private CallableStatement callableStatement;
 	
-	// UserVO 객체 생성
-	private BoardVO boardVO = new BoardVO();
-	
 	/*
 	 * 채경
 	 * 전체 boardList 출력 메소드 카테고리별 게시물 페이지
 	 */	
-	public void getAllBoardList() {
-		String runSP = "{ call select_all_board(?) }";
+	public ArrayList<BoardVO> getAllBoardList() {
+		ArrayList<BoardVO> boardVOList = new ArrayList<>();
+
+		String runSP = "{ call select_board_all(?) }";
 
 		try {
 			conn = DBConnection.getConnection();
@@ -35,15 +37,50 @@ public class BoardDAO {
 				ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
 				
 				while (resultSet.next()) {
-					boardVO.setTitle(resultSet.getString(1));
-					boardVO.setPrice(resultSet.getInt(2));
-					boardVO.setImageUrl(resultSet.getString(3));
-					boardVO.setTime(resultSet.getDate(4));
-					System.out.println("title: " + boardVO.getTitle());
-					System.out.println("price: " + boardVO.getPrice());
-					System.out.println("image_url: " + boardVO.getImageUrl());
-					System.out.println("time: " + boardVO.getTime());
-					System.out.println();
+					boardVOList.add(new BoardVO(
+							resultSet.getInt(1), resultSet.getString(2),
+							resultSet.getInt(3), resultSet.getString(4),
+							resultSet.getTimestamp(5)));
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("프로시저에서 에러 발생!");
+				System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return boardVOList;
+	}
+	
+	/*
+	 * 채경 카테고리별 boardList 출력 메소드 카테고리별 게시물 페이지
+	 */
+	public ArrayList<BoardVO> getOneCtgBoardList(int ctgId) {
+		ArrayList<BoardVO> boardVOList = new ArrayList<>();
+		
+		String runSP = "{ call select_board_one_category(?, ?) }";
+
+		try {
+			conn = DBConnection.getConnection();
+			callableStatement = conn.prepareCall(runSP);
+
+			callableStatement.setInt(1, ctgId); // 카테고리id 받아와서 할당하는 부분
+			callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
+			System.out.println();
+
+			try {
+				callableStatement.execute();
+				ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
+
+				while (resultSet.next()) {
+					boardVOList.add(new BoardVO(
+					resultSet.getInt(1), resultSet.getString(2),
+					resultSet.getInt(3), resultSet.getString(4),
+					resultSet.getTimestamp(5)));
 				}
 			} catch (SQLException e) {
 				System.out.println("프로시저에서 에러 발생!");
@@ -53,20 +90,24 @@ public class BoardDAO {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		}
+		return boardVOList;
 	}
 	
 	/*
 	 * 채경
 	 * 렌트 게시글 검색어 프로시저
 	 */	
-	public void boardListBySearch(String keyWord) {
-		String runSP = "{ call select_by_search_board(?, ?, ?) }";
+	public ArrayList<BoardVO> boardListBySearch(String keyWord) {
+		ArrayList<BoardVO> boardVOList = new ArrayList<>();
+		
+		String runSP = "{ call select_board_by_search(?, ?, ?) }";
 
 		try {
 			conn = DBConnection.getConnection();
 			callableStatement = conn.prepareCall(runSP);
-
+			keyWord = keyWord.trim();
+			
 			callableStatement.setString(1, keyWord);
 			callableStatement.setString(2, keyWord);
 			callableStatement.registerOutParameter(3, OracleTypes.CURSOR);
@@ -77,29 +118,23 @@ public class BoardDAO {
 				ResultSet resultSet = (ResultSet) callableStatement.getObject(3);
 				
 				while (resultSet.next()) {
-					boardVO.setTitle(resultSet.getString(1));
-					boardVO.setPrice(resultSet.getInt(2));
-					boardVO.setImageUrl(resultSet.getString(3));
-					boardVO.setTime(resultSet.getDate(4));
-					System.out.println("title: " + boardVO.getTitle());
-					System.out.println("price: " + boardVO.getPrice());
-					System.out.println("image_url: " + boardVO.getImageUrl());
-					System.out.println("time: " + boardVO.getTime());
-					System.out.println();
+					boardVOList.add(new BoardVO(
+							resultSet.getInt(1), resultSet.getString(2),
+							resultSet.getInt(3), resultSet.getString(4),
+							resultSet.getTimestamp(5)));
 				}
 				
 				System.out.println("성공");
 
 			} catch (SQLException e) {
 				System.out.println("프로시저에서 에러 발생!");
-				// System.err.format("SQL State: %s", e.getSQLState());
 				System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-
+		}
+		return boardVOList;
 	}
 }
