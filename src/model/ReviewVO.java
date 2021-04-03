@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class ReviewVO {
 	private int id;
-	private String content;
 	private float grade;
+	private String content;
 	private Date time;
 	private int memberId;
 	

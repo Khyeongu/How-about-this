@@ -39,6 +39,7 @@ import model.CategoryRankVO;
 import model.CategoryRankDAO;
 
 public class CategoryRank_Controller implements Initializable {
+	
 	@FXML
 	private ListView<String> categoryRank_listview;
 	
