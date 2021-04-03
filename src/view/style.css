@@ -65,5 +65,16 @@
 }
 
 #categoryRank_listview {
-	 -fx-font-size: 20px;
+	-fx-font-family: "Jalnan";
+	 -fx-font-size: 21px;
+}
+
+#grade_listview {
+	-fx-font-family: "Jalnan";
+	-fx-font-size: 13px;
+}
+
+#review_listview{
+	-fx-font-family: "Jalnan";
+	-fx-font-size: 13px;
 }
