@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
 public class BoardVO {
@@ -15,6 +16,16 @@ public class BoardVO {
 	private int userId;
 	private int categoryId;
 	
+
+	public BoardVO() {
+		
+	}
+	
+	public BoardVO(int id, String title, int price) {
+		this.categoryId=id;
+		this.title=title;
+		this.price=price;
+
 	public BoardVO(int id, String title, int price, String imageUrl, Date time) {
 		super();
 		this.id = id;
@@ -22,6 +33,7 @@ public class BoardVO {
 		this.price = price;
 		this.time = time;
 		this.imageUrl = imageUrl;
+
 	}
 	
 	public int getId() {

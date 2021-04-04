@@ -17,11 +17,15 @@ public class BoardDAO {
 	private Connection conn;
 	private CallableStatement callableStatement;
 	
+	private BoardVO boardVO = new BoardVO();
+	private ArrayList<BoardVO> boardVOList = new ArrayList<>();
+
 	/*
 	 * 채경
 	 * 전체 boardList 출력 메소드 카테고리별 게시물 페이지
 	 */	
 	public ArrayList<BoardVO> getAllBoardList() {
+
 		ArrayList<BoardVO> boardVOList = new ArrayList<>();
 
 		String runSP = "{ call select_board_all(?) }";
@@ -54,6 +58,7 @@ public class BoardDAO {
 		}
 		
 		return boardVOList;
+
 	}
 	
 	/*
@@ -135,6 +140,40 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return boardVOList;
+	}
+	
+	
+	//홈화면 게시판 미리보기
+	public ArrayList<BoardVO> getMiniBoardList() {
+		String runSP = "{ call select_board_mini(?) }";
+
+		try {
+			conn = DBConnection.getConnection();
+			callableStatement = conn.prepareCall(runSP);
+
+			callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
+			
+			try {
+				callableStatement.execute();
+				ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
+				
+				while (resultSet.next()) {
+					boardVOList.add(new BoardVO(
+							resultSet.getInt(1), resultSet.getString(2),
+							resultSet.getInt(3)));
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("프로시저에서 에러 발생!");
+				System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		return boardVOList;
 	}
 }
