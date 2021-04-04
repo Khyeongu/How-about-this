@@ -424,7 +424,6 @@ create or replace procedure insert_board_post
   p_content     in board.content%type,
   p_price       in board.price%type,
   p_status      in board.status%type,
-  p_time        in board.time%type,
   p_start_date  in board.start_date%type,
   p_end_date    in board.end_date%type,
   p_image_url   in board.image_url%type,
@@ -434,7 +433,7 @@ create or replace procedure insert_board_post
 is
 begin
   insert into board (id, title, content, price, status, time, start_date, end_date, image_url, category_id, member_id)
-  values (board_id_seq.NEXTVAL, p_title, p_content, p_price, p_status, p_time, p_start_date, p_end_date, p_image_url, p_category_id, p_member_id);
+  values (board_id_seq.NEXTVAL, p_title, p_content, p_price, p_status, sysdate, p_start_date, p_end_date, p_image_url, p_category_id, p_member_id);
   commit;
 end;
 /

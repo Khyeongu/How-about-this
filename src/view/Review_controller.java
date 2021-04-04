@@ -62,24 +62,34 @@ public class Review_controller implements Initializable {
 	private Button btnReview_post;
 	
 	private ReviewDAO reviewDAO = new ReviewDAO();
-	private UserSession memberid;
+	
+	//유저세션 말고 RentDetail에서 넘어온 member Id값으로
+	//private UserSession memberid;
 	ObservableList<String> review_choicebox_list = FXCollections.observableArrayList();
+	
+	private static int member_id;
+	
+	public static void setMemberId(int id) {
+		member_id= id;
+		
+		System.out.println("전달된 값 : " + member_id);
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		memberid = UserSession.getInstance();
+		//memberid = UserSession.getInstance();
 		
 		review_ChoiceBox_init();
 		review_textField_init();
 		
-		reviewDAO.getReviewList(memberid.getMember().getId());
+		reviewDAO.getReviewList(member_id);
 		review_listview.setItems(FXCollections.observableArrayList(reviewDAO.review_merge_list));
 	}
 
 	private void review_textField_init() {
-		reviewDAO.getMemberName(memberid.getMember().getId());
-		review_user.setText(ReviewDAO.member_name); 
-		reviewDAO.getMemberGrade(memberid.getMember().getId());
+		reviewDAO.getMemberName(member_id);  //rentdetail에서 넘어온 member id
+		review_user.setText(ReviewDAO.member_name);
+		reviewDAO.getMemberGrade(member_id);
 		review_grade.setText(ReviewDAO.member_grade); 
 	}
 	
@@ -96,8 +106,8 @@ public class Review_controller implements Initializable {
 			ReviewDAO.reviewVO.setGrade(Float.parseFloat(review_choiceBox.getValue()));
 			ReviewDAO.reviewVO.setContent(review_text.getText()); 
 			ReviewDAO.reviewVO.setTime(Timestamp.valueOf(LocalDateTime.now()));
-			ReviewDAO.reviewVO.setMemberId(memberid.getMember().getId());
-			ReviewDAO.reviewPost(memberid.getMember().getId());
+			ReviewDAO.reviewVO.setMemberId(member_id);
+			ReviewDAO.reviewPost(member_id);
 			loadPage("Review");
 		}
 	}

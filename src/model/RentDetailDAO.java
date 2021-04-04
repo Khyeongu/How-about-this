@@ -95,4 +95,38 @@ public class RentDetailDAO {
 			return false;
 		}
 	}
+	
+	public int getMemberId(int boardId) {
+		String runSP = "{ call select_board_memberid( ?, ? ) }";
+		int member_id = 0;
+		
+		try {
+			conn = DBConnection.getConnection();
+			cs = conn.prepareCall(runSP);
+			
+			cs.setInt(1, boardId);
+			cs.registerOutParameter(2, java.sql.Types.INTEGER);
+			
+			try {
+				cs.executeQuery();
+				
+				 member_id = cs.getInt(2);
+				 
+				 return member_id;
+				 
+			} catch (SQLException e) {
+				System.out.println("프로시저에서 에러 발생!");
+				System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+				return member_id;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return member_id;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return member_id;
+		}
+	}
+
+	
 }

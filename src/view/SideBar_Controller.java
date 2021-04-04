@@ -1,5 +1,6 @@
 package view;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -26,6 +28,9 @@ public class SideBar_Controller implements Initializable {
 
     @FXML
     private VBox pnItems = null;
+    
+    @FXML
+    private ImageView user_img;
     
     @FXML
 	private Button btnMyPost;
@@ -63,6 +68,10 @@ public class SideBar_Controller implements Initializable {
     			session = UserSession.getInstance();
     			labelName.setText(session.getMember().getName()+" 님");
     	loadPage("Home");
+    	
+    	user_img.setOnMouseClicked(event -> {
+    		loadPage("Grade");
+    	});
 
     }
 
@@ -84,12 +93,10 @@ public class SideBar_Controller implements Initializable {
         	loadPage("Post");
         }
         if (actionEvent.getSource() == btnSettings) {
-        	//loadPage("Settings");
-        	loadPage("Review");
+        	loadPage("Settings");
         }
         if (actionEvent.getSource() == btnSignout) {
-        	//Platform.exit();
-        	loadPage("Grade");
+        	Platform.exit();
         }
         if (actionEvent.getSource() == btnMyPost) {
         	loadPage("MyPost");

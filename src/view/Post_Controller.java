@@ -27,6 +27,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -42,7 +44,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import database.UserSession;
 import model.PostVO;
 import model.PostDAO;
@@ -123,11 +124,25 @@ public class Post_Controller implements Initializable {
 			}
 	
 			PostDAO.insertBoardPost(memberid.getMember().getId());
-			loadPage("Post");
-
+			popUp();
+			loadPage("Rent");
 		}
 	}
 
+	public void popUp() {
+		try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("MyPostStatus.fxml"));
+            Stage stage = new Stage();
+            stage.initStyle(StageStyle.UNDECORATED);
+            Parent root = (Parent) loader.load();
+            stage.setTitle("popup");
+            stage.setScene(new Scene(root));
+            stage.show();
+         } catch (Exception e) {
+            e.getMessage();
+         }
+	}
+	
 	public void fileChoose() {
 		FileChooser fc = new FileChooser();
 		fc.setTitle("이미지 선택");

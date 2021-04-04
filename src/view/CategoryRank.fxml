@@ -19,6 +19,6 @@
             <Image url="@../images/category_rank.png" />
          </image>
       </ImageView>
-      <ListView fx:id="categoryRank_listview" layoutX="293.0" layoutY="171.0" prefHeight="391.0" prefWidth="208.0" stylesheets="@style.css" /> 
+      <ListView fx:id="categoryRank_listview" layoutX="61.0" layoutY="171.0" prefHeight="391.0" prefWidth="645.0" stylesheets="@style.css" /> 
    </children>
 </Pane>
