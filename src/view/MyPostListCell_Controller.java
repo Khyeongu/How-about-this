@@ -86,6 +86,7 @@ public class MyPostListCell_Controller extends ListCell<BoardVO> {
 						stage.setTitle("popup");
 						stage.setScene(new Scene(root));
 						stage.show();
+						labStatus.setText("거래 완료");
 					} catch (Exception e) {
 						e.getMessage();
 					}
