@@ -1,5 +1,6 @@
 package view;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -91,6 +92,19 @@ public class Rent_Controller implements Initializable {
 		boardVOObservanbleList.setAll(boardVOList);
 		getBoardList();
 		
+		listView.setOnMouseClicked(event ->{
+			int board_id = listView.getSelectionModel().getSelectedItem().getId();
+			
+			RentDetail_Controller.initData(board_id);
+			
+			try {
+				loadPage("RentDetail");
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+			System.out.println("아이템 클릭 : " + listView.getSelectionModel().getSelectedItem().getId());
+		});
 	}
 	
 	// board리스트 뿌리는 메소드
@@ -107,21 +121,25 @@ public class Rent_Controller implements Initializable {
 					setText(null);
 					setGraphic(null);
 				} else {
-					Image image = new Image(boardVO.getImageUrl());
-					ImageView imageView = new ImageView();
-					imageView.setFitHeight(100);
-					imageView.setFitWidth(100);
-					imageView.setImage(image);
-					
-					System.out.println(boardVO.getTitle());
-					System.out.println(boardVO.getPrice());
-					System.out.println(boardVO.getImageUrl());
-					setText(null);
-					setGraphic(null);
-					setText("상풍명 : " + boardVO.getTitle() + "\n시간당 가격 : " 
-							+ boardVO.getPrice() + "원\n포스트 날짜 : " 
-							+ sdf.format(boardVO.getTime()));
-					setGraphic(imageView);
+					try {
+						Image image = new Image(new FileInputStream(boardVO.getImageUrl()));
+						ImageView imageView = new ImageView();
+						imageView.setFitHeight(100);
+						imageView.setFitWidth(100);
+						imageView.setImage(image);
+						
+						System.out.println(boardVO.getTitle());
+						System.out.println(boardVO.getPrice());
+						System.out.println(boardVO.getImageUrl());
+						setText(null);
+						setGraphic(null);
+						setText("상풍명 : " + boardVO.getTitle() + "\n시간당 가격 : " 
+								+ boardVO.getPrice() + "원\n포스트 날짜 : " 
+								+ sdf.format(boardVO.getTime()));
+						setGraphic(imageView);
+					} catch(Exception e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		});
