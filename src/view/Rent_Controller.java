@@ -1,5 +1,6 @@
 package view;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +21,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import model.BoardDAO;
@@ -52,6 +55,8 @@ public class Rent_Controller implements Initializable {
 	private Button btnBook;
 	@FXML
 	private Button btnPlant;
+	@FXML
+	private Button btnEtc;
 	// 나머지 객체
 	@FXML
 	private AnchorPane ap;
@@ -85,6 +90,7 @@ public class Rent_Controller implements Initializable {
 		boardVOList = boardDAO.getAllBoardList();
 		boardVOObservanbleList.setAll(boardVOList);
 		getBoardList();
+		
 	}
 	
 	// board리스트 뿌리는 메소드
@@ -120,6 +126,7 @@ public class Rent_Controller implements Initializable {
 			}
 		});
 		boardListAc.getChildren().setAll(listView);
+
 	}
 	
 	// 카테고리별 버튼이 눌렸을 떄
@@ -203,7 +210,13 @@ public class Rent_Controller implements Initializable {
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
 			System.out.println("pressed");
-		}	
+		} else if (actionEvent.getSource() == btnEtc) {
+			ctgId = 13;
+			boardDAO.getOneCtgBoardList(ctgId);
+			boardVOObservanbleList.setAll(boardVOList);
+			getBoardList();
+			System.out.println("pressed");
+		} 
 	}
 	
 	// find아이콘 click시
