@@ -131,7 +131,7 @@ public class Post_Controller implements Initializable {
 
 	public void popUp() {
 		try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("MyPostStatus.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PostComplete.fxml"));
             Stage stage = new Stage();
             stage.initStyle(StageStyle.UNDECORATED);
             Parent root = (Parent) loader.load();
