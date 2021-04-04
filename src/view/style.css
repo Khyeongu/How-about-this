@@ -4,6 +4,10 @@
 -fx-text-fill : #FFFFFF;
 -fx-font-family: "Jalnan";
 }
+.label
+{
+	-fx-font-family: "Jalnan";
+}
 .button:hover{
 -fx-background-color : #C01632;
 }

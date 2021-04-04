@@ -1,5 +1,7 @@
 package view;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
@@ -46,8 +48,13 @@ public class MiniBoardListViewCell extends ListCell<BoardVO> {
                 }
 
             }
-			//Image image = new Image(getClass().getResource("../../resources/xbox.jpeg").toExternalForm());
-			//imageProduct.setImage(image);
+			try {
+				Image image = new Image(new FileInputStream("C:\\Users\\user\\Desktop\\현대IT&E\\project\\How-about-this\\src\\boardImg\\xbox.jpg"));
+				imageProduct.setImage(image);
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			labelTitle.setText(board.getTitle());
 			labelPrice.setText(Integer.toString(board.getPrice())+" 원");
 			

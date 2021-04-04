@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import database.UserSession;
 import javafx.fxml.Initializable;
+import javafx.geometry.Orientation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,6 +28,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -46,6 +50,9 @@ public class Home_Controller implements Initializable {
 
 	@FXML
 	private GridPane gridRank;
+	
+	@FXML
+	private ScrollPane sp;
 
 	@FXML
 	private ListView<BoardVO> listRent;
@@ -88,6 +95,8 @@ public class Home_Controller implements Initializable {
 	private Label labelRank5;
 	
 	private ArrayList<Label> labelRanks;
+	
+	
 
 	public Home_Controller() {
 		BoardDAO boardDAO = new BoardDAO();
@@ -107,6 +116,8 @@ public class Home_Controller implements Initializable {
 		session = UserSession.getInstance();
 		labelName.setText(session.getMember().getName()+" 님");
 		//System.out.println(session.getMember().getId());
+		
+	    
 		labelRanks = new ArrayList<Label>();
 		labelRanks.add(labelRank1);
 		labelRanks.add(labelRank2);

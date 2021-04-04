@@ -159,6 +159,8 @@ public class Profit_Controller implements Initializable{
 				drawTable(session.getMember().getId(),selectedYear);
 		      }
 		    });
+		drawChart(session.getMember().getId(), "20210101", "20211231");
+		drawTable(session.getMember().getId(), "2021");
 	}
 	
 	public void drawChart(int userId, String startDate, String endDate) {
@@ -179,12 +181,15 @@ public class Profit_Controller implements Initializable{
 			monthlyProfitData.set(row, m);
 		}
 
+		int total=0;
 		for (MonthlyProfitVO m : monthlyProfitData) {
 			int month = Integer.parseInt(m.getMonth().substring(4, 6));
 
 			series.getData().add(new XYChart.Data<String, Number>(Integer.toString(month) + "월", m.getTotal()));
 			
 			labelTotals.get(month-1).setText(" "+Integer.toString(m.getTotal())+" 원");//테이블 총액 채우기
+			total=total+m.getTotal();
+			labelTotal.setText(" "+Integer.toString(total)+" 원");
 		}
 		linechart.getData().add(series);
 	}
