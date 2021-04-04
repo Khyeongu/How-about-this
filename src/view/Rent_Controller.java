@@ -1,5 +1,8 @@
 package view;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -7,115 +10,155 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import model.BoardDAO;
+import model.CategoryDAO;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-public class Rent_Controller implements Initializable {
-	private boolean heart = false;
-	
+public class RentController implements Initializable {
+	// 카테고리별 버튼
+	@FXML
+	private Button btnAll;
+	@FXML
+	private Button btnDigital;
+	@FXML
+	private Button btnInterior;
+	@FXML
+	private Button btnKids;
+	@FXML
+	private Button btnSports;
+	@FXML
+	private Button btnWomanThing;
+	@FXML
+	private Button btnWomanCloth;
+	@FXML
+	private Button btnManThing;
+	@FXML
+	private Button btnHobby;
+	@FXML
+	private Button btnBeauty;
+	@FXML
+	private Button btnPet;
+	@FXML
+	private Button btnBook;
+	@FXML
+	private Button btnPlant;
+	// 나머지 객체
 	@FXML
 	private AnchorPane ap;
-	
+	// 검색하는 버튼
 	@FXML
-    private ImageView productImg;
-	
+	private Button btnFinder;
+	// 검색어 입력 textField
 	@FXML
-    private Label dueDateText;
-	
+	private TextField textField;
+	// 오른쪽 밑 floating button
 	@FXML
-    private Label titleText;
-	
+	private Button btnFloating;
 	@FXML
-    private Label explainTitleText;
-	
+	private Label lab_ctg;
 	@FXML
-    private Label priceText;
+	private VBox boardListVBox;
 	
-	@FXML
-    private Label phoneNoText;
+	// 객체 생성
+	private BoardDAO boardDAO = new BoardDAO();
+	private CategoryDAO categoryDAO = new CategoryDAO();
 	
-	@FXML
-    private Label statusText;
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		boardDAO.getAllBoardList();
+	}
 	
-	@FXML
-    private Label contentText;
+	// 카테고리별 버튼이 눌렸을 떄
+	public void ctgBtnClicked(ActionEvent actionEvent) {
+		int ctgId = 1;
+		
+		if (actionEvent.getSource() == btnAll) {
+			boardDAO.getAllBoardList();
+			System.out.println("pressed");
+		} else if (actionEvent.getSource() == btnDigital) {
+			ctgId = 2;
+			categoryDAO.getOneCtgBoardList(ctgId);
+			System.out.println("pressed");
+		} else if (actionEvent.getSource() == btnInterior) {
+			ctgId = 3;
+			categoryDAO.getOneCtgBoardList(ctgId);
+			System.out.println("pressed");
+		} else if (actionEvent.getSource() == btnKids) {
+			ctgId = 4;
+			categoryDAO.getOneCtgBoardList(ctgId);
+			System.out.println("pressed");
+		} else if (actionEvent.getSource() == btnSports) {
+			ctgId = 5;
+			categoryDAO.getOneCtgBoardList(ctgId);
+			System.out.println("pressed");
+		} else if (actionEvent.getSource() == btnWomanThing) {
+			ctgId = 6;
+			categoryDAO.getOneCtgBoardList(ctgId);
+			System.out.println("pressed");
+		} else if (actionEvent.getSource() == btnWomanCloth) {
+			ctgId = 7;
+			categoryDAO.getOneCtgBoardList(ctgId);
+			System.out.println("pressed");
+		} else if (actionEvent.getSource() == btnManThing) {
+			ctgId = 8;
+			categoryDAO.getOneCtgBoardList(ctgId);
+			System.out.println("pressed");
+		} else if (actionEvent.getSource() == btnHobby) {
+			ctgId = 9;
+			categoryDAO.getOneCtgBoardList(ctgId);
+			System.out.println("pressed");
+		} else if (actionEvent.getSource() == btnBeauty) {
+			ctgId = 10;
+			categoryDAO.getOneCtgBoardList(ctgId);
+			System.out.println("pressed");
+		} else if (actionEvent.getSource() == btnPet) {
+			ctgId = 11;
+			categoryDAO.getOneCtgBoardList(ctgId);
+			System.out.println("pressed");
+		} else if (actionEvent.getSource() == btnBook) {
+			ctgId = 12;
+			categoryDAO.getOneCtgBoardList(ctgId);
+			System.out.println("pressed");
+		} else if (actionEvent.getSource() == btnPlant) {
+			ctgId = 13;
+			categoryDAO.getOneCtgBoardList(ctgId);
+			System.out.println("pressed");
+		}	
+	}
 	
-	@FXML
-	private TextArea conmentArea;
-	
-    @FXML
-    private ImageView backImg;
+	// find아이콘 click시
+	public void findClicked(ActionEvent actionEvent) {
+		if (actionEvent.getSource() == btnFinder) {
+			String findTxt = textField.getText();
+			System.out.println(findTxt);
+			boardDAO.boardListBySearch(findTxt);
+			findWindow();
+		}
+	}
 
-    @FXML
-    private ImageView updateImg;
-    
-    @FXML
-    private ImageView profileImg;
-    
-    @FXML
-    private ImageView heartImg;
-    
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    	//뒤로가기 이미지 누르면 홈으로
-    	backImg.setOnMouseClicked(event -> {
-    		loadPage("Home");
-    	});
-    	
-    	// 수정 버튼 누르면 Post 페이지로
-    	updateImg.setOnMouseClicked(event -> {
-    		loadPage("Post");
-    	});
-    	
-    	// 프로필 사진 클릭하면 홈으로
-    	profileImg.setOnMouseClicked(event ->{
-    		loadPage("Home");
-    	});
-    	
-    	// 하트 이미지 클릭 이벤트
-    	heartImg.setOnMouseClicked(event ->{
-    		if(heart) {
-    			try {
-					Image image = new Image(new FileInputStream("src/images/hart2.png"));
-					heartImg.setImage(image);
-	    			heart = false;
-    			} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-    		} 
-    		else {
-    			try {
-					Image image = new Image(new FileInputStream("src/images/hart1.png"));
-					heartImg.setImage(image);
-	    			heart = true;
-    			} catch (FileNotFoundException e) {
-    				// TODO Auto-generated catch block
-    				e.printStackTrace();
-    			}
-    		}
-    	});
-    }
-    
-    private void loadPage(String page) {
+	// 검색어를 입력하세요 창
+	public void findWindow() {
+		System.out.println("findWindow 호출");
+		btnFinder.setOpacity(1);
+	}
+	
+	// floating 버튼 클릭시
+	public void btnFloatingClicked(ActionEvent actionEvent) {
+		System.out.println("floating버튼 clicked");
+		loadPage("Post");
+	}
+	
+	// 다른 페이지로 이동 메소드
+	private void loadPage(String page) {
 		try {
-			System.out.println("../view/"+ page + ".fxml");
+			System.out.println("../view/" + page + ".fxml");
 			Node node;
-			node = (Node)FXMLLoader.load(getClass().getResource("../view/"+ page + ".fxml"));
+			node = (Node) FXMLLoader.load(getClass().getResource("../view/" + page + ".fxml"));
 			ap.getChildren().setAll(node);
-		} catch (IOException ex) {
-			Logger.getLogger(SideBar_Controller.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }
