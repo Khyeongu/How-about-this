@@ -2,8 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,88 +15,30 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ap" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RentDetail_Controller">
+<AnchorPane fx:id="ap" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RentDetail_Controller">
    <children>
       <HBox maxHeight="576.0" maxWidth="793.0" minHeight="576.0" minWidth="793.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css">
       	<children>
-            <VBox maxHeight="576.0" maxWidth="170.0" minHeight="576.0" minWidth="170.0" prefHeight="576.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;">
+            <VBox prefHeight="576.0" prefWidth="162.0">
                <children>
-                  <Label fx:id="categoryText1" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="전체">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryText2" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="디지털/가전">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryText3" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="가구/인테리어">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryText4" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="유아동/유아도서">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryText5" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="생활/가공식품">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryText6" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="스포츠/레저">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryText7" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="여성잡화">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryText8" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="여성의류">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryText9" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="게임/취미">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryText10" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="뷰티/미용">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryText11" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="반려동물용품">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryText12" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="도서/티켓/음반">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryText13" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="식물">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="categoryText14" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="기타">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
+                  <Label fx:id="lab_ctg" alignment="CENTER" prefHeight="60.0" prefWidth="197.0" text="Category" />
+                  <Button fx:id="btnAll" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="전체" />
+                  <Button fx:id="btnDigital" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="디지털/가전" />
+                  <Button fx:id="btnInterior" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="가구/인테리어" />
+                  <Button fx:id="btnKids" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="유아동/유아도서" />
+                  <Button fx:id="btnSports" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="스포츠/레저" />
+                  <Button fx:id="btnWomanThing" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="여성잡화" />
+                  <Button fx:id="btnWomanCloth" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="여성의류" />
+                  <Button fx:id="btnManThing" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="36.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="남성패션/잡화" />
+                  <Button fx:id="btnHobby" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="36.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="게임/취미" />
+                  <Button fx:id="btnBeauty" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="뷰티/미용" />
+                  <Button fx:id="btnPet" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="반려동물용품" />
+                  <Button fx:id="btnBook" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="도서/티켓/음반" />
+                  <Button fx:id="btnPlant" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="식물" />
+                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="기타" />
                </children>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
             </VBox>
-            <ScrollPane maxWidth="623.0" minHeight="576.0" minWidth="623.0" prefHeight="576.0" prefWidth="623.0">
+            <ScrollPane maxWidth="623.0" minHeight="576.0" minWidth="623.0" prefHeight="576.0" prefWidth="623.0" style="-fx-background-color: #FFFFFF;">
                <content>
                   <VBox maxHeight="-Infinity" maxWidth="610.0" minWidth="610.0" prefWidth="610.0">
                      <children>
@@ -124,7 +68,7 @@
                               </Label>
                            </center>
                         </BorderPane>
-                        <BorderPane maxHeight="250.0" maxWidth="610.0" minHeight="250.0" minWidth="600.0" prefHeight="250.0" prefWidth="600.0" style="-fx-background-color: #EEEEEE;">
+                        <BorderPane maxHeight="250.0" maxWidth="610.0" minHeight="250.0" minWidth="600.0" prefHeight="250.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
                            <center>
                               <ImageView fx:id="productImg" fitHeight="222.0" fitWidth="229.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                  <image>
@@ -243,6 +187,20 @@
                            </center>
                         </BorderPane>
                         <AnchorPane fx:id="replyList" maxWidth="793.0" minWidth="793.0" prefHeight="200.0" prefWidth="793.0" />
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <left>
+                              <TextField fx:id="replyText" minWidth="400.0" onAction="#addReply" prefHeight="50.0" prefWidth="400.0" promptText="댓글을 입력하세요" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets left="10.0" />
+                                 </BorderPane.margin></TextField>
+                           </left>
+                           <right>
+                              <Button fx:id="replyBtn" minWidth="130.0" mnemonicParsing="false" onAction="#addReply" text="댓글 등록" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets right="10.0" />
+                                 </BorderPane.margin></Button>
+                           </right>
+                        </BorderPane>
                      </children>
                   </VBox>
                </content>
