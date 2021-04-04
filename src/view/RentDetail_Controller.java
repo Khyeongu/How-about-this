@@ -203,7 +203,11 @@ public class RentDetail_Controller implements Initializable {
     	
     	// 프로필 사진 클릭하면 홈으로
     	profileImg.setOnMouseClicked(event ->{
-    		loadPage("Home");
+    		int mem_id = rentDetailDAO.getMemberId(board_id);
+    		if(mem_id != 0) {
+    			Review_controller.setMemberId(mem_id);
+        		loadPage("Review");
+    		}
     	});
     	
     	// 하트 이미지 클릭 이벤트

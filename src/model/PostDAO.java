@@ -21,7 +21,7 @@ public class PostDAO {
 
 	/* 게시판 글 입력*/
 	public static void insertBoardPost(int memberid) {
-		String runSP = "{ call insert_board_post(?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }";
+		String runSP = "{ call insert_board_post(?, ?, ?, ?, ?, ?, ?, ?, ?) }";
 
 		try {
 			conn = DBConnection.getConnection();
@@ -36,12 +36,12 @@ public class PostDAO {
 			callableStatement.setString(2, postVO.getContent());
 			callableStatement.setInt(3, postVO.getPrice());
 			callableStatement.setBoolean(4, postVO.getStatus()); 
-			callableStatement.setDate(5, java.sql.Date.valueOf(format_time_date));			
-			callableStatement.setDate(6, java.sql.Date.valueOf(format_start_date));
-			callableStatement.setDate(7, java.sql.Date.valueOf(format_end_date));
-			callableStatement.setString(8, postVO.getImage_url());
-			callableStatement.setInt(9, postVO.getCategory_id());
-			callableStatement.setInt(10, memberid);
+			//callableStatement.setDate(5, java.sql.Date.valueOf(format_time_date));			
+			callableStatement.setDate(5, java.sql.Date.valueOf(format_start_date));
+			callableStatement.setDate(6, java.sql.Date.valueOf(format_end_date));
+			callableStatement.setString(7, postVO.getImage_url());
+			callableStatement.setInt(8, postVO.getCategory_id());
+			callableStatement.setInt(9, memberid);
 			callableStatement.executeQuery();
 			
 		} catch (SQLException e) {

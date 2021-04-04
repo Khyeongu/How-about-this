@@ -64,9 +64,9 @@ public class Home_Controller implements Initializable {
 	private ArrayList<MonthlyProfitVO> monthlyProfits;
 
 	private ArrayList<MonthlyProfitVO> monthlyProfitData;
-	
-	public static ArrayList<String> category_rank_list = new ArrayList<>();
 
+	public static ArrayList<String> category_rank_list;
+	
 	@FXML
 	private AnchorPane ap;
 
@@ -135,6 +135,7 @@ public class Home_Controller implements Initializable {
 			monthlyProfitData.add(new MonthlyProfitVO(Integer.toString(thisYear + i), 0));
 		}
 		
+		
 		//차트 그리기
 		drawChart(session.getMember().getId() , "20210101","20211231");
 		drawCategoryRank();
@@ -176,10 +177,12 @@ public class Home_Controller implements Initializable {
 		ArrayList<TradeRecordVO> categoryRanks = new ArrayList<>();
 		TradeRecordDAO tradeRecordDAO = new TradeRecordDAO();
 		categoryRanks=tradeRecordDAO.getCategoryRank();
+		category_rank_list = new ArrayList<>();
 		
 		int idx1 = 1;
 		for(TradeRecordVO t : categoryRanks) {
-			category_rank_list.add(idx1 + "위 " + mapCategory.get(Integer.toString(t.getCategoryId())));
+			
+			category_rank_list.add(idx1 + "위     " + mapCategory.get(Integer.toString(t.getCategoryId())));
 			idx1++;
 		}
 		
