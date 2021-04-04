@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,77 +14,11 @@
             <Font name="Jalnan" size="27.0" />
          </font>
       </Text>
-      <ImageView fitHeight="104.0" fitWidth="102.0" layoutX="114.0" layoutY="52.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="68.0" fitWidth="61.0" layoutX="223.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/category_rank.png" />
          </image>
       </ImageView>
-      <ListView layoutX="37.0" layoutY="171.0" prefHeight="400.0" prefWidth="37.0" style="-fx-border-color: #000000;" />
-      <ListView fx:id="categoryRank_listview" layoutX="72.0" layoutY="171.0" prefHeight="400.0" prefWidth="667.0" style="-fx-border-color: #000000;" stylesheets="@style.css" />
-      <Label layoutX="49.0" layoutY="171.0" prefHeight="35.0" prefWidth="21.0" text="1" textAlignment="CENTER">
-      <font>
-            <Font name="Jalnan" size="20.0" />
-         </font>
-      </Label>
-      <Label layoutX="49.0" layoutY="206.0" prefHeight="29.6" prefWidth="21.0" text="2" textAlignment="CENTER">
-      <font>
-            <Font name="Jalnan" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="49.0" layoutY="236.0" prefHeight="29.6" prefWidth="21.0" text="3" textAlignment="CENTER">
-      <font>
-            <Font name="Jalnan" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="49.0" layoutY="266.0" prefHeight="29.6" prefWidth="21.0" text="4" textAlignment="CENTER">
-      <font>
-            <Font name="Jalnan" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="49.0" layoutY="296.0" prefHeight="29.6" prefWidth="21.0" text="5" textAlignment="CENTER">
-      <font>
-            <Font name="Jalnan" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="49.0" layoutY="326.0" prefHeight="29.6" prefWidth="21.0" text="6" textAlignment="CENTER">
-      <font>
-            <Font name="Jalnan" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="49.0" layoutY="356.0" prefHeight="29.6" prefWidth="21.0" text="7" textAlignment="CENTER">
-      <font>
-            <Font name="Jalnan" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="49.0" layoutY="386.0" prefHeight="29.6" prefWidth="21.0" text="8" textAlignment="CENTER">
-      <font>
-            <Font name="Jalnan" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="49.0" layoutY="416.0" prefHeight="29.6" prefWidth="21.0" text="9" textAlignment="CENTER">
-      <font>
-            <Font name="Jalnan" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="41.0" layoutY="446.0" prefHeight="29.6" prefWidth="37.0" text="10" textAlignment="CENTER">
-      <font>
-            <Font name="Jalnan" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="41.0" layoutY="476.0" prefHeight="29.6" prefWidth="37.0" text="11" textAlignment="CENTER">
-      <font>
-            <Font name="Jalnan" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="41.0" layoutY="506.0" prefHeight="29.6" prefWidth="37.0" text="12" textAlignment="CENTER">
-      <font>
-            <Font name="Jalnan" size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="41.0" layoutY="536.0" prefHeight="29.6" prefWidth="37.0" text="13" textAlignment="CENTER">
-      <font>
-            <Font name="Jalnan" size="25.0" />
-         </font>
-      </Label>
+      <ListView fx:id="categoryRank_listview" layoutX="293.0" layoutY="171.0" prefHeight="391.0" prefWidth="208.0" stylesheets="@style.css" /> 
    </children>
 </Pane>

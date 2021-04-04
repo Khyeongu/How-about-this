@@ -131,7 +131,7 @@ public class Post_Controller implements Initializable {
 	public void fileChoose() {
 		FileChooser fc = new FileChooser();
 		fc.setTitle("이미지 선택");
-		fc.setInitialDirectory(new File("C:/Users/chltj/Desktop/Project/How-about-this/src/boardImg")); // default 디렉토리 설정
+		fc.setInitialDirectory(new File("C:/"));
 		ExtensionFilter imgType = new ExtensionFilter("image file", "*.jpg", "*.gif", "*.png", "*jpeg");
 		fc.getExtensionFilters().addAll(imgType);
 

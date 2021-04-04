@@ -32,10 +32,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.CategoryRankVO;
+import model.TradeRecordDAO;
+import model.TradeRecordVO;
 import model.CategoryRankDAO;
 
 public class CategoryRank_Controller implements Initializable {
@@ -47,8 +51,7 @@ public class CategoryRank_Controller implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		ArrayList<String> list = new ArrayList<>();
-		list = categoryRankDAO.getCategoryRank();
-		categoryRank_listview.setItems(FXCollections.observableArrayList(list));
+		categoryRank_listview.setItems(FXCollections.observableArrayList(Home_Controller.category_rank_list));
 	}
+	
 }
