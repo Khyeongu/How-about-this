@@ -17,32 +17,32 @@
             <VBox prefHeight="576.0" prefWidth="162.0" style="-fx-background-color: #ffa959;" stylesheets="@style.css">
                <children>
                   <Label fx:id="lab_ctg" alignment="CENTER" prefHeight="60.0" prefWidth="162.0" style="-fx-background-color: #ffffff;" stylesheets="@style.css" text="Category" />
-                  <Button fx:id="btnAll" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" stylesheets="@style.css" text="전체">
+                  <Button fx:id="btnAll" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0"  stylesheets="@category.css" text="전체">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets></Button>
-                  <Button fx:id="btnDigital" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="디지털/가전" />
-                  <Button fx:id="btnInterior" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="가구/인테리어" />
-                  <Button fx:id="btnKids" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="유아동/유아도서" />
-                  <Button fx:id="btnSports" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="스포츠/레저" />
-                  <Button fx:id="btnWomanThing" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="여성잡화" />
-                  <Button fx:id="btnWomanCloth" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="여성의류" />
-                  <Button fx:id="btnManThing" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="36.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="남성패션/잡화" />
-                  <Button fx:id="btnHobby" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="36.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="게임/취미" />
-                  <Button fx:id="btnBeauty" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="뷰티/미용" />
-                  <Button fx:id="btnPet" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="반려동물용품" />
-                  <Button fx:id="btnBook" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="도서/티켓/음반" />
-                  <Button fx:id="btnPlant" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="식물" />
-                  <Button fx:id="btnEtc" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="기타" />
+                  <Button fx:id="btnDigital" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" stylesheets="@category.css" text="디지털/가전" />
+                  <Button fx:id="btnInterior" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" stylesheets="@category.css" text="가구/인테리어" />
+                  <Button fx:id="btnKids" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" stylesheets="@category.css" text="유아동/유아도서" />
+                  <Button fx:id="btnSports" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" stylesheets="@category.css" text="스포츠/레저" />
+                  <Button fx:id="btnWomanThing" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" stylesheets="@category.css" text="여성잡화" />
+                  <Button fx:id="btnWomanCloth" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" stylesheets="@category.css" text="여성의류" />
+                  <Button fx:id="btnManThing" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="36.0" prefWidth="188.0" stylesheets="@category.css" text="남성패션/잡화" />
+                  <Button fx:id="btnHobby" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="36.0" prefWidth="188.0" stylesheets="@category.css" text="게임/취미" />
+                  <Button fx:id="btnBeauty" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" stylesheets="@category.css" text="뷰티/미용" />
+                  <Button fx:id="btnPet" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" stylesheets="@category.css" text="반려동물용품" />
+                  <Button fx:id="btnBook" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" stylesheets="@category.css" text="도서/티켓/음반" />
+                  <Button fx:id="btnPlant" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" stylesheets="@category.css" text="식물" />
+                  <Button fx:id="btnEtc" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" stylesheets="@category.css" text="기타" />
                </children>
             </VBox>
             <AnchorPane layoutX="162.0" prefHeight="59.0" prefWidth="628.0">
                <children>
-                  <Button fx:id="btnFinder" layoutX="576.0" layoutY="16.0" mnemonicParsing="false" onAction="#findClicked" prefHeight="29.0" prefWidth="33.0" style="-fx-background-color: #ffa959;">
+                  <Button fx:id="btnFinder" layoutX="576.0" layoutY="16.0" mnemonicParsing="false" onAction="#findClicked" prefHeight="29.0" prefWidth="33.0" style="-fx-background-color: #FF7F8B;">
                      <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #ffa959;">
+                        <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #FF7F8B;">
                            <image>
-                              <Image url="@../../bin/images/icons8_Search_52px.png" />
+                              <Image url="@../images/search.png" />
                            </image>
                         </ImageView>
                      </graphic>
