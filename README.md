@@ -1,11 +1,4 @@
-# RestaurantMgt Sample UI JavaFX
+# 중고 물품 거래 플랫폼 "이거어때"
 
-This project is purely JavaFX - it gives you a basis of what to do regarding your projects, **Note:** it is not a fully fledged system.
-
-Dark Mode
-
-![](https://github.com/k33ptoo/RestaurantMgtSampleUI/blob/master/imgs/sc2.PNG)
-
-Light Mode
-
-![](https://github.com/k33ptoo/RestaurantMgtSampleUI/blob/master/imgs/sc.PNG)
+frontend : javafx
+backend : Callable statement & oracle Procedure and Function
