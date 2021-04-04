@@ -49,3 +49,137 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
 END;
 /
+
+
+-- 준수
+create or replace view member_view
+as select id, login_id, name, phone_number, birthdate, nickname
+from member;
+
+
+create or replace function select_member_check
+(p_id member.login_id%type, 
+p_pw member.login_password%type)
+return number
+is
+  match_count member.id%type;
+begin
+  select id into match_count
+  from member
+  where login_id = p_id and
+           login_password = p_pw;
+
+  return match_count;
+exception
+  when no_data_found then
+    return 0;
+end;
+/
+
+
+create or replace procedure select_member_info
+  (p_id member.login_id%type, 
+   p_pw member.login_password%type,
+   p_memid out member.id%type,
+   p_memName out member.name%type,
+   p_memPhone_number out member.phone_number%type,
+   p_memBirth out member.birthdate%type,
+   p_memNickname out member.nickname%type
+)
+is
+begin
+    select id, name, phone_number, birthdate, nickname
+    into p_memid, p_memName, p_memPhone_number, p_memBirth, p_memNickname from member_view
+    where id = ( select select_member_check(p_id, p_pw) from dual);
+end;
+/
+
+create or replace procedure select_member_id_check
+(p_id member.login_id%type,
+p_cnt out number
+)
+is
+begin
+  select count(*) into p_cnt
+  from member
+  where login_id = p_id;
+end;
+/
+
+create or replace procedure select_member_nickname_check
+(p_nickname member.nickname%type,
+p_cnt out number
+)
+is
+begin
+  select count(*) into p_cnt
+  from member
+  where nickname = p_nickname;
+end;
+/
+
+create or replace procedure insert_member_signUp
+(
+  p_login_id member.login_id%type,
+  p_login_password member.login_password%type,
+  p_name member.name%type,
+  p_phone_number member.phone_number%type,
+  p_birthdate member.birthdate%type,
+  p_nickname member.nickname%type
+)
+is
+begin
+  insert into member values(member_id_seq.NEXTVAL, p_login_id, p_login_password, p_name, p_phone_number, 
+  p_birthdate, 
+  p_nickname);
+
+end;
+/
+
+select b.title, b.start_date, b.end_date, b.price, b.status, b.content, m.nickname, m.phone_number
+from board b, member m
+where b.id = 1
+and m.id = b.member_id;
+
+create or replace procedure select_board_detail
+(
+  board_id board.id%type,
+  detail_cursor out sys_refcursor
+)
+is
+begin
+  open detail_cursor for
+    select b.title, b.start_date, b.end_date, b.price, b.status, b.content, m.nickname, m.phone_number
+    from board b, member m
+    where b.id = board_id
+    and m.id = b.member_id;
+end;
+/
+
+create or replace procedure select_zzim
+(
+  p_board_id zzim.board_id%type,
+  p_member_id zzim.member_id%type,
+  p_cnt out number
+)
+is
+begin
+  select count(*) into p_cnt from zzim
+  where board_id = p_board_id and
+           member_id = p_member_id;
+end;
+/
+
+
+create or replace procedure select_reply_board
+(
+  p_board_id reply.board_id%type,
+  p_cursor out sys_refcursor
+)
+is
+begin
+  open p_cursor for
+    select * from reply
+    where board_id = p_board_id;
+end;
+/
