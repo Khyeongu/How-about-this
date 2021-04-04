@@ -3,13 +3,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="ap" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SignUp_Controller">
+<AnchorPane fx:id="ap" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SignUp_Controller">
    <children>
       <VBox fx:id="titleBox" alignment="CENTER_LEFT" prefHeight="576.0" prefWidth="1050.0">
          <children>
@@ -36,8 +37,7 @@
                         </BorderPane>
                         <BorderPane fx:id="pwBP" prefHeight="80.0" prefWidth="200.0">
                            <center>
-                              <TextField fx:id="pwField" minHeight="40.0" prefHeight="40.0" prefWidth="300.0" promptText="Input your password" style="-fx-font-size: 20; -fx-font-family: &quot;Jalnan&quot;;" BorderPane.alignment="CENTER">
-                              </TextField>
+                              <PasswordField fx:id="pwField" prefWidth="300.0" promptText="Input your password" style="-fx-font-size: 20; -fx-font-family: &quot;Jalnan&quot;;" BorderPane.alignment="CENTER" />
                            </center>
                         </BorderPane>
                         <BorderPane fx:id="nameBP" prefHeight="80.0" prefWidth="200.0">

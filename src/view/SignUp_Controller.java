@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -70,7 +71,7 @@ public class SignUp_Controller implements Initializable {
 	private BorderPane pwBP;
 	
 	@FXML
-	private TextField pwField;
+	private PasswordField pwField;
 	
 	@FXML
 	private BorderPane nameBP;
