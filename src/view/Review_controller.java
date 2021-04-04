@@ -25,11 +25,15 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.CategoryRankDAO;
 import model.CategoryRankVO;
+import model.PostDAO;
 import model.ReviewDAO;
 import model.ReviewVO;
-
+import database.UserSession;
+import model.MemberVO;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -53,43 +57,47 @@ public class Review_controller implements Initializable {
 	private ListView<String> review_listview;
 		
 	@FXML
-	private Button btnPost;
+	private Button btnReview_post;
 	
 	//객체 생성
 	private ReviewDAO reviewDAO = new ReviewDAO();
-	private ReviewVO reviewVO = new ReviewVO();
-	
-	ObservableList<String> choicebox_list = FXCollections.observableArrayList();
-	
-	int memberid = 1;
+	private UserSession memberid;
+		
+	ObservableList<String> review_choicebox_list = FXCollections.observableArrayList();
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		memberid = UserSession.getInstance();
+		
 		review_ChoiceBox_init();
 		review_textField_init();
 		
-		reviewDAO.getReviewList(memberid); //로그인한 member의 member_id를 파라미터로
+		reviewDAO.getReviewList(memberid.getMember().getId());
 		review_listview.setItems(FXCollections.observableArrayList(reviewDAO.review_merge_list));
-		
-//		String review_choiceBox_value = review_choiceBox.getValue();
-//		if(review_choiceBox_value == "5.0") {
-//			//code
-//		}
 	}
 
 	private void review_textField_init() {
-		reviewDAO.getMemberName(memberid);
-		review_user.setText(ReviewDAO.member_name); //로그인한 member의 name
-		reviewDAO.getMemberGrade(memberid);
-		review_grade.setText(ReviewDAO.member_grade);  //member의 grade 표시
+		reviewDAO.getMemberName(memberid.getMember().getId());
+		review_user.setText(ReviewDAO.member_name); 
+		reviewDAO.getMemberGrade(memberid.getMember().getId());
+		review_grade.setText(ReviewDAO.member_grade); 
 	}
 	
 	private void review_ChoiceBox_init() {
-		choicebox_list.removeAll(choicebox_list);
-		String choiceBox_value[] = { "5.0", "4.5", "4.0", "3.5", "3.0", "2.5", "2.0", "1.5", "1.0", "0.5", "0.0" };
-		choicebox_list.addAll(choiceBox_value);
-		review_choiceBox.setItems(choicebox_list);
-		review_choiceBox.setValue(choiceBox_value[0]);
+		review_choicebox_list.removeAll(review_choicebox_list);
+		String review_choiceBox_value[] = { "5.0", "4.5", "4.0", "3.5", "3.0", "2.5", "2.0", "1.5", "1.0", "0.5", "0.0" };
+		review_choicebox_list.addAll(review_choiceBox_value);
+		review_choiceBox.setItems(review_choicebox_list);
+		review_choiceBox.setValue(review_choiceBox_value[0]);
 	}
-
+	
+	public void btnReviewPostClicked(ActionEvent actionEvent) {
+		if (actionEvent.getSource() == btnReview_post) {
+			ReviewDAO.reviewVO.setGrade(Float.parseFloat(review_choiceBox.getValue()));
+			ReviewDAO.reviewVO.setContent(review_text.getText()); 
+			ReviewDAO.reviewVO.setTime(Timestamp.valueOf(LocalDateTime.now()));
+			ReviewDAO.reviewVO.setMemberId(memberid.getMember().getId());
+			ReviewDAO.reviewPost(memberid.getMember().getId());	
+		}
+	}
 }

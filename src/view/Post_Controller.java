@@ -1,5 +1,7 @@
 package view;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -34,115 +37,121 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import database.UserSession;
 import model.PostVO;
 import model.PostDAO;
 
 public class Post_Controller implements Initializable {
 	@FXML
 	private TextField post_title;
-	
 	@FXML
 	private TextField post_price;
-	
 	@FXML
 	private Button btnpost;
-	
 	@FXML
 	private CheckBox post_nego;
-	
+	@FXML
+	private ChoiceBox<String> post_choicebox;
 	@FXML
 	private Button btnimg;
-	
 	@FXML
 	private TextArea post_contents;
-	
 	@FXML
 	private ImageView post_img;
-	
 	@FXML
-	private DatePicker post_start_date; // local date
-	
+	private DatePicker post_start_date;
 	@FXML
-	private DatePicker post_end_date; // local date
+	private DatePicker post_end_date;
 	
-//	private PostVO postVO = new PostVO();
-//	private PostDAO postDAO = new PostDAO();
-	
-//	LocalDate to_date = LocalDate.now();
-//	LocalTime to_time = LocalTime.now();
-	
+	private UserSession memberid;
 	String img_url_save;
+	String post_choiceBox_value[] = { "디지털/가전", "가구/인테리어", "유아동/유아도서", "스포츠/레저", "여성잡화", "여성의류", "남성패션/잡화", "게임/취미",
+			"뷰티/미용", "반려동물용품", "도서/티켓/음반", "식물", "기타" };
 	
+	ObservableList<String> post_choicebox_list = FXCollections.observableArrayList();
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		memberid = UserSession.getInstance();
+		post_ChoiceBox_init();
 		postTextField_init();
-		
+
 	}
-	
-	//testfield init
+
+	// testfield init
 	public void postTextField_init() {
 		post_title.setPromptText("제목을 입력해주세요.");
 		post_price.setPromptText("가격을 입력해주세요.");
 		post_title.setPromptText("제목을 입력해주세요");
 		post_contents.setPromptText("본문을 입력해주세요.");
 	}
-	
-	//post 버튼 클릭
-	public void btnPostClicked(ActionEvent actionEvent) {
+
+	// choicebox init
+	private void post_ChoiceBox_init() {
+		post_choicebox_list.removeAll(post_choicebox_list);
+		post_choicebox_list.addAll(post_choiceBox_value);
+		post_choicebox.setItems(post_choicebox_list);
+	}
+
+	// post 버튼 클릭
+	public void btnBoardPostClicked(ActionEvent actionEvent) {
 		if (actionEvent.getSource() == btnpost) {
-			PostDAO.postVO.setId(3);
+			//PostDAO.postVO.setId(3);
 			PostDAO.postVO.setTitle(post_title.getText());
 			PostDAO.postVO.setContent(post_contents.getText());
 			PostDAO.postVO.setPrice(Integer.parseInt(post_price.getText()));
-			PostDAO.postVO.setStatus(Boolean.toString(post_nego.isSelected()));
+			PostDAO.postVO.setStatus(post_nego.isSelected());
+
+			java.util.Date start_date = java.util.Date
+					.from(post_start_date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+			java.util.Date end_date = java.util.Date
+					.from(post_end_date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+
 			PostDAO.postVO.setTime(Timestamp.valueOf(LocalDateTime.now()));
-			PostDAO.postVO.setStart_date(post_start_date.getValue()); //local date
-			PostDAO.postVO.setEnd_date(post_end_date.getValue());    //local date
+			PostDAO.postVO.setStart_date(start_date);
+			PostDAO.postVO.setEnd_date(end_date);
 			PostDAO.postVO.setImage_url(img_url_save);
-			PostDAO.postVO.setCategory_id(3); //유저가 고를수있게
-			PostDAO.postVO.setMember_id(10);   //유저 세션값 입력
-			
-			PostDAO.insertBoardPost();
-			
+	
+			for (int i = 0; i < 13; i++) {
+				if (post_choicebox.getValue().equals(post_choiceBox_value[i])) {
+					PostDAO.postVO.setCategory_id(i+1);
+				}
+			}
+	
+			PostDAO.insertBoardPost(memberid.getMember().getId());
+			// SideBar_Controller.loadPage("Post");; 글작성 완료 하면 page 이동
+
 		}
 	}
-	
-	
-	 // 사진 선택하고 선택한 이미지 띄우기
-	 public void fileChoose() {
-	        // 사진 선택 창
-	        FileChooser fc = new FileChooser();
-	        fc.setTitle("이미지 선택");
-	        fc.setInitialDirectory(new File("C:/")); // default 디렉토리 설정
-	        
-	        // 선택한 파일 정보 추출
-	        // 확장자 제한
-	        ExtensionFilter imgType = new ExtensionFilter("image file", "*.jpg", "*.gif", "*.png", "*jpeg");
-	        //fc.getExtensionFilters().add(imgType);
-	        fc.getExtensionFilters().addAll(imgType);
-	         
-	        File selectedFile =  fc.showOpenDialog(null); // showOpenDialog는 창을 띄우는데 어느 위치에 띄울건지 인자를 받고
-	                                                                // 그리고 선택한 파일의 경로값을 반환한다.
-	        //System.out.println(selectedFile);               // 선택한 경로가 출력된다.
-	         
-	        img_url_save = selectedFile.toString();
-	        
-	        // 파일을 InputStream으로 읽어옴
-	        try {
-	            // 파일 읽어오기
-	            FileInputStream fis = new FileInputStream(selectedFile);
-	            BufferedInputStream bis = new BufferedInputStream(fis);
-	            // 이미지 생성하기
-	            Image img = new Image(bis);
-	            // 이미지 띄우기
-	            post_img.setImage(img);
-	        } catch (FileNotFoundException e) {
-	            e.printStackTrace();
-	        }
-	    }
+
+	// 사진 선택하고 선택한 이미지 띄우기
+	public void fileChoose() {
+		// 사진 선택 창
+		FileChooser fc = new FileChooser();
+		fc.setTitle("이미지 선택");
+		fc.setInitialDirectory(new File("C:/")); // default 디렉토리 설정
+		ExtensionFilter imgType = new ExtensionFilter("image file", "*.jpg", "*.gif", "*.png", "*jpeg");
+		fc.getExtensionFilters().addAll(imgType);
+
+		File selectedFile = fc.showOpenDialog(null);
+		System.out.println(selectedFile);
+
+		img_url_save = selectedFile.toString();
+
+		try {
+			FileInputStream fis = new FileInputStream(selectedFile);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			Image img = new Image(bis);
+			post_img.setImage(img);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

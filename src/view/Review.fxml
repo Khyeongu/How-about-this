@@ -23,7 +23,7 @@
          </font>
       </Label>
       <TextField fx:id="review_text" layoutX="98.0" layoutY="211.0" prefHeight="30.0" prefWidth="574.0" promptText="리뷰를 작성해주세요." />
-      <Button fx:id="btnPost" layoutX="684.0" layoutY="211.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="52.0" text="작성" />
+      <Button fx:id="btnReview_post" onAction="#btnReviewPostClicked"   layoutX="684.0" layoutY="211.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="52.0" text="작성" />
       <TextField fx:id="review_grade" editable="false" layoutX="415.0" layoutY="146.0" prefHeight="43.0" prefWidth="77.0">
          <font>
             <Font name="Jalnan" size="16.0" />
