@@ -112,7 +112,7 @@ public class Home_Controller implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		//로그이 세션 가져오기
+		//로그인 세션 가져오기
 		session = UserSession.getInstance();
 		labelName.setText(session.getMember().getName()+" 님");
 		//System.out.println(session.getMember().getId());
