@@ -18,7 +18,7 @@
   <content>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="956.0" prefWidth="776.0" style="-fx-background-color: #ffffff;">
          <children>
-            <LineChart fx:id="linechart" layoutY="110.0" prefHeight="311.0" prefWidth="776.0" stylesheets="@style.css">
+            <LineChart fx:id="linechart" layoutY="110.0" prefHeight="311.0" prefWidth="776.0" >
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
@@ -26,7 +26,7 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </LineChart>
-            <ComboBox fx:id="comboYear" layoutX="20.0" layoutY="436.0" prefWidth="150.0" />
+            <ComboBox fx:id="comboYear" layoutX="20.0" layoutY="436.0" prefWidth="150.0" style="-fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
             <GridPane gridLinesVisible="true" layoutX="20.0" layoutY="478.0" maxHeight="1.7976931348623157E308" prefHeight="420.0" prefWidth="749.0" style="-fx-background-color: #ffffff;" stylesheets="@style.css">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="245.0" minWidth="0.0" prefWidth="26.0" />
@@ -50,54 +50,51 @@
                   <RowConstraints minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label minHeight="10.0" text="1월" GridPane.rowIndex="1" />
-                  <Label text="2월" GridPane.rowIndex="2" />
-                  <Label text="3월" GridPane.rowIndex="3" />
-                  <Label text="4월" GridPane.rowIndex="4" />
-                  <Label text="5월" GridPane.rowIndex="5" />
-                  <Label text="6월" GridPane.rowIndex="6" />
-                  <Label text="7월" GridPane.rowIndex="7" />
-                  <Label text="8월" GridPane.rowIndex="8" />
-                  <Label text="9월" GridPane.rowIndex="9" />
-                  <Label text="10월" GridPane.rowIndex="10" />
-                  <Label text="11월" GridPane.rowIndex="11" />
-                  <Label text="12월" GridPane.rowIndex="12" />
-                  <Label text="총계" GridPane.rowIndex="13" />
-                  <ListView fx:id="profitList1" minHeight="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <ListView fx:id="profitList2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <ListView fx:id="profitList3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <ListView fx:id="profitList4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <ListView fx:id="profitList5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <ListView fx:id="profitList6" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <ListView fx:id="profitList7" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <ListView fx:id="profitList8" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <ListView fx:id="profitList9" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                  <ListView fx:id="profitList10" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-                  <ListView fx:id="profitList11" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-                  <ListView fx:id="profitList12" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+                  <Label minHeight="10.0" text="1월" GridPane.rowIndex="1" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;" />
+                  <Label text="2월" GridPane.rowIndex="2" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;" />
+                  <Label text="3월" GridPane.rowIndex="3" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <Label text="4월" GridPane.rowIndex="4" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <Label text="5월" GridPane.rowIndex="5" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <Label text="6월" GridPane.rowIndex="6" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <Label text="7월" GridPane.rowIndex="7" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <Label text="8월" GridPane.rowIndex="8" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <Label text="9월" GridPane.rowIndex="9" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <Label text="10월" GridPane.rowIndex="10" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <Label text="11월" GridPane.rowIndex="11" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <Label text="12월" GridPane.rowIndex="12" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <Label text="총계" GridPane.rowIndex="13" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <ListView fx:id="profitList1" minHeight="10.0" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <ListView fx:id="profitList2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <ListView fx:id="profitList3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <ListView fx:id="profitList4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <ListView fx:id="profitList5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <ListView fx:id="profitList6" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <ListView fx:id="profitList7" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <ListView fx:id="profitList8" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <ListView fx:id="profitList9" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <ListView fx:id="profitList10" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="10" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <ListView fx:id="profitList11" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="11" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
+                  <ListView fx:id="profitList12" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="12" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 12;"/>
                   
                   <Label text="월" />
                   <Label text="거래내역" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                   <Label text="수익" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-                  <Label fx:id="labelTotal1" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                  <Label fx:id="labelTotal2" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                  <Label fx:id="labelTotal3" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <Label fx:id="labelTotal4" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                  <Label fx:id="labelTotal5" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                  <Label fx:id="labelTotal6" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-                  <Label fx:id="labelTotal7" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-                  <Label fx:id="labelTotal8" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-                  <Label fx:id="labelTotal9" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-                  <Label fx:id="labelTotal10" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="10" />
-                  <Label fx:id="labelTotal11" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="11" />
-                  <Label fx:id="labelTotal12" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="12" />
-                  <Label fx:id="labelTotal" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+                  <Label fx:id="labelTotal1" text=" 0 원" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label fx:id="labelTotal2" text=" 0 원" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label fx:id="labelTotal3" text=" 0 원" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label fx:id="labelTotal4" text=" 0 원" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label fx:id="labelTotal5" text=" 0 원" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label fx:id="labelTotal6" text=" 0 원" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                  <Label fx:id="labelTotal7" text=" 0 원" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                  <Label fx:id="labelTotal8" text=" 0 원" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                  <Label fx:id="labelTotal9" text=" 0 원" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                  <Label fx:id="labelTotal10" text=" 0 원" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+                  <Label fx:id="labelTotal11" text=" 0 원" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                  <Label fx:id="labelTotal12" text=" 0 원" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+                  <Label fx:id="labelTotal" text=" 0 원" GridPane.columnIndex="2" GridPane.rowIndex="13" />
                </children>
             </GridPane>
-            <Label layoutX="14.0" layoutY="48.0" text="내 수익">
-               <font>
-                  <Font size="30.0" />
-               </font>
+            <Label layoutX="14.0" layoutY="48.0" style="-fx-background-color: transparent; -fx-font-family: &quot;Jalnan&quot;; -fx-font-size: 30;" text="내 수익">
             </Label>
             <FlowPane layoutX="353.0" layoutY="-80.0" prefHeight="200.0" prefWidth="200.0" />
          </children></AnchorPane>
