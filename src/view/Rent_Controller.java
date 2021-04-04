@@ -174,73 +174,89 @@ public class Rent_Controller implements Initializable {
 			System.out.println("btnInterior pressed");
 		} else if (actionEvent.getSource() == btnKids) {
 			ctgId = 3;
-			boardVOList = boardDAO.getOneCtgBoardList(ctgId);
+			boardDAO.getOneCtgBoardList(ctgId);
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnSports) {
 			ctgId = 4;
-			boardVOList = boardDAO.getOneCtgBoardList(ctgId);
+			boardDAO.getOneCtgBoardList(ctgId);
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnWomanThing) {
 			ctgId = 5;
-			boardVOList = boardDAO.getOneCtgBoardList(ctgId);
+			boardDAO.getOneCtgBoardList(ctgId);
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnWomanCloth) {
 			ctgId = 6;
-			boardVOList = boardDAO.getOneCtgBoardList(ctgId);
+			boardDAO.getOneCtgBoardList(ctgId);
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnManThing) {
 			ctgId = 7;
-			boardVOList = boardDAO.getOneCtgBoardList(ctgId);
+			boardDAO.getOneCtgBoardList(ctgId);
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnHobby) {
 			ctgId = 8;
-			boardVOList = boardDAO.getOneCtgBoardList(ctgId);
+			boardDAO.getOneCtgBoardList(ctgId);
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnBeauty) {
 			ctgId = 9;
-			boardVOList = boardDAO.getOneCtgBoardList(ctgId);
+			boardDAO.getOneCtgBoardList(ctgId);
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnPet) {
 			ctgId = 10;
-			boardVOList = boardDAO.getOneCtgBoardList(ctgId);
+			boardDAO.getOneCtgBoardList(ctgId);
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnBook) {
 			ctgId = 11;
-			boardVOList = boardDAO.getOneCtgBoardList(ctgId);
+			boardDAO.getOneCtgBoardList(ctgId);
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnPlant) {
 			ctgId = 12;
-			boardVOList = boardDAO.getOneCtgBoardList(ctgId);
+			boardDAO.getOneCtgBoardList(ctgId);
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnEtc) {
 			ctgId = 13;
-			boardVOList = boardDAO.getOneCtgBoardList(ctgId);
+			boardDAO.getOneCtgBoardList(ctgId);
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
 
 			System.out.println("btnEtc pressed");
 
 		} 
+	}
+	
+	// find아이콘 click시
+	public void findClicked(ActionEvent actionEvent) {
+		if (actionEvent.getSource() == btnFinder) {
+			boardListAc.getChildren().clear();
+			String findTxt = textField.getText();
+			boardVOList = boardDAO.boardListBySearch(findTxt);
+			boardVOObservanbleList.setAll(boardVOList);
+			
+			getBoardList();
+			
+			System.out.println("btnDigital pressed");
+			boardDAO.boardListBySearch(findTxt);
+			
+		}
 	}
 	
 	// floating 버튼 클릭시
