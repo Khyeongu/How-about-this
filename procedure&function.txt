@@ -15,12 +15,6 @@ END;
 /
 
 --홈화면 카테고리 랭크
-select category_id, count(*)
-from traderecord
-group by category_id
-order by category_id desc
-;
-
 CREATE OR REPLACE procedure select_category_rank
 (select_category_rank_cursor out sys_refcursor)
 IS
@@ -102,7 +96,6 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
 END;
 /
-
 
 
 -- 준수
