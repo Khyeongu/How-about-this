@@ -144,11 +144,6 @@ public class Rent_Controller implements Initializable {
 							+ boardVO.getPrice() + "원\n포스트 날짜 : " 
 							+ sdf.format(boardVO.getTime()));
 					setGraphic(imageView);
-
-					} catch(Exception e) {
-						e.printStackTrace();
-					}
-
 				}
 			}
 		});
