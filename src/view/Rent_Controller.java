@@ -1,6 +1,7 @@
 package view;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -81,11 +82,14 @@ public class Rent_Controller implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		boardVOList = boardDAO.getAllBoardList();
+		boardVOObservanbleList.setAll(boardVOList);
+		getBoardList();
 	}
 	
 	// board리스트 뿌리는 메소드
 	public void getBoardList() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		listView.setPrefSize(boardListAc.getPrefWidth(), boardListAc.getPrefHeight());
 		listView.setItems(boardVOObservanbleList);
 		listView.setCellFactory(boardVOListView -> new ListCell<BoardVO>() {
@@ -108,7 +112,9 @@ public class Rent_Controller implements Initializable {
 					System.out.println(boardVO.getImageUrl());
 					setText(null);
 					setGraphic(null);
-					setText(boardVO.getTitle() + "\n" + boardVO.getPrice() + "\n" + boardVO.getTime());
+					setText("상풍명 : " + boardVO.getTitle() + "\n시간당 가격 : " 
+							+ boardVO.getPrice() + "원\n포스트 날짜 : " 
+							+ sdf.format(boardVO.getTime()));
 					setGraphic(imageView);
 				}
 			}
@@ -119,7 +125,7 @@ public class Rent_Controller implements Initializable {
 	// 카테고리별 버튼이 눌렸을 떄
 	public void ctgBtnClicked(ActionEvent actionEvent) {
 		int ctgId = 0;
-		boardListAc.getChildren().clear();
+		boardVOList.clear();
 		if (actionEvent.getSource() == btnAll) {
 			boardVOList = boardDAO.getAllBoardList();
 			boardVOObservanbleList.setAll(boardVOList);
@@ -140,42 +146,62 @@ public class Rent_Controller implements Initializable {
 		} else if (actionEvent.getSource() == btnKids) {
 			ctgId = 3;
 			boardDAO.getOneCtgBoardList(ctgId);
+			boardVOObservanbleList.setAll(boardVOList);
+			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnSports) {
 			ctgId = 4;
 			boardDAO.getOneCtgBoardList(ctgId);
+			boardVOObservanbleList.setAll(boardVOList);
+			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnWomanThing) {
 			ctgId = 5;
 			boardDAO.getOneCtgBoardList(ctgId);
+			boardVOObservanbleList.setAll(boardVOList);
+			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnWomanCloth) {
 			ctgId = 6;
 			boardDAO.getOneCtgBoardList(ctgId);
+			boardVOObservanbleList.setAll(boardVOList);
+			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnManThing) {
 			ctgId = 7;
 			boardDAO.getOneCtgBoardList(ctgId);
+			boardVOObservanbleList.setAll(boardVOList);
+			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnHobby) {
 			ctgId = 8;
 			boardDAO.getOneCtgBoardList(ctgId);
+			boardVOObservanbleList.setAll(boardVOList);
+			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnBeauty) {
 			ctgId = 9;
 			boardDAO.getOneCtgBoardList(ctgId);
+			boardVOObservanbleList.setAll(boardVOList);
+			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnPet) {
 			ctgId = 10;
 			boardDAO.getOneCtgBoardList(ctgId);
+			boardVOObservanbleList.setAll(boardVOList);
+			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnBook) {
 			ctgId = 11;
 			boardDAO.getOneCtgBoardList(ctgId);
+			boardVOObservanbleList.setAll(boardVOList);
+			getBoardList();
 			System.out.println("pressed");
 		} else if (actionEvent.getSource() == btnPlant) {
 			ctgId = 12;
 			boardDAO.getOneCtgBoardList(ctgId);
+			boardVOObservanbleList.setAll(boardVOList);
+			getBoardList();
 			System.out.println("pressed");
 		}	
 	}
@@ -193,14 +219,7 @@ public class Rent_Controller implements Initializable {
 			System.out.println("btnDigital pressed");
 			boardDAO.boardListBySearch(findTxt);
 			
-			findWindow();
 		}
-	}
-
-	// 검색어를 입력하세요 창
-	public void findWindow() {
-		System.out.println("findWindow 호출");
-		btnFinder.setOpacity(1);
 	}
 	
 	// floating 버튼 클릭시

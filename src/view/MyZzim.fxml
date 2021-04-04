@@ -1,36 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="576.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MyZzim_Controller">
    <children>
-      <VBox prefHeight="586.0" prefWidth="803.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="576.0" prefWidth="793.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox prefHeight="85.0" prefWidth="819.0">
+            <HBox prefHeight="97.0" prefWidth="793.0">
                <children>
-                  <Label fx:id="labZzim" alignment="CENTER" prefHeight="70.0" prefWidth="234.0" text="내가 찜한 상품">
+                  <Label fx:id="labZzim" alignment="CENTER" prefHeight="70.0" prefWidth="300.0" stylesheets="@style.css" text="내가 찜한 상품">
                      <HBox.margin>
-                        <Insets top="5.0" />
+                        <Insets right="370.0" top="5.0" />
                      </HBox.margin>
+                     <font>
+                        <Font size="21.0" />
+                     </font>
                   </Label>
-                  <ComboBox fx:id="comboBox" onAction="#comboChanged" prefHeight="27.0" prefWidth="135.0" promptText="최근순">
-                     <HBox.margin>
-                        <Insets left="400.0" top="25.0" />
-                     </HBox.margin>
-                  </ComboBox>
                </children>
             </HBox>
-            <ScrollPane prefHeight="492.0" prefWidth="793.0">
-               <content>
-                  <VBox prefHeight="485.0" prefWidth="780.0" />
-               </content>
-            </ScrollPane>
+            <ListView fx:id="boardVOListView" prefHeight="483.0" prefWidth="793.0" />
          </children>
       </VBox>
    </children>

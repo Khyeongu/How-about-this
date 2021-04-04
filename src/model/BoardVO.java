@@ -37,6 +37,16 @@ public class BoardVO {
 
 	}
 	
+	public BoardVO(int id, String title, int price, String imageUrl, Date time, String status) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.price = price;
+		this.time = time;
+		this.imageUrl = imageUrl;
+		this.status = status.charAt(0);
+	}
+	
 	public int getId() {
 		return id;
 	}

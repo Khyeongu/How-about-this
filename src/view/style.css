@@ -1,9 +1,3 @@
-
-.root { 
-	-fx-font-family: "Jalnan"; 
-}
-
-
 .button
 {
 -fx-background-color : #E72C4B;
@@ -48,10 +42,10 @@
 	 -fx-font-size: 17px;
 }
 #labZzim {
-	-fx-font-size: 20px;
+	 -fx-font-family: "Jalnan";
 }
 #labMyPost {
-	-fx-font-size: 20px;
+	 -fx-font-family: "Jalnan";
 }
 
 #btnMyPost {
@@ -74,7 +68,12 @@
 	-fx-font-size: 13px;
 }
 
+#cobMyZzim, #cobMyPost{
+	-fx-font-family: "Jalnan";
+}
+
 #review_listview{
 	-fx-font-family: "Jalnan";
 	-fx-font-size: 13px;
 }
+
