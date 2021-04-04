@@ -18,7 +18,7 @@ public class Main extends Application {
 
     	Font.loadFont(getClass().getResourceAsStream("Jalnan.ttf"), 10);
 
-    	Parent root = FXMLLoader.load(getClass().getResource("../view/SideBar.fxml"));
+    	Parent root = FXMLLoader.load(getClass().getResource("../view/Login.fxml"));
 
         primaryStage.setScene(new Scene(root));
         //set stage borderless

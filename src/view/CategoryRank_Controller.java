@@ -3,6 +3,8 @@ package view;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,7 +17,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -27,42 +31,30 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.CategoryRankVO;
+import model.CategoryRankDAO;
 
 public class CategoryRank_Controller implements Initializable {
-
+	
 	@FXML
-	private TableView<Product> categoryRank_tableview;
-
-	@FXML
-	private TableColumn<Product, Integer> table_view_rank;
-
-	@FXML
-	private TableColumn<Product, String> table_view_category;
+	private ListView<String> categoryRank_listview;
+	
+	//객체 생성
+	private CategoryRankDAO categoryRankDAO = new CategoryRankDAO();
+	private CategoryRankVO categoryRankVO = new CategoryRankVO();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		TableView_init();
+	
+		ArrayList<String> list = new ArrayList<>();
+		list = categoryRankDAO.getCategoryRank();
+		categoryRank_listview.setItems(FXCollections.observableArrayList(list));
 	}
-
-	private void TableView_init() {
-		table_view_rank.setCellValueFactory(new PropertyValueFactory<>("category_rank"));
-		table_view_category.setCellValueFactory(new PropertyValueFactory<>("category_name"));
-		categoryRank_tableview.setItems(getProduct());
-	}         
-
-	// product sample data 
-	public ObservableList<Product> getProduct() {
-		ObservableList<Product> products = FXCollections.observableArrayList();
-		products.add(new Product(1,"category1"));
-		products.add(new Product(2,"category2"));
-		products.add(new Product(3,"category3"));
-		products.add(new Product(4,"category4"));
-		products.add(new Product(5,"category5"));
-		return products;
-	}
+        
 
 }

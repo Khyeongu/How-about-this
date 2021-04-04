@@ -16,6 +16,7 @@ public class BoardVO {
 	private int userId;
 	private int categoryId;
 	
+
 	public BoardVO() {
 		
 	}
@@ -24,6 +25,15 @@ public class BoardVO {
 		this.categoryId=id;
 		this.title=title;
 		this.price=price;
+
+	public BoardVO(int id, String title, int price, String imageUrl, Date time) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.price = price;
+		this.time = time;
+		this.imageUrl = imageUrl;
+
 	}
 	
 	public int getId() {

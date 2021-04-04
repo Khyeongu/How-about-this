@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Grade_Controller" stylesheets="@style.css">
+<Pane prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #ffff;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Grade_Controller">
    <children>
       <Label layoutX="404.0" layoutY="74.0" prefHeight="67.0" prefWidth="183.0" text="님의 평점은">
          <font>
@@ -20,26 +19,26 @@
             <Font name="Jalnan" size="28.0" />
          </font>
       </Label>
-      <TextField layoutX="282.0" layoutY="84.0" prefHeight="48.0" prefWidth="113.0">
+      <TextField fx:id="member_name_text" editable="false" focusTraversable="false" layoutX="282.0" layoutY="84.0" prefHeight="48.0" prefWidth="113.0">
          <font>
             <Font name="Jalnan" size="25.0" />
          </font>
       </TextField>
-      <TextField layoutX="314.0" layoutY="139.0" prefHeight="48.0" prefWidth="81.0">
+      <TextField fx:id="member_grade_text" editable="false" layoutX="296.0" layoutY="139.0" prefHeight="48.0" prefWidth="99.0">
          <font>
             <Font name="Jalnan" size="25.0" />
          </font>
       </TextField>
-      <TableView layoutX="52.0" layoutY="227.0" prefHeight="336.0" prefWidth="694.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000;">
-        <columns>
-          <TableColumn prefWidth="75.0" text="No." />
-          <TableColumn prefWidth="618.0" text="리뷰 내용" />
-        </columns>
-      </TableView>
       <ImageView fitHeight="105.0" fitWidth="130.0" layoutX="147.0" layoutY="87.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/user%20icon.PNG" />
+            <Image url="@../images/user_icon.PNG" />
          </image>
       </ImageView>
+      <ListView fx:id="grade_listview" layoutX="84.0" layoutY="253.0" prefHeight="316.0" prefWidth="634.0" style="-fx-border-color: #000000;" />
+      <Label layoutX="84.0" layoutY="212.0" prefHeight="34.0" prefWidth="163.0" text="작성된 리뷰">
+         <font>
+            <Font name="Jalnan" size="28.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
