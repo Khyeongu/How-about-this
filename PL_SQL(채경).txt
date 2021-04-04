@@ -1,0 +1,149 @@
+-- 렌트-전체 게시글 프로시저 
+CREATE OR REPLACE procedure select_board_all
+(select_board_all_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_board_all_cursor for 
+    SELECT id, title, price, image_url, time
+    FROM board;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+-- 렌트 게시글 카테고리 한건 리턴 프로시저 
+
+create or replace procedure select_board_one_category
+(p_category_id in board.category_id%type,
+ select_board_one_category_board_cursor out sys_refcursor)
+is
+begin
+  open select_board_one_category_board_cursor for 
+    select id, title, price, image_url, time
+	from board
+	where category_id = p_category_id;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+end;
+/
+
+
+-- 렌트 게시글 검색어 프로시저
+CREATE OR REPLACE PROCEDURE select_board_by_search
+(p_category_title   in board.title%type,
+ p_category_content in board.content%type,
+ select_board_by_search_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_board_by_search_cursor for
+    select id, title, price, image_url, time
+    from board
+    where title like '%'||p_category_title||'%'
+    or content like '%'||p_category_content||'%';
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+end;
+/
+
+
+
+
+-- 내 게시글 최근 순 정렬(desc by boar의 id)
+
+CREATE OR REPLACE PROCEDURE select_board_my_recent
+(p_member_id in board.member_id%type,
+ select_board_my_recent_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_board_my_recent_cursor for
+    select id, title, price, image_url, time, status
+	FROM board
+	WHERE member_id = p_member_id
+	ORDER BY time desc;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+
+
+
+
+-- 내 게시글 오래된 순 정렬(asc boar의 id)
+
+CREATE OR REPLACE PROCEDURE select_board_my_old
+(p_member_id in board.member_id%type,
+ select_board_my_old_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_board_my_old_cursor for 
+    SELECT id, title, price, image_url, time, status
+	FROM board
+	WHERE member_id = p_member_id
+	ORDER BY time ASC;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+
+
+
+
+-- 내가 찜한 게시글
+
+CREATE OR REPLACE PROCEDURE select_board_my_zzim
+(p_member_id in zzim.member_id%type,
+ select_board_my_zzim_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_board_my_zzim_cursor for 
+    SELECT id, title, price, image_url, time, status
+	FROM board
+	WHERE id IN
+    (SELECT board_id FROM zzim WHERE member_id = p_member_id); 
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+
+
+
+-- status update문
+
+CREATE OR REPLACE PROCEDURE update_board_status
+(p_board_id in board.id%type)
+IS
+BEGIN
+    UPDATE board
+	SET status = 1
+	WHERE id = p_board_id; 
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+
+
+-- 찜 delete문
+
+CREATE OR REPLACE PROCEDURE delete_zzim_list
+(p_board_id in board.id%type)
+IS
+BEGIN
+    DELETE FROM zzim
+	WHERE board_id = p_board_id;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
