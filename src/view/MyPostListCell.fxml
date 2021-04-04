@@ -12,6 +12,6 @@
       <Label fx:id="labPrice" layoutX="171.0" layoutY="33.0" text="Label" />
       <Label fx:id="labTime" layoutX="171.0" layoutY="59.0" text="Label" />
       <Label fx:id="labStatus" layoutX="171.0" layoutY="82.0" text="Label" />
-      <Button fx:id="btnStatus" layoutX="618.0" layoutY="35.0" mnemonicParsing="false" text="거래 완료" />
+      <Button fx:id="btnStatus" layoutX="618.0" layoutY="35.0" mnemonicParsing="false" stylesheets="@style.css" text="거래 완료" textFill="#e72c4b" />
    </children>
 </AnchorPane>

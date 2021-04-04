@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import database.DBConnection;
@@ -55,5 +56,29 @@ public class ReplyDAO {
 				e.printStackTrace();
 			}
 			return replyList;
+		}
+		
+		public void addReply(String content, int board_id) {
+			String runSP = "{ call insert_reply_board (?, ?) }";
+			
+			try {
+				conn = DBConnection.getConnection();
+				cs = conn.prepareCall(runSP);
+
+				cs.setString(1, content);
+				cs.setInt(2, board_id);
+				System.out.println();
+				try {
+					cs.executeUpdate();
+					
+				} catch (SQLException e) {
+					System.out.println("프로시저에서 에러 발생!");
+					System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 }	

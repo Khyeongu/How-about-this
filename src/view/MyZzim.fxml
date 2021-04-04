@@ -14,7 +14,7 @@
          <children>
             <HBox prefHeight="97.0" prefWidth="793.0">
                <children>
-                  <Label fx:id="labZzim" alignment="CENTER" prefHeight="70.0" prefWidth="300.0" stylesheets="@style.css" text="내가 찜한 상품">
+                  <Label fx:id="labZzim" alignment="CENTER" prefHeight="85.0" prefWidth="300.0" stylesheets="@style.css" text="내가 찜한 상품">
                      <HBox.margin>
                         <Insets right="370.0" top="5.0" />
                      </HBox.margin>

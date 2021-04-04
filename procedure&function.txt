@@ -98,7 +98,6 @@ END;
 /
 
 
--- 준수
 create or replace view member_view
 as select id, login_id, name, phone_number, birthdate, nickname
 from member;
@@ -183,11 +182,6 @@ begin
 end;
 /
 
-select b.title, b.start_date, b.end_date, b.price, b.status, b.content, m.nickname, m.phone_number
-from board b, member m
-where b.id = 1
-and m.id = b.member_id;
-
 create or replace procedure select_board_detail
 (
   board_id board.id%type,
@@ -196,7 +190,7 @@ create or replace procedure select_board_detail
 is
 begin
   open detail_cursor for
-    select b.title, b.start_date, b.end_date, b.price, b.status, b.content, m.nickname, m.phone_number
+    select b.title, b.start_date, b.end_date, b.price, b.status, b.content, m.nickname, m.phone_number, b.image_url
     from board b, member m
     where b.id = board_id
     and m.id = b.member_id;
@@ -227,9 +221,49 @@ is
 begin
   open p_cursor for
     select * from reply
-    where board_id = p_board_id;
+    where board_id = p_board_id
+    order by id;
 end;
 /
+
+
+create or replace procedure insert_zzim_board
+(
+  p_board_id zzim.board_id%type,
+  p_member_id zzim.member_id%type
+)
+is
+begin
+  insert into zzim values (p_board_id, p_member_id);
+end;
+/
+
+
+create or replace procedure delete_zzim_list
+(
+  p_board_id zzim.board_id%type,
+  p_member_id zzim.member_id%type
+)
+is
+begin
+  delete from zzim
+  where board_id = p_board_id and
+  member_id = p_member_id;
+end;
+/
+
+
+create or replace procedure insert_reply_board
+(
+  p_content reply.content%type,
+  p_board_id reply.board_id%type
+)
+is
+begin
+  insert into reply values(reply_id_seq.NEXTVAL, p_content, to_char(sysdate, 'YYYY-MM-DD'), p_board_id);
+end;
+/
+
 
 --채경--
 -- 렌트-전체 게시글 프로시저 
@@ -370,11 +404,13 @@ END;
 -- 찜 delete문
 
 CREATE OR REPLACE PROCEDURE delete_zzim_list
-(p_board_id in board.id%type)
+(p_board_id in board.id%type,
+ P_member_id in zzim.member_id%type)
 IS
 BEGIN
-    DELETE FROM zzim
-	WHERE board_id = p_board_id;
+	DELETE FROM zzim 
+	WHERE board_id = p_board_id 
+	and member_id = P_member_id;
   EXCEPTION
   WHEN OTHERS THEN
   DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);

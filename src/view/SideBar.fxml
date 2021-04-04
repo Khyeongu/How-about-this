@@ -25,7 +25,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnMyPost" alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="30.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #E72C4B;" stylesheets="@style.css" text="내 게시물" textFill="WHITE">
+            <Button fx:id="btnMyPost" alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="32.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="내 게시물" textFill="WHITE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -39,7 +39,7 @@
                   <Font size="10.0" />
                </font>
             </Button>
-            <Button fx:id="btnMyZzim" alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="11.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" style="-fx-background-color: #E72C4B;" stylesheets="@style.css" text="내가 찜한 상품" textFill="WHITE">
+            <Button fx:id="btnMyZzim" alignment="TOP_CENTER" contentDisplay="RIGHT" graphicTextGap="11.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="내가 찜한 상품" textFill="WHITE">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

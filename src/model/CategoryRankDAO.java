@@ -18,4 +18,5 @@ public class CategoryRankDAO {
 	// UserVO 객체 생성
 	public CategoryRankVO categoryRankVO = new CategoryRankVO();
 
+
 }
