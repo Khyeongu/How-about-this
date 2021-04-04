@@ -68,7 +68,7 @@
                   <ListView fx:id="profitList3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <ListView fx:id="profitList4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                   <ListView fx:id="profitList5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <ListView fx:id="profitList6" maxHeight="100.0" minHeight="10.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <ListView fx:id="profitList6" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                   <ListView fx:id="profitList7" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <ListView fx:id="profitList8" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                   <ListView fx:id="profitList9" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
@@ -79,6 +79,19 @@
                   <Label text="월" />
                   <Label text="거래내역" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                   <Label text="수익" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                  <Label fx:id="labelTotal1" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label fx:id="labelTotal2" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label fx:id="labelTotal3" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label fx:id="labelTotal4" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label fx:id="labelTotal5" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label fx:id="labelTotal6" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                  <Label fx:id="labelTotal7" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                  <Label fx:id="labelTotal8" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                  <Label fx:id="labelTotal9" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                  <Label fx:id="labelTotal10" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+                  <Label fx:id="labelTotal11" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+                  <Label fx:id="labelTotal12" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+                  <Label fx:id="labelTotal" text="0 원" GridPane.columnIndex="2" GridPane.rowIndex="13" />
                </children>
             </GridPane>
             <Label layoutX="14.0" layoutY="48.0" text="내 수익">

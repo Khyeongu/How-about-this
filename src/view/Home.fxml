@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -21,7 +22,7 @@
 
 	<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
 		<content>
-			<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="950.0" prefWidth="776.0" style="-fx-background-color: #ffffff;">
+			<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1047.0" prefWidth="776.0" style="-fx-background-color: #ffffff;">
 				<children>
 					<LineChart fx:id="linechart" layoutX="21.0" layoutY="184.0" prefHeight="311.0" prefWidth="736.0" stylesheets="@style.css">
 						<xAxis>
@@ -31,7 +32,7 @@
 							<NumberAxis side="LEFT" />
 						</yAxis>
 					</LineChart>
-					<Label fx:id="labelName" layoutX="35.0" layoutY="31.0" text="강현구 님">
+					<Label fx:id="labelName" layoutX="35.0" layoutY="31.0">
 						<font>
 							<Font size="33.0" />
 						</font>
@@ -51,7 +52,7 @@
 							<Font size="20.0" />
 						</font>
 					</Label>
-					<GridPane fx:id="gridRank" layoutX="24.0" layoutY="562.0" prefHeight="187.0" prefWidth="342.0">
+					<GridPane fx:id="gridRank" layoutX="24.0" layoutY="562.0" prefHeight="300.0" prefWidth="342.0">
 						<columnConstraints>
 							<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="34.0" />
 							<ColumnConstraints hgrow="SOMETIMES" maxWidth="308.0" minWidth="10.0" prefWidth="308.0" />
@@ -64,15 +65,65 @@
 							<RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
 						</rowConstraints>
 						<children>
-							<Label text="1." />
-							<Label text="2." GridPane.rowIndex="1" />
-							<Label text="3." GridPane.rowIndex="2" />
-							<Label text="4." GridPane.rowIndex="3" />
-							<Label text="5." GridPane.rowIndex="4" />
+							<Label text="1위">
+                        <font>
+                           <Font size="15.0" />
+                        </font></Label>
+							<Label text="2위" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="15.0" />
+                        </font></Label>
+							<Label text="4위" GridPane.rowIndex="3">
+                        <font>
+                           <Font size="15.0" />
+                        </font></Label>
+							<Label text="5위" GridPane.rowIndex="4">
+                        <font>
+                           <Font size="15.0" />
+                        </font></Label>
+                     <Label fx:id="labelRank1" text="1" GridPane.columnIndex="1">
+                        <font>
+                           <Font size="15.0" />
+                        </font>
+                        <GridPane.margin>
+                           <Insets left="30.0" />
+                        </GridPane.margin></Label>
+                     <Label fx:id="labelRank2" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <font>
+                           <Font size="15.0" />
+                        </font>
+                        <GridPane.margin>
+                           <Insets left="30.0" />
+                        </GridPane.margin></Label>
+                     <Label fx:id="labelRank3" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="15.0" />
+                        </font>
+                        <GridPane.margin>
+                           <Insets left="30.0" />
+                        </GridPane.margin></Label>
+                     <Label fx:id="labelRank4" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <font>
+                           <Font size="15.0" />
+                        </font>
+                        <GridPane.margin>
+                           <Insets left="30.0" />
+                        </GridPane.margin></Label>
+                     <Label fx:id="labelRank5" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <font>
+                           <Font size="15.0" />
+                        </font>
+                        <GridPane.margin>
+                           <Insets left="30.0" />
+                        </GridPane.margin></Label>
+                     <Label text="3위" GridPane.rowIndex="2">
+                        <font>
+                           <Font size="15.0" />
+                        </font></Label>
 						</children>
 					</GridPane>
 					<ListView fx:id="listRent" layoutX="408.0" layoutY="562.0" prefHeight="300.0" prefWidth="342.0" />
-					<ImageView fitHeight="200.0" fitWidth="715.0" layoutX="24.0" layoutY="792.0" pickOnBounds="true" preserveRatio="true">
+					<ImageView fitHeight="200.0" fitWidth="715.0" layoutX="31.0" layoutY="906.0" pickOnBounds="true" preserveRatio="true">
 						<image>
 							<Image url="@../../../../logo.PNG" />
 						</image>
