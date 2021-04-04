@@ -53,7 +53,7 @@ public class RentController implements Initializable {
 	// 검색어 입력 textField
 	@FXML
 	private TextField textField;
-	// 오른쪽 밑 floating btn
+	// 오른쪽 밑 floating button
 	@FXML
 	private Button btnFloating;
 	@FXML

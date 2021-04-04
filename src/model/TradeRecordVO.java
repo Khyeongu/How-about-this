@@ -3,10 +3,24 @@ package model;
 import java.util.Date;
 
 public class TradeRecordVO {
+	private int id;
 	private int memberId;
 	private int boardId;
 	private Date time;
 	
+	
+	public TradeRecordVO() {
+		
+	}
+	
+	public TradeRecordVO(int id, int memberId, int baordId, Date time) {
+		
+	}
+	
+	
+	public int getId() {
+		return id;
+	}
 	public int getMemberId() {
 		return memberId;
 	}

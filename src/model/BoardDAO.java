@@ -4,6 +4,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import database.DBConnection;
 import oracle.jdbc.OracleTypes;
@@ -16,13 +17,13 @@ public class BoardDAO {
 	
 	// UserVO 객체 생성
 	private BoardVO boardVO = new BoardVO();
-	
+	private ArrayList<BoardVO> boardVOList = new ArrayList<>();
 	/*
 	 * 채경
 	 * 전체 boardList 출력 메소드 카테고리별 게시물 페이지
 	 */	
-	public void getAllBoardList() {
-		String runSP = "{ call select_all_board(?) }";
+	public ArrayList<BoardVO> getAllBoardList() {
+		String runSP = "{ call select_board_all(?) }";
 
 		try {
 			conn = DBConnection.getConnection();
@@ -35,16 +36,12 @@ public class BoardDAO {
 				ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
 				
 				while (resultSet.next()) {
-					boardVO.setTitle(resultSet.getString(1));
-					boardVO.setPrice(resultSet.getInt(2));
-					boardVO.setImageUrl(resultSet.getString(3));
-					boardVO.setTime(resultSet.getDate(4));
-					System.out.println("title: " + boardVO.getTitle());
-					System.out.println("price: " + boardVO.getPrice());
-					System.out.println("image_url: " + boardVO.getImageUrl());
-					System.out.println("time: " + boardVO.getTime());
-					System.out.println();
+					boardVOList.add(new BoardVO(
+							resultSet.getInt(1), resultSet.getString(2),
+							resultSet.getInt(3), resultSet.getTimestamp(5), 
+							resultSet.getString(4)));
 				}
+				
 			} catch (SQLException e) {
 				System.out.println("프로시저에서 에러 발생!");
 				System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -53,8 +50,11 @@ public class BoardDAO {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-	}
+		}
+		
+		return boardVOList;
+	}	
+
 	
 	/*
 	 * 채경
@@ -101,5 +101,39 @@ public class BoardDAO {
 			e.printStackTrace();
 		} 
 
+	}
+	
+	
+	//홈화면 게시판 미리보기
+	public ArrayList<BoardVO> getMiniBoardList() {
+		String runSP = "{ call select_board_mini(?) }";
+
+		try {
+			conn = DBConnection.getConnection();
+			callableStatement = conn.prepareCall(runSP);
+
+			callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
+			
+			try {
+				callableStatement.execute();
+				ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
+				
+				while (resultSet.next()) {
+					boardVOList.add(new BoardVO(
+							resultSet.getInt(1), resultSet.getString(2),
+							resultSet.getInt(3)));
+				}
+				
+			} catch (SQLException e) {
+				System.out.println("프로시저에서 에러 발생!");
+				System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return boardVOList;
 	}
 }
