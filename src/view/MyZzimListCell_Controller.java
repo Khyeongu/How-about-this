@@ -7,12 +7,16 @@ import java.text.SimpleDateFormat;
 import database.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import model.BoardVO;
 import model.ZzimDAO;
 
@@ -88,6 +92,18 @@ public class MyZzimListCell_Controller extends ListCell<BoardVO> {
 			btnZzimHart.setOnAction( event -> {
 				zzimDao.deleteZzim(boardVO.getId(), memberId);
 				btnZzimHart.setVisible(false);
+				
+				try {
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("MyZzimStatus.fxml"));
+					Stage stage = new Stage();
+					stage.initStyle(StageStyle.UNDECORATED);
+					Parent root = (Parent) loader.load();
+					stage.setTitle("popup");
+					stage.setScene(new Scene(root));
+					stage.show();
+				} catch (Exception e) {
+					e.getMessage();
+				}
 			});
 			
 			setText(null);

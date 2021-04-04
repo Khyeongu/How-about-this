@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="statusPopUpAp" prefHeight="250.0" prefWidth="400.0" style="-fx-background-color: #fdedf0;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MyPostStatus_Controller">
+<AnchorPane fx:id="statusPopUpAp" prefHeight="193.0" prefWidth="347.0" style="-fx-background-color: #fdedf0;" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.MyPostStatus_Controller">
    <children>
-      <Label fx:id="labStatusMent" layoutX="47.0" layoutY="90.0" text="거래 상태가 성공적으로 변경되었습니다.">
+      <Label fx:id="labStatusMent" layoutX="20.0" layoutY="62.0" text="거래 상태가 성공적으로 변경되었습니다.">
          <font>
             <Font size="17.0" />
          </font>
       </Label>
-      <Button fx:id="btnBackAtStatusPopUp" layoutX="171.0" layoutY="179.0" mnemonicParsing="false" onAction="#closePopUp" text="돌아가기" />
+      <Button fx:id="btnBackAtStatusPopUp" layoutX="142.0" layoutY="151.0" mnemonicParsing="false" onAction="#closePopUp" text="돌아가기" />
    </children>
 </AnchorPane>

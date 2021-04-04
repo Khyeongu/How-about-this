@@ -87,7 +87,7 @@ public class MyPostListCell_Controller extends ListCell<BoardVO> {
 						stage.setScene(new Scene(root));
 						stage.show();
 					} catch (Exception e) {
-
+						e.getMessage();
 					}
 				});
 

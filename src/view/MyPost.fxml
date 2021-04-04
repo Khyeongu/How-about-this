@@ -18,13 +18,13 @@
                <children>
                   <Label fx:id="labMyPost" alignment="CENTER" prefHeight="85.0" prefWidth="300.0" stylesheets="@style.css" text="내 게시물">
                      <HBox.margin>
-                        <Insets right="370.0" top="5.0" />
+                        <Insets right="350.0" top="5.0" />
                      </HBox.margin>
                      <font>
                         <Font size="21.0" />
                      </font>
                   </Label>
-                  <ComboBox fx:id="cobMyPost" onAction="#comboChanged" prefHeight="27.0" prefWidth="100.0" promptText="최근순" stylesheets="@style.css">
+                  <ComboBox fx:id="cobMyPost" onAction="#comboChanged" prefHeight="29.0" prefWidth="120.0" promptText="최근순" stylesheets="@style.css">
                      <HBox.margin>
                         <Insets top="35.0" />
                      </HBox.margin>
