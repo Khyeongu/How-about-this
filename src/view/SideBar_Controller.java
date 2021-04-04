@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -15,7 +16,11 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import database.UserSession;
+
 public class SideBar_Controller implements Initializable {
+	private UserSession session;
+	
 	@FXML
 	private AnchorPane ap;
 
@@ -48,9 +53,15 @@ public class SideBar_Controller implements Initializable {
 
     @FXML
     private Button btnSignout;
+    
+    @FXML
+    private Label labelName;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	//로그인 세션 가져오기
+    			session = UserSession.getInstance();
+    			labelName.setText(session.getMember().getName()+" 님");
     	loadPage("Home");
 
     }
