@@ -1,0 +1,51 @@
+--현구
+--홈화면 게시판 미리보기
+CREATE OR REPLACE procedure select_board_mini
+(select_board_mini_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_board_mini_cursor for 
+    SELECT id, title, price
+    FROM board
+    WHERE rownum<=5;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+--홈화면 카테고리 랭킹 (구현중)
+
+--월별 매출 통계
+CREATE OR REPLACE procedure select_traderecord_monthly(select_traderecord_monthly_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_traderecord_monthly_cursor for
+    select TO_CHAR(t.time, 'YYYYMM') as month, sum(b.price) as total 
+    from TRADERECORD t, board b
+    where t.board_id=b.id
+      and t.time >= '20210101'
+      and t.time <= '20211231' 
+      GROUP BY to_char(t.time, 'YYYYMM')
+      ORDER BY month;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+CREATE OR REPLACE procedure select_traderecord_monthly_post(
+    select_year in VARCHAR2
+    select_traderecord_monthly_post_cursor out sys_refcursor)
+IS
+BEGIN
+    open select_traderecord_monthly_post_cursor for
+    select b.title, b.price, TO_CHAR(t.time, 'YY/MM')
+    from traderecord t, board b
+    where t.board_id=b.id
+        and t.time like SUBSTR(select_year, 3)||'/'||'%';
+    EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
