@@ -93,8 +93,3 @@
 .list-view .combo-box-popup .list-cell:hover{
 	-fx-text-fill: white;
 }
-
-
-#btnAll:hover{
--fx-background-color : #C01632;
-}

@@ -17,7 +17,7 @@
             <VBox prefHeight="576.0" prefWidth="162.0" style="-fx-background-color: #ffa959;" stylesheets="@style.css">
                <children>
                   <Label fx:id="lab_ctg" alignment="CENTER" prefHeight="60.0" prefWidth="162.0" style="-fx-background-color: #ffffff;" stylesheets="@style.css" text="Category" />
-                  <Button fx:id="btnAll" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0"  stylesheets="@category.css" text="전체">
+                  <Button fx:id="btnAll" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" stylesheets="@category.css" text="전체">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets></Button>
@@ -51,7 +51,7 @@
                   <TextField fx:id="textField" layoutX="164.0" layoutY="12.0" prefHeight="39.0" prefWidth="400.0" promptText=" 검색어를 입력하세요." />                  
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="boardListAc" layoutX="162.0" layoutY="59.0" prefHeight="514.0" prefWidth="628.0" />
+            <AnchorPane fx:id="boardListAc" layoutX="162.0" layoutY="59.0" prefHeight="514.0" prefWidth="628.0" stylesheets="@category.css" />
             <Button fx:id="btnFloating" layoutX="731.0" layoutY="520.0" mnemonicParsing="false" onAction="#btnFloatingClicked" opacity="0.5" prefHeight="39.0" prefWidth="41.0" style="-fx-background-radius: 5em; -fx-background-color: #ffbe82;" text="+" />
          </children>
       </AnchorPane>

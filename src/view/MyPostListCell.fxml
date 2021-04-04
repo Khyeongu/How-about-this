@@ -5,13 +5,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="ap" prefHeight="100.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="ap" prefHeight="100.0" prefWidth="700.0" style="-fx-font-family: &quot;Jalnan&quot;;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="imageView" fitHeight="100.0" fitWidth="100.0" layoutX="31.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="labTitle" layoutX="171.0" layoutY="10.0" text="Label" />
-      <Label fx:id="labPrice" layoutX="171.0" layoutY="33.0" text="Label" />
-      <Label fx:id="labTime" layoutX="171.0" layoutY="59.0" text="Label" />
-      <Label fx:id="labStatus" layoutX="171.0" layoutY="82.0" text="Label" />
+      <Label fx:id="labTitle" layoutX="171.0" layoutY="10.0" stylesheets="@category.css" text="Label" />
+      <Label fx:id="labPrice" layoutX="171.0" layoutY="33.0" style="-fx-font-family: &quot;Jalnan&quot;;" text="Label" />
+      <Label fx:id="labTime" layoutX="171.0" layoutY="59.0" style="-fx-font-family: &quot;Jalnan&quot;;" text="Label" />
+      <Label fx:id="labStatus" layoutX="171.0" layoutY="82.0" style="-fx-font-family: &quot;Jalnan&quot;;" text="Label" />
       <Button fx:id="btnStatus" layoutX="618.0" layoutY="35.0" mnemonicParsing="false" stylesheets="@style.css" text="거래 완료" textFill="#e72c4b" />
    </children>
 </AnchorPane>
