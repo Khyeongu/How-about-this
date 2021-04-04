@@ -17,10 +17,14 @@ public class BoardDAO {
 	private Connection conn;
 	private CallableStatement callableStatement;
 	
+	private BoardVO boardVO = new BoardVO();
+	private ArrayList<BoardVO> boardVOList = new ArrayList<>();
+
 	/*
 	 * 전체 boardList 출력 메소드 카테고리별 게시물 페이지
 	 */	
 	public ArrayList<BoardVO> getAllBoardList() {
+
 		ArrayList<BoardVO> boardVOList = new ArrayList<>();
 
 		String runSP = "{ call select_board_all(?) }";
@@ -53,6 +57,7 @@ public class BoardDAO {
 		}
 		
 		return boardVOList;
+
 	}
 	
 	/*
@@ -136,6 +141,7 @@ public class BoardDAO {
 		return boardVOList;
 	}
 	
+
 	/*
 	 * 내 게시물 오름차순 호출
 	 */	
@@ -185,8 +191,8 @@ public class BoardDAO {
 		ArrayList<BoardVO> boardVOList = new ArrayList<>();
 		
 		String runSP = "{ call select_board_my_old(?, ?) }";
-
-		try {
+    
+    try {
 			conn = DBConnection.getConnection();
 			callableStatement = conn.prepareCall(runSP);
 			
@@ -219,6 +225,7 @@ public class BoardDAO {
 		}
 		return boardVOList;
 	}
+
 	
 	/*
 	 * 내가 찜한 게시물 호출
@@ -249,7 +256,7 @@ public class BoardDAO {
 				}
 				
 				System.out.println("성공");
-
+        
 			} catch (SQLException e) {
 				System.out.println("프로시저에서 에러 발생!");
 				System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -259,6 +266,7 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
 		return boardVOList;
 	}
 	
@@ -288,5 +296,44 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+
+  //홈화면 게시판 미리보기
+	public ArrayList<BoardVO> getMiniBoardList() {
+		String runSP = "{ call select_board_mini(?) }";
+
+		try {
+			conn = DBConnection.getConnection();
+			callableStatement = conn.prepareCall(runSP);
+			
+			callableStatement.setInt(1, id);
+			callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
+			System.out.println();
+			
+			try {
+				callableStatement.execute();
+				ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
+				
+				while (resultSet.next()) {
+					boardVOList.add(new BoardVO(
+							resultSet.getInt(1), resultSet.getString(2),
+							resultSet.getInt(3), resultSet.getString(4),
+							resultSet.getTimestamp(5),
+							resultSet.getString(6)));
+				}
+				
+				System.out.println("성공");
+
+			} catch (SQLException e) {
+				System.out.println("프로시저에서 에러 발생!");
+				System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return boardVOList;
 	}
 }

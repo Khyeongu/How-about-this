@@ -51,7 +51,7 @@
 							<Font size="20.0" />
 						</font>
 					</Label>
-					<GridPane layoutX="24.0" layoutY="562.0" prefHeight="187.0" prefWidth="342.0">
+					<GridPane fx:id="gridRank" layoutX="24.0" layoutY="562.0" prefHeight="187.0" prefWidth="342.0">
 						<columnConstraints>
 							<ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="166.0" minWidth="10.0" prefWidth="34.0" />
 							<ColumnConstraints hgrow="SOMETIMES" maxWidth="308.0" minWidth="10.0" prefWidth="308.0" />
@@ -71,7 +71,7 @@
 							<Label text="5." GridPane.rowIndex="4" />
 						</children>
 					</GridPane>
-					<ListView layoutX="408.0" layoutY="562.0" prefHeight="187.0" prefWidth="331.0" />
+					<ListView fx:id="listRent" layoutX="408.0" layoutY="562.0" prefHeight="300.0" prefWidth="342.0" />
 					<ImageView fitHeight="200.0" fitWidth="715.0" layoutX="24.0" layoutY="792.0" pickOnBounds="true" preserveRatio="true">
 						<image>
 							<Image url="@../../../../logo.PNG" />
@@ -97,6 +97,7 @@
 							<Font size="20.0" />
 						</font>
 					</Label>
+               <ImageView fx:id="imgTest" fitHeight="150.0" fitWidth="200.0" layoutX="474.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true" />
 				</children>
 			</AnchorPane>
 		</content>

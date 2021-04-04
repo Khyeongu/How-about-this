@@ -18,9 +18,8 @@ public class CategoryRankDAO {
 	// UserVO 객체 생성
 	public CategoryRankVO categoryRankVO = new CategoryRankVO();
 	ArrayList<String> list = new ArrayList<>();
-	/*
-	 * 카테고리별 랭크 집계 결과
-	 */
+	
+	/* 카테고리별 랭크 집계 결과*/
 	public ArrayList<String> getCategoryRank() {
 		String runSP = "{ call select_category_rank(?) }";
 
@@ -41,7 +40,7 @@ public class CategoryRankDAO {
 										
 					list.add(resultSet.getString(2));
 					
-					System.out.println("Id: " + categoryRankVO.getId() + ", Name: "+categoryRankVO.getName());
+					//System.out.println("Id: " + categoryRankVO.getId() + ", Name: "+categoryRankVO.getName());
 				}
 
 			} catch (SQLException e) {
