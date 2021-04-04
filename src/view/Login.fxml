@@ -2,13 +2,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="ap" style="-fx-background-color: #E72C4B;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Login_Controller">
+<AnchorPane fx:id="ap" style="-fx-background-color: #E72C4B;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Login_Controller">
    <children>
       <VBox fx:id="vb" alignment="CENTER" prefHeight="576.0" prefWidth="1050.0">
          <children>
@@ -31,7 +32,7 @@
                   <HBox fx:id="pwBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label fx:id="pwText" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" style="-fx-font-size: 40; -fx-font-family: &quot;Jalnan&quot;;" text="PW" textFill="WHITE" />
-                        <TextField fx:id="pwField" onAction="#testClick" prefWidth="500.0" promptText="Input Password" style="-fx-font-family: &quot;Jalnan&quot;;" />
+                        <PasswordField fx:id="pwField" maxWidth="500.0" minWidth="500.0" onAction="#testClick" prefWidth="500.0" promptText="Input Password" style="-fx-font-family: &quot;Jalnan&quot;;" />
                      </children>
                   </HBox>
                </center></BorderPane>
