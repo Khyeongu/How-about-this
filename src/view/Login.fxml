@@ -8,21 +8,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="ap" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Login_Controller">
+<AnchorPane fx:id="ap" style="-fx-background-color: #E72C4B;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Login_Controller">
    <children>
       <VBox fx:id="vb" alignment="CENTER" prefHeight="576.0" prefWidth="1050.0">
          <children>
             <BorderPane fx:id="titleBP" prefHeight="400.0" prefWidth="1050.0">
                <center>
-                  <Label fx:id="titleText" alignment="CENTER" prefHeight="400.0" prefWidth="1050.0" style="-fx-font-size: 100;" text="이거어때?" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+                  <Label fx:id="titleText" alignment="CENTER" prefHeight="400.0" prefWidth="1050.0" style="-fx-font-size: 100; -fx-font-family: &quot;Jalnan&quot;;" text="이거어때." textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER" />
                </center>
             </BorderPane>
             <BorderPane fx:id="idBP" prefHeight="200.0" prefWidth="0.0">
                <center>
                   <HBox fx:id="idBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label fx:id="idText" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" style="-fx-font-size: 40;" text="ID" />
-                        <TextField fx:id="idField" onAction="#testClick" prefWidth="500.0" promptText="Input ID" />
+                        <Label fx:id="idText" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" style="-fx-font-size: 40; -fx-font-family: &quot;Jalnan&quot;;" text="ID" textFill="WHITE" />
+                        <TextField fx:id="idField" onAction="#testClick" prefWidth="500.0" promptText="Input ID" style="-fx-font-family: &quot;Jalnan&quot;;" />
                      </children>
                   </HBox>
                </center></BorderPane>
@@ -30,23 +30,23 @@
                <center>
                   <HBox fx:id="pwBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label fx:id="pwText" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" style="-fx-font-size: 40;" text="PW" />
-                        <TextField fx:id="pwField" onAction="#testClick" prefWidth="500.0" promptText="Input Password" />
+                        <Label fx:id="pwText" alignment="CENTER" prefHeight="40.0" prefWidth="100.0" style="-fx-font-size: 40; -fx-font-family: &quot;Jalnan&quot;;" text="PW" textFill="WHITE" />
+                        <TextField fx:id="pwField" onAction="#testClick" prefWidth="500.0" promptText="Input Password" style="-fx-font-family: &quot;Jalnan&quot;;" />
                      </children>
                   </HBox>
                </center></BorderPane>
             <BorderPane fx:id="warningBP" prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <Label fx:id="warningText" alignment="CENTER" prefHeight="50.0" prefWidth="1050.0" style="-fx-font-size: 15; -fx-text-fill: #FF0000;" text="가입하지 않은 아이디이거나, 잘못된 비밀번호입니다." textAlignment="CENTER" visible="false" BorderPane.alignment="CENTER" />
+                  <Label fx:id="warningText" alignment="CENTER" prefHeight="50.0" prefWidth="1050.0" style="-fx-font-size: 15; -fx-font-family: &quot;Jalnan&quot;; -fx-text-fill: #FF0000;" text="가입하지 않은 아이디이거나, 잘못된 비밀번호입니다." textAlignment="CENTER" visible="false" BorderPane.alignment="CENTER" />
                </center></BorderPane>
             <BorderPane fx:id="loginBP" prefHeight="200.0" prefWidth="200.0">
-               <center>
-                  <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#testClick" prefWidth="200.0" text="Login" BorderPane.alignment="CENTER" />
-               </center></BorderPane>
-            <BorderPane fx:id="signUpBP" prefHeight="200.0" prefWidth="200.0">
-               <center>
-                  <Button fx:id="signUpBtn" mnemonicParsing="false" onAction="#testClick" prefWidth="200.0" text="회원가입" BorderPane.alignment="CENTER" />
-               </center></BorderPane>
+               <top>
+                  <Button fx:id="loginBtn" mnemonicParsing="false" onAction="#testClick" prefWidth="200.0" style="-fx-font-family: &quot;Jalnan&quot;;" text="Login" BorderPane.alignment="CENTER" />
+               </top>
+               <bottom>
+                  <Button fx:id="signUpBtn" mnemonicParsing="false" onAction="#testClick" prefWidth="200.0" style="-fx-font-family: &quot;Jalnan&quot;;" text="회원가입" BorderPane.alignment="CENTER" />
+               </bottom></BorderPane>
+            <BorderPane fx:id="signUpBP" prefHeight="200.0" prefWidth="200.0" />
          </children>
       </VBox>
    </children>
