@@ -93,7 +93,6 @@ public class ReviewDAO {
 
 			callableStatement.setInt(1, memberid);
 			callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
-			System.out.println();
 
 			try {
 				callableStatement.execute();
@@ -105,10 +104,12 @@ public class ReviewDAO {
 					reviewVO.setContent(resultSet.getString(3));
 					reviewVO.setTime(resultSet.getDate(4));
 					
+					String temp [] = resultSet.getString(4).split(" ");
+					
 					review_merge_list.add("[No"     + resultSet.getString(1) + 
 										"]  [평점:"    + resultSet.getString(2) + 
 										"]  [내용:"    + resultSet.getString(3) + 
-										"]  [작성시간:" +resultSet.getString(4) + "]");
+										"]  [작성시간:" +temp[0] + "]");
 				}
 
 			} catch (SQLException e) {
@@ -140,9 +141,7 @@ public class ReviewDAO {
 
 			try {
 				callableStatement.executeQuery();
-				
-				System.out.println("리뷰 작성 성공! ");
-				
+								
 			} catch (SQLException e) {
 				System.out.println("프로시저에서 에러 발생!");
 				System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());

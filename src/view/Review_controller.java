@@ -40,7 +40,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Review_controller implements Initializable {
-
+	@FXML
+	private Pane review_pane;
+	
 	@FXML
 	private ChoiceBox<String> review_choiceBox;
 
@@ -59,10 +61,8 @@ public class Review_controller implements Initializable {
 	@FXML
 	private Button btnReview_post;
 	
-	//객체 생성
 	private ReviewDAO reviewDAO = new ReviewDAO();
 	private UserSession memberid;
-		
 	ObservableList<String> review_choicebox_list = FXCollections.observableArrayList();
 	
 	@Override
@@ -97,7 +97,18 @@ public class Review_controller implements Initializable {
 			ReviewDAO.reviewVO.setContent(review_text.getText()); 
 			ReviewDAO.reviewVO.setTime(Timestamp.valueOf(LocalDateTime.now()));
 			ReviewDAO.reviewVO.setMemberId(memberid.getMember().getId());
-			ReviewDAO.reviewPost(memberid.getMember().getId());	
+			ReviewDAO.reviewPost(memberid.getMember().getId());
+			loadPage("Review");
+		}
+	}
+	
+	private void loadPage(String page) {
+		try {
+			Node node;
+			node = (Node) FXMLLoader.load(getClass().getResource(page + ".fxml"));
+			review_pane.getChildren().setAll(node);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 }

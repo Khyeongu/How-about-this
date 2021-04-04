@@ -44,8 +44,6 @@ public class PostDAO {
 			callableStatement.setInt(10, memberid);
 			callableStatement.executeQuery();
 			
-			System.out.println("글 작성 완료!");
-
 		} catch (SQLException e) {
 			System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
 			e.printStackTrace();
