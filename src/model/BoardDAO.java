@@ -306,25 +306,19 @@ public class BoardDAO {
 		try {
 			conn = DBConnection.getConnection();
 			callableStatement = conn.prepareCall(runSP);
-			
-			callableStatement.setInt(1, id);
-			callableStatement.registerOutParameter(2, OracleTypes.CURSOR);
-			System.out.println();
+
+			callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
 			
 			try {
 				callableStatement.execute();
-				ResultSet resultSet = (ResultSet) callableStatement.getObject(2);
+				ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
 				
 				while (resultSet.next()) {
 					boardVOList.add(new BoardVO(
 							resultSet.getInt(1), resultSet.getString(2),
-							resultSet.getInt(3), resultSet.getString(4),
-							resultSet.getTimestamp(5),
-							resultSet.getString(6)));
+							resultSet.getInt(3)));
 				}
 				
-				System.out.println("성공");
-
 			} catch (SQLException e) {
 				System.out.println("프로시저에서 에러 발생!");
 				System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
@@ -334,6 +328,7 @@ public class BoardDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return boardVOList;
 	}
 }
