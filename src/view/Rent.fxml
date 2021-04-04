@@ -16,19 +16,20 @@
             <VBox prefHeight="576.0" prefWidth="162.0">
                <children>
                   <Label fx:id="lab_ctg" alignment="CENTER" prefHeight="60.0" prefWidth="197.0" text="Category" />
-                  <Button fx:id="btnAll" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="전체" />
-                  <Button fx:id="btnDigital" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="디지털/가전" />
-                  <Button fx:id="btnInterior" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="가구/인테리어" />
-                  <Button fx:id="btnKids" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="유아동/유아도서" />
-                  <Button fx:id="btnSports" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="스포츠/레저" />
-                  <Button fx:id="btnWomanThing" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="여성잡화" />
-                  <Button fx:id="btnWomanCloth" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="여성의류" />
-                  <Button fx:id="btnManThing" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="남성패션/잡화" />
-                  <Button fx:id="btnHobby" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="게임/취미" />
-                  <Button fx:id="btnBeauty" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="뷰티/미용" />
-                  <Button fx:id="btnPet" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="반려동물용품" />
-                  <Button fx:id="btnBook" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="도서/티켓/음반" />
-                  <Button fx:id="btnPlant" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="40.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="식물" />
+                  <Button fx:id="btnAll" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="전체" />
+                  <Button fx:id="btnDigital" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="디지털/가전" />
+                  <Button fx:id="btnInterior" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="가구/인테리어" />
+                  <Button fx:id="btnKids" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="유아동/유아도서" />
+                  <Button fx:id="btnSports" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="스포츠/레저" />
+                  <Button fx:id="btnWomanThing" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="여성잡화" />
+                  <Button fx:id="btnWomanCloth" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="여성의류" />
+                  <Button fx:id="btnManThing" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="36.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="남성패션/잡화" />
+                  <Button fx:id="btnHobby" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="36.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="게임/취미" />
+                  <Button fx:id="btnBeauty" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="뷰티/미용" />
+                  <Button fx:id="btnPet" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="반려동물용품" />
+                  <Button fx:id="btnBook" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="도서/티켓/음반" />
+                  <Button fx:id="btnPlant" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="식물" />
+                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="기타" />
                </children>
             </VBox>
             <AnchorPane layoutX="162.0" prefHeight="59.0" prefWidth="628.0">
@@ -47,7 +48,7 @@
                </children>
             </AnchorPane>
             <AnchorPane fx:id="boardListAc" layoutX="162.0" layoutY="59.0" prefHeight="514.0" prefWidth="628.0" />
-            <Button fx:id="btnFloating" layoutX="744.0" layoutY="527.0" mnemonicParsing="false" onAction="#btnFloatingClicked" opacity="0.45" prefHeight="39.0" prefWidth="41.0" style="-fx-background-radius: 5em; -fx-background-color: #ffbe82;" text="+" />
+            <Button fx:id="btnFloating" layoutX="731.0" layoutY="520.0" mnemonicParsing="false" onAction="#btnFloatingClicked" opacity="0.5" prefHeight="39.0" prefWidth="41.0" style="-fx-background-radius: 5em; -fx-background-color: #ffbe82;" text="+" />
          </children>
       </AnchorPane>
    </children>

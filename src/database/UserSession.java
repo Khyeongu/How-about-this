@@ -27,4 +27,9 @@ public class UserSession {
 		System.out.println(memberInfo.getBirthdate());
 		return memberInfo;
 		}
+	
+	public int getMemberId() {
+		
+		return memberInfo.getId();
+	}
 }
