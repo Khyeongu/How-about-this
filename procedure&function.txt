@@ -35,7 +35,7 @@ END;
 /
 
 CREATE OR REPLACE procedure select_traderecord_monthly_post(
-    select_year in VARCHAR2
+    select_year in VARCHAR2,
     select_traderecord_monthly_post_cursor out sys_refcursor)
 IS
 BEGIN
