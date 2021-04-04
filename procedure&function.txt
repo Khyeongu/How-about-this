@@ -264,6 +264,17 @@ begin
 end;
 /
 
+create or replace procedure select_board_memberid
+(
+  p_board_id board.id%type,
+  p_mem_id out board.member_id%type
+)
+is
+begin
+  select member_id into p_mem_id from board where id = p_board_id;
+end;
+/
+
 
 --채경--
 -- 렌트-전체 게시글 프로시저 
