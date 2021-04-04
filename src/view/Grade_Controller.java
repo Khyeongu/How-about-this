@@ -43,8 +43,6 @@ public class Grade_Controller implements Initializable {
 	private TextField member_grade_text;
 	
 	private ReviewDAO reviewDAO = new ReviewDAO();
-	private ReviewVO reviewVO = new ReviewVO();
-	
 	private UserSession memberid;
 	
 	
@@ -52,7 +50,6 @@ public class Grade_Controller implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		memberid = UserSession.getInstance();
 		grade_textfield_init(); 
-		
 		reviewDAO.getReviewList(memberid.getMember().getId());
 		grade_listview.setItems(FXCollections.observableArrayList(reviewDAO.review_merge_list));
 	}

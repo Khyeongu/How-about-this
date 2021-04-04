@@ -49,6 +49,8 @@ import model.PostDAO;
 
 public class Post_Controller implements Initializable {
 	@FXML
+	private Pane post_pane;
+	@FXML
 	private TextField post_title;
 	@FXML
 	private TextField post_price;
@@ -84,7 +86,6 @@ public class Post_Controller implements Initializable {
 
 	}
 
-	// testfield init
 	public void postTextField_init() {
 		post_title.setPromptText("제목을 입력해주세요.");
 		post_price.setPromptText("가격을 입력해주세요.");
@@ -92,17 +93,14 @@ public class Post_Controller implements Initializable {
 		post_contents.setPromptText("본문을 입력해주세요.");
 	}
 
-	// choicebox init
 	private void post_ChoiceBox_init() {
 		post_choicebox_list.removeAll(post_choicebox_list);
 		post_choicebox_list.addAll(post_choiceBox_value);
 		post_choicebox.setItems(post_choicebox_list);
 	}
 
-	// post 버튼 클릭
 	public void btnBoardPostClicked(ActionEvent actionEvent) {
 		if (actionEvent.getSource() == btnpost) {
-			//PostDAO.postVO.setId(3);
 			PostDAO.postVO.setTitle(post_title.getText());
 			PostDAO.postVO.setContent(post_contents.getText());
 			PostDAO.postVO.setPrice(Integer.parseInt(post_price.getText()));
@@ -125,17 +123,15 @@ public class Post_Controller implements Initializable {
 			}
 	
 			PostDAO.insertBoardPost(memberid.getMember().getId());
-			// SideBar_Controller.loadPage("Post");; 글작성 완료 하면 page 이동
+			loadPage("Post");
 
 		}
 	}
 
-	// 사진 선택하고 선택한 이미지 띄우기
 	public void fileChoose() {
-		// 사진 선택 창
 		FileChooser fc = new FileChooser();
 		fc.setTitle("이미지 선택");
-		fc.setInitialDirectory(new File("C:/")); // default 디렉토리 설정
+		fc.setInitialDirectory(new File("C:/Users/chltj/Desktop/Project/How-about-this/src/boardImg")); // default 디렉토리 설정
 		ExtensionFilter imgType = new ExtensionFilter("image file", "*.jpg", "*.gif", "*.png", "*jpeg");
 		fc.getExtensionFilters().addAll(imgType);
 
@@ -150,6 +146,17 @@ public class Post_Controller implements Initializable {
 			Image img = new Image(bis);
 			post_img.setImage(img);
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void loadPage(String page) {
+		try {
+			System.out.println(page + ".fxml");
+			Node node;
+			node = (Node) FXMLLoader.load(getClass().getResource(page + ".fxml"));
+			post_pane.getChildren().setAll(node);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
