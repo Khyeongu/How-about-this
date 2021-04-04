@@ -1,5 +1,6 @@
 package view;
 
+import java.io.FileInputStream;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -52,6 +53,8 @@ public class Rent_Controller implements Initializable {
 	private Button btnBook;
 	@FXML
 	private Button btnPlant;
+	@FXML
+	private Button btnEtc;
 	// 나머지 객체
 	@FXML
 	private AnchorPane ap;
@@ -85,6 +88,7 @@ public class Rent_Controller implements Initializable {
 		boardVOList = boardDAO.getAllBoardList();
 		boardVOObservanbleList.setAll(boardVOList);
 		getBoardList();
+		
 	}
 	
 	// board리스트 뿌리는 메소드
@@ -101,7 +105,12 @@ public class Rent_Controller implements Initializable {
 					setText(null);
 					setGraphic(null);
 				} else {
-					Image image = new Image(boardVO.getImageUrl());
+					Image image = null;
+					try {
+						image = new Image(new FileInputStream(boardVO.getImageUrl()));
+					} catch(Exception e) {
+						e.getMessage();
+					}
 					ImageView imageView = new ImageView();
 					imageView.setFitHeight(100);
 					imageView.setFitWidth(100);
@@ -120,6 +129,7 @@ public class Rent_Controller implements Initializable {
 			}
 		});
 		boardListAc.getChildren().setAll(listView);
+
 	}
 	
 	// 카테고리별 버튼이 눌렸을 떄
@@ -203,7 +213,13 @@ public class Rent_Controller implements Initializable {
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
 			System.out.println("pressed");
-		}	
+		} else if (actionEvent.getSource() == btnEtc) {
+			ctgId = 13;
+			boardDAO.getOneCtgBoardList(ctgId);
+			boardVOObservanbleList.setAll(boardVOList);
+			getBoardList();
+			System.out.println("btnEtc pressed");
+		} 
 	}
 	
 	// find아이콘 click시

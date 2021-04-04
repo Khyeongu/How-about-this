@@ -27,7 +27,6 @@ public class MyZzim_Controller implements Initializable {
 	private ListView<BoardVO> boardVOListView;
 	
 	private UserSession test;
-//	private ObservableList<String> comboBoxList;
 	private ObservableList<BoardVO> boardVOObservanbleList;	
 	private BoardDAO boardDAO = new BoardDAO();	
 	private int memberId = 0;
@@ -36,13 +35,12 @@ public class MyZzim_Controller implements Initializable {
 		if (UserSession.getInstance() != null) {
 			test = UserSession.getInstance();
 			memberId = test.getMemberId();
-//			comboBoxList = FXCollections.observableArrayList("최근순", "오래된순");
+
 		} else {
 			System.out.println("로그인 되지 않았습니다. 로그인창으로 갑니다.");
 			// 로그인창 가는 기능
 		}
-		//System.out.println("memberid: " + memberId);
-//		ArrayList<BoardVO> boardList = new ArrayList<>();
+
 		ArrayList<BoardVO> boardList = new ArrayList<>();
 		boardList = boardDAO.getMyZzimList(memberId);
 		boardVOObservanbleList = FXCollections.observableArrayList();

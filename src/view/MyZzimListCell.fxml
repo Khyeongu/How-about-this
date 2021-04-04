@@ -14,7 +14,7 @@
       <Label fx:id="labBoardPrice" layoutX="181.0" layoutY="34.0" text="Label" />
       <Label fx:id="labBoardTime" layoutX="181.0" layoutY="61.0" text="Label" />
       <Label fx:id="labZzimStatus" layoutX="181.0" layoutY="86.0" text="Label" />
-      <Button fx:id="btnZzimHart" layoutX="620.0" layoutY="28.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="50.0">
+      <Button fx:id="btnZzimHart" layoutX="620.0" layoutY="25.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="0.0" style="-fx-background-color: #ffbe82;">
          <graphic>
             <ImageView fitHeight="29.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                <image>

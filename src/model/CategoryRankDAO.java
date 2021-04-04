@@ -40,7 +40,6 @@ public class CategoryRankDAO {
 										
 					list.add(resultSet.getString(2));
 					
-					//System.out.println("Id: " + categoryRankVO.getId() + ", Name: "+categoryRankVO.getName());
 				}
 
 			} catch (SQLException e) {

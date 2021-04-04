@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -15,7 +16,7 @@
          <children>
             <HBox prefHeight="97.0" prefWidth="793.0">
                <children>
-                  <Label fx:id="labMyPost" alignment="CENTER" prefHeight="70.0" prefWidth="300.0" stylesheets="@style.css" text="내 게시물">
+                  <Label fx:id="labMyPost" alignment="CENTER" prefHeight="85.0" prefWidth="300.0" stylesheets="@style.css" text="내 게시물">
                      <HBox.margin>
                         <Insets right="370.0" top="5.0" />
                      </HBox.margin>
@@ -27,6 +28,10 @@
                      <HBox.margin>
                         <Insets top="35.0" />
                      </HBox.margin>
+                     <styleClass>
+                        <String fx:value="list-view" />
+                        <String fx:value="list-cell" />
+                     </styleClass>
                   </ComboBox>
                </children>
             </HBox>

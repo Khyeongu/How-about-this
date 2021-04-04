@@ -48,16 +48,6 @@
 	 -fx-font-family: "Jalnan";
 }
 
-#btnMyPost {
-	-fx-font-family: "Jalnan";
-	-fx-font-size: 8px;
-}
-
-#btnMyZzim {
-	-fx-font-family: "Jalnan";
-	-fx-font-size: 8px;
-}
-
 #categoryRank_listview {
 	-fx-font-family: "Jalnan";
 	 -fx-font-size: 21px;
@@ -68,8 +58,9 @@
 	-fx-font-size: 13px;
 }
 
-#cobMyZzim, #cobMyPost{
+#cobMyPost{
 	-fx-font-family: "Jalnan";
+	-fx-background-color : "#ff9191";
 }
 
 #review_listview{
@@ -77,3 +68,24 @@
 	-fx-font-size: 13px;
 }
 
+#statusPopUpAp{
+	-fx-font-family: "Jalnan";
+}
+
+#btnStatus{
+	-fx-background-color: "#FDEDF0";
+	-fx-text-fill: "#E72C4B";
+}
+
+#lab_ctg{
+	-fx-font-family: "Jalnan";
+	-fx-font-size: 14pt;
+}
+
+.list-cell:selected {
+	-fx-text-fill: white;
+}
+
+.list-view .combo-box-popup .list-cell:hover{
+	-fx-text-fill: white;
+}

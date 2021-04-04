@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -13,10 +14,13 @@
    <children>
       <AnchorPane prefHeight="576.0" prefWidth="793.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox prefHeight="576.0" prefWidth="162.0">
+            <VBox prefHeight="576.0" prefWidth="162.0" style="-fx-background-color: #ffa959;" stylesheets="@style.css">
                <children>
-                  <Label fx:id="lab_ctg" alignment="CENTER" prefHeight="60.0" prefWidth="197.0" text="Category" />
-                  <Button fx:id="btnAll" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="전체" />
+                  <Label fx:id="lab_ctg" alignment="CENTER" prefHeight="60.0" prefWidth="162.0" style="-fx-background-color: #ffffff;" stylesheets="@style.css" text="Category" />
+                  <Button fx:id="btnAll" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" stylesheets="@style.css" text="전체">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></Button>
                   <Button fx:id="btnDigital" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="디지털/가전" />
                   <Button fx:id="btnInterior" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="가구/인테리어" />
                   <Button fx:id="btnKids" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="유아동/유아도서" />
@@ -29,12 +33,12 @@
                   <Button fx:id="btnPet" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="반려동물용품" />
                   <Button fx:id="btnBook" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="도서/티켓/음반" />
                   <Button fx:id="btnPlant" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="식물" />
-                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="기타" />
+                  <Button fx:id="btnEtc" mnemonicParsing="false" onAction="#ctgBtnClicked" prefHeight="37.0" prefWidth="188.0" style="-fx-background-color: #ffa959;" text="기타" />
                </children>
             </VBox>
             <AnchorPane layoutX="162.0" prefHeight="59.0" prefWidth="628.0">
                <children>
-                  <Button fx:id="btnFinder" layoutX="472.0" layoutY="16.0" mnemonicParsing="false" onAction="#findClicked" prefHeight="29.0" prefWidth="33.0">
+                  <Button fx:id="btnFinder" layoutX="576.0" layoutY="16.0" mnemonicParsing="false" onAction="#findClicked" prefHeight="29.0" prefWidth="33.0" style="-fx-background-color: #ffa959;">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-color: #ffa959;">
                            <image>
@@ -44,7 +48,7 @@
                      </graphic>
                   </Button>
                   <AnchorPane />
-                  <TextField fx:id="textField" layoutX="3.0" layoutY="12.0" prefHeight="39.0" prefWidth="460.0" promptText=" 검색어를 입력하세요." />                  
+                  <TextField fx:id="textField" layoutX="164.0" layoutY="12.0" prefHeight="39.0" prefWidth="400.0" promptText=" 검색어를 입력하세요." />                  
                </children>
             </AnchorPane>
             <AnchorPane fx:id="boardListAc" layoutX="162.0" layoutY="59.0" prefHeight="514.0" prefWidth="628.0" />
