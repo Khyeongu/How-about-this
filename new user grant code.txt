@@ -1,12 +1,12 @@
 1. 유저 생성
+      >> sysdba
       create user how
       identified by about
       default tablespace users
       temporary tablespace temp;
 
-      권한 부여
-      
-       >> sysdba
+2. 권한 부여
+      >> sysdba
       alter user how 
       quota unlimited on users;
 
@@ -18,5 +18,5 @@
       
       grant create synonym to public;
 
-   2. 접속 
+3. 접속 
       sqlplus how/about@localhost:1521/xepdb1
