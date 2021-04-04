@@ -4,7 +4,7 @@ CREATE OR REPLACE procedure select_board_mini
 IS
 BEGIN
   open select_board_mini_cursor for 
-    SELECT id, title, price
+    SELECT id, title, price, image_url
     FROM board
     WHERE rownum<=5
     ORDER BY ID desc;
