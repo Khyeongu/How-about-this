@@ -273,7 +273,8 @@ IS
 BEGIN
   open select_board_all_cursor for 
     SELECT id, title, price, image_url, time
-    FROM board;
+    FROM board
+	ORDER BY time desc;
   EXCEPTION
   WHEN OTHERS THEN
   DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
@@ -281,7 +282,6 @@ END;
 /
 
 -- 렌트 게시글 카테고리 한건 리턴 프로시저 
-
 create or replace procedure select_board_one_category
 (p_category_id in board.category_id%type,
  select_board_one_category_board_cursor out sys_refcursor)
@@ -290,7 +290,8 @@ begin
   open select_board_one_category_board_cursor for 
     select id, title, price, image_url, time
 	from board
-	where category_id = p_category_id;
+	where category_id = p_category_id
+	ORDER BY time desc;
   EXCEPTION
   WHEN OTHERS THEN
   DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
