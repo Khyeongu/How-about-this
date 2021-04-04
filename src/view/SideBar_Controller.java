@@ -60,7 +60,7 @@ public class SideBar_Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       
+    	loadPage("Home");
 
     }
 

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import database.UserSession;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -20,6 +21,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import model.BoardVO;
@@ -29,7 +31,7 @@ import model.MonthlyProfitDAO;
 import model.MonthlyProfitVO;
 
 public class Profit_Controller implements Initializable{
-	
+	private UserSession session;
 	
 	
 	@FXML
@@ -71,11 +73,42 @@ public class Profit_Controller implements Initializable{
 	
 	private ArrayList<ListView<String>> profitLists;
 	
+	@FXML
+	private Label labelTotal1;
+	@FXML
+	private Label labelTotal2;
+	@FXML
+	private Label labelTotal3;
+	@FXML
+	private Label labelTotal4;
+	@FXML
+	private Label labelTotal5;
+	@FXML
+	private Label labelTotal6;
+	@FXML
+	private Label labelTotal7;
+	@FXML
+	private Label labelTotal8;
+	@FXML
+	private Label labelTotal9;
+	@FXML
+	private Label labelTotal10;
+	@FXML
+	private Label labelTotal11;
+	@FXML
+	private Label labelTotal12;
+	@FXML
+	private Label labelTotal;
+	
+	private ArrayList<Label> labelTotals;
+	
 	private ObservableList<String> list = FXCollections.observableArrayList("2021년", "2020년", "2019년", "2018년");
 	private ObservableList<String> postlist = FXCollections.observableArrayList();
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		session = UserSession.getInstance();
+		
 		profitLists= new ArrayList<ListView<String>>();
 		profitLists.add(profitList1);
 		profitLists.add(profitList2);
@@ -89,6 +122,20 @@ public class Profit_Controller implements Initializable{
 		profitLists.add(profitList10);
 		profitLists.add(profitList11);
 		profitLists.add(profitList12);
+		
+		labelTotals= new ArrayList<Label>();
+		labelTotals.add(labelTotal1);
+		labelTotals.add(labelTotal2);
+		labelTotals.add(labelTotal3);
+		labelTotals.add(labelTotal4);
+		labelTotals.add(labelTotal5);
+		labelTotals.add(labelTotal6);
+		labelTotals.add(labelTotal7);
+		labelTotals.add(labelTotal8);
+		labelTotals.add(labelTotal9);
+		labelTotals.add(labelTotal10);
+		labelTotals.add(labelTotal11);
+		labelTotals.add(labelTotal12);
 		
 		monthlyProfitData = new ArrayList<MonthlyProfitVO>();
 		
@@ -108,13 +155,13 @@ public class Profit_Controller implements Initializable{
 		        
 		        String selectedYear=newValue.substring(0,4);
 		        //drawChart(selectedYear+"0101", selectedYear+"1231");
-		        drawChart(selectedYear+"0101", selectedYear+"1231");
-				drawTable(selectedYear);
+		        drawChart(session.getMember().getId(), selectedYear+"0101", selectedYear+"1231");
+				drawTable(session.getMember().getId(),selectedYear);
 		      }
 		    });
 	}
 	
-	public void drawChart(String startDate, String endDate) {
+	public void drawChart(int userId, String startDate, String endDate) {
 		for (int i = 1; i <= 12; i++) {
 			int thisYear = 202100;
 			monthlyProfitData.set(i-1,new MonthlyProfitVO(Integer.toString(thisYear + i), 0));
@@ -125,7 +172,7 @@ public class Profit_Controller implements Initializable{
 		series.setName("Month Profit");
 
 		MonthlyProfitDAO monthlyProfitDAO = new MonthlyProfitDAO();
-		monthlyProfits = monthlyProfitDAO.getMonthlyProfit(startDate, endDate);
+		monthlyProfits = monthlyProfitDAO.getMonthlyProfit(userId, startDate, endDate);
 
 		for (MonthlyProfitVO m : monthlyProfits) {
 			int row = Integer.parseInt(m.getMonth().substring(4, 6)) - 1;
@@ -136,16 +183,18 @@ public class Profit_Controller implements Initializable{
 			int month = Integer.parseInt(m.getMonth().substring(4, 6));
 
 			series.getData().add(new XYChart.Data<String, Number>(Integer.toString(month) + "월", m.getTotal()));
+			
+			labelTotals.get(month-1).setText(" "+Integer.toString(m.getTotal())+" 원");//테이블 총액 채우기
 		}
 		linechart.getData().add(series);
 	}
 	
-	public void drawTable(String postYear) {
+	public void drawTable(int userId, String postYear) {
 		for(int i=0; i<12; i++) {
 				profitLists.get(i).getItems().clear();
 			}
 		MonthlyPostDAO monthlyPostDAO = new MonthlyPostDAO();
-		monthlyPosts=monthlyPostDAO.getMonthlyPost(postYear);
+		monthlyPosts=monthlyPostDAO.getMonthlyPost(userId, postYear);
 		
 		for(MonthlyPostVO m : monthlyPosts) {
 			
@@ -158,17 +207,6 @@ public class Profit_Controller implements Initializable{
 					profitLists.get(idx).getItems().addAll(postlist);
 				}
 			}
-			
-			
-//			if(m.getTradeDay().substring(3).contentEquals("01")) {
-//				profitList1.getItems().addAll(postlist);
-//			}
-//			if(m.getTradeDay().substring(3).contentEquals("05")) {
-//				profitList5.getItems().addAll(postlist);
-//			}
-//			if(m.getTradeDay().substring(3).contentEquals("06")) {
-//				profitList6.getItems().addAll(postlist);
-//			}
 		}
 	}
 
