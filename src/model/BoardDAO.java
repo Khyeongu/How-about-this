@@ -299,10 +299,10 @@ public class BoardDAO {
 	}
 	
 
-  //홈화면 게시판 미리보기
-	public ArrayList<BoardVO> getMiniBoardList() {
-		String runSP = "{ call select_board_mini(?) }";
-
+	  //홈화면 게시판 미리보기
+		public ArrayList<BoardVO> getMiniBoardList() {
+			String runSP = "{ call select_board_mini(?) }";
+      
 		try {
 			conn = DBConnection.getConnection();
 			callableStatement = conn.prepareCall(runSP);
@@ -318,17 +318,14 @@ public class BoardDAO {
 							resultSet.getInt(1), resultSet.getString(2),
 							resultSet.getInt(3)));
 				}
-				
+
 			} catch (SQLException e) {
-				System.out.println("프로시저에서 에러 발생!");
-				System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
+			
+			return boardVOList;
 		}
-		
-		return boardVOList;
+
 	}
-}

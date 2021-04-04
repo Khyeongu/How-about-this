@@ -14,14 +14,15 @@ public class ZzimDAO {
 		/*
 		 * status update
 		 */	
-		public void deleteZzim(int id) {
-			String runSP = "{ call delete_zzim_list(?) }";
+		public void deleteZzim(int boardId, int memberId) {
+			String runSP = "{ call delete_zzim_list(?, ?) }";
 
 			try {
 				conn = DBConnection.getConnection();
 				callableStatement = conn.prepareCall(runSP);
 				
-				callableStatement.setInt(1, id);
+				callableStatement.setInt(1, boardId);
+				callableStatement.setInt(2, memberId);
 				
 				try {
 					callableStatement.execute();

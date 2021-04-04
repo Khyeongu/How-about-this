@@ -1,8 +1,10 @@
 package view;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import database.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -56,7 +58,6 @@ public class MyZzimListCell_Controller extends ListCell<BoardVO> {
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-
 			}
 
 			labBoardTitle.setText("상풍명 : " + boardVO.getTitle());
@@ -73,11 +74,19 @@ public class MyZzimListCell_Controller extends ListCell<BoardVO> {
 			}
 			labZzimStatus.setText("거래 상황 : " + status);
 			
-			Image image = new Image(boardVO.getImageUrl());
+			Image image = null;
+			try {
+				image = new Image(new FileInputStream(boardVO.getImageUrl()));
+			} catch(Exception e) {
+				e.getMessage();
+			}
 			imgBoard.setImage(image);
 			
+			UserSession test = UserSession.getInstance();
+			int memberId = test.getMemberId();
+			
 			btnZzimHart.setOnAction( event -> {
-				zzimDao.deleteZzim(boardVO.getId());
+				zzimDao.deleteZzim(boardVO.getId(), memberId);
 				btnZzimHart.setVisible(false);
 			});
 			

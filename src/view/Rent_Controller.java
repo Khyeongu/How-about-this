@@ -1,7 +1,9 @@
 package view;
 
 import java.io.FileInputStream;
+
 import java.io.IOException;
+
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -121,25 +123,32 @@ public class Rent_Controller implements Initializable {
 					setText(null);
 					setGraphic(null);
 				} else {
+
+					Image image = null;
 					try {
-						Image image = new Image(new FileInputStream(boardVO.getImageUrl()));
-						ImageView imageView = new ImageView();
-						imageView.setFitHeight(100);
-						imageView.setFitWidth(100);
-						imageView.setImage(image);
-						
-						System.out.println(boardVO.getTitle());
-						System.out.println(boardVO.getPrice());
-						System.out.println(boardVO.getImageUrl());
-						setText(null);
-						setGraphic(null);
-						setText("상풍명 : " + boardVO.getTitle() + "\n시간당 가격 : " 
-								+ boardVO.getPrice() + "원\n포스트 날짜 : " 
-								+ sdf.format(boardVO.getTime()));
-						setGraphic(imageView);
+						image = new Image(new FileInputStream(boardVO.getImageUrl()));
+					} catch(Exception e) {
+						e.getMessage();
+					}
+					ImageView imageView = new ImageView();
+					imageView.setFitHeight(100);
+					imageView.setFitWidth(100);
+					imageView.setImage(image);
+					
+					System.out.println(boardVO.getTitle());
+					System.out.println(boardVO.getPrice());
+					System.out.println(boardVO.getImageUrl());
+					setText(null);
+					setGraphic(null);
+					setText("상풍명 : " + boardVO.getTitle() + "\n시간당 가격 : " 
+							+ boardVO.getPrice() + "원\n포스트 날짜 : " 
+							+ sdf.format(boardVO.getTime()));
+					setGraphic(imageView);
+
 					} catch(Exception e) {
 						e.printStackTrace();
 					}
+
 				}
 			}
 		});
@@ -233,7 +242,9 @@ public class Rent_Controller implements Initializable {
 			boardDAO.getOneCtgBoardList(ctgId);
 			boardVOObservanbleList.setAll(boardVOList);
 			getBoardList();
-			System.out.println("pressed");
+
+			System.out.println("btnEtc pressed");
+
 		} 
 	}
 	

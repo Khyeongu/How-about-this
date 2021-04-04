@@ -37,6 +37,7 @@ public class CategoryRankDAO {
 					categoryRankVO.setName(resultSet.getString(2));
 										
 					list.add(resultSet.getString(2));
+
 				}
 
 			} catch (SQLException e) {
