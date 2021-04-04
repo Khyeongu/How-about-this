@@ -4,6 +4,10 @@
 -fx-text-fill : #FFFFFF;
 -fx-font-family: "Jalnan";
 }
+.label
+{
+	-fx-font-family: "Jalnan";
+}
 .button:hover{
 -fx-background-color : #C01632;
 }
@@ -60,7 +64,9 @@
 
 #cobMyPost{
 	-fx-font-family: "Jalnan";
+
 	-fx-background-color : "#ff9191";
+
 }
 
 #review_listview{

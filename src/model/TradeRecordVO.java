@@ -3,40 +3,51 @@ package model;
 import java.util.Date;
 
 public class TradeRecordVO {
-	private int id;
-	private int memberId;
 	private int boardId;
 	private Date time;
-	
+	private int memberId;
+	private int categoryId;
 	
 	public TradeRecordVO() {
 		
 	}
 	
-	public TradeRecordVO(int id, int memberId, int baordId, Date time) {
-		
+	public TradeRecordVO(int categoryId) {
+		this.categoryId=categoryId;
 	}
 	
-	
-	public int getId() {
-		return id;
-	}
-	public int getMemberId() {
-		return memberId;
-	}
-	public void setMemberId(int memberId) {
-		this.memberId = memberId;
-	}
 	public int getBoardId() {
 		return boardId;
 	}
+
 	public void setBoardId(int boardId) {
 		this.boardId = boardId;
 	}
+
 	public Date getTime() {
 		return time;
 	}
+
 	public void setTime(Date time) {
 		this.time = time;
 	}
+
+	public int getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
+	}
+
+	public int getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	
+	
 }

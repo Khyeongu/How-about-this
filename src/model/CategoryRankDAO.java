@@ -28,8 +28,6 @@ public class CategoryRankDAO {
 			callableStatement = conn.prepareCall(runSP);
 
 			callableStatement.registerOutParameter(1, OracleTypes.CURSOR);
-			System.out.println();
-
 			try {
 				callableStatement.execute();
 				ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
@@ -39,7 +37,7 @@ public class CategoryRankDAO {
 					categoryRankVO.setName(resultSet.getString(2));
 										
 					list.add(resultSet.getString(2));
-					
+
 				}
 
 			} catch (SQLException e) {

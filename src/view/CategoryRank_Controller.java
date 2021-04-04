@@ -43,18 +43,12 @@ public class CategoryRank_Controller implements Initializable {
 	@FXML
 	private ListView<String> categoryRank_listview;
 	
-	//객체 생성
 	private CategoryRankDAO categoryRankDAO = new CategoryRankDAO();
-	private CategoryRankVO categoryRankVO = new CategoryRankVO();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-	
 		ArrayList<String> list = new ArrayList<>();
 		list = categoryRankDAO.getCategoryRank();
 		categoryRank_listview.setItems(FXCollections.observableArrayList(list));
 	}
-        
-
 }

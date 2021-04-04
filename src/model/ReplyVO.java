@@ -8,6 +8,17 @@ public class ReplyVO {
 	private Date time;
 	private int boardId;
 	
+	public ReplyVO(int id, String content, Date time, int boardId) {
+		this.id = id;
+		this.content = content;
+		this.time = time;
+		this.boardId = boardId;
+	}
+	
+	public ReplyVO() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getId() {
 		return id;
 	}

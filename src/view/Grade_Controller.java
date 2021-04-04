@@ -29,6 +29,8 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import database.UserSession;
+
 public class Grade_Controller implements Initializable {
 
 	@FXML
@@ -41,23 +43,22 @@ public class Grade_Controller implements Initializable {
 	private TextField member_grade_text;
 	
 	private ReviewDAO reviewDAO = new ReviewDAO();
-	private ReviewVO reviewVO = new ReviewVO();
+	private UserSession memberid;
 	
-	int memberid = 1;
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		memberid = UserSession.getInstance();
 		grade_textfield_init(); 
-		
-		reviewDAO.getReviewList(memberid); //로그인한 member의 member_id를 파라미터로
+		reviewDAO.getReviewList(memberid.getMember().getId());
 		grade_listview.setItems(FXCollections.observableArrayList(reviewDAO.review_merge_list));
 	}
 	
 	private void grade_textfield_init() {
-		reviewDAO.getMemberName(memberid);
-		member_name_text.setText(ReviewDAO.member_name); //로그인한 member의 name
-		reviewDAO.getMemberGrade(memberid);
-		member_grade_text.setText(ReviewDAO.member_grade);  //member의 grade 표시
+		reviewDAO.getMemberName(memberid.getMember().getId());
+		member_name_text.setText(ReviewDAO.member_name);
+		reviewDAO.getMemberGrade(memberid.getMember().getId());
+		member_grade_text.setText(ReviewDAO.member_grade);
 	}
 
 }

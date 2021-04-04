@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="ap" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.RentDetail_Controller">
+   <children>
+      <HBox maxHeight="576.0" maxWidth="793.0" minHeight="576.0" minWidth="793.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #FFFFFF;" stylesheets="@style.css">
+      	<children>
+            <VBox maxHeight="576.0" maxWidth="170.0" minHeight="576.0" minWidth="170.0" prefHeight="576.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <Label fx:id="categoryText1" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="전체">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categoryText2" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="디지털/가전">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categoryText3" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="가구/인테리어">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categoryText4" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="유아동/유아도서">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categoryText5" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="생활/가공식품">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categoryText6" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="스포츠/레저">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categoryText7" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="여성잡화">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categoryText8" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="여성의류">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categoryText9" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="게임/취미">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categoryText10" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="뷰티/미용">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categoryText11" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="반려동물용품">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categoryText12" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="도서/티켓/음반">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categoryText13" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="식물">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="categoryText14" alignment="CENTER" maxHeight="41.0" maxWidth="170.0" minHeight="41.0" minWidth="170.0" prefHeight="41.0" prefWidth="170.0" styleClass="category" text="기타">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <ScrollPane maxWidth="623.0" minHeight="576.0" minWidth="623.0" prefHeight="576.0" prefWidth="623.0">
+               <content>
+                  <VBox maxHeight="-Infinity" maxWidth="610.0" minWidth="610.0" prefWidth="610.0">
+                     <children>
+                        <BorderPane prefHeight="40.0" prefWidth="610.0">
+                           <left>
+                              <ImageView fx:id="backImg" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../images/back.png" />
+                                 </image>
+                              </ImageView>
+                           </left>
+                           <right>
+                              <ImageView fx:id="updateImg" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../images/pencil.png" />
+                                 </image>
+                                 <BorderPane.margin>
+                                    <Insets right="10.0" />
+                                 </BorderPane.margin>
+                              </ImageView>
+                           </right>
+                           <center>
+                              <Label fx:id="titleText" alignment="CENTER" maxHeight="40.0" maxWidth="500.0" minHeight="40.0" minWidth="500.0" prefHeight="40.0" prefWidth="500.0" text="iPad Pro 3rd Generation" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                           </center>
+                        </BorderPane>
+                        <BorderPane maxHeight="250.0" maxWidth="610.0" minHeight="250.0" minWidth="600.0" prefHeight="250.0" prefWidth="600.0" style="-fx-background-color: #EEEEEE;">
+                           <center>
+                              <ImageView fx:id="productImg" fitHeight="222.0" fitWidth="229.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../images/product.png" />
+                                 </image>
+                                 <viewport>
+                                    <Rectangle2D />
+                                 </viewport>
+                              </ImageView>
+                           </center>
+                        </BorderPane>
+                        <BorderPane maxHeight="60.0" maxWidth="600.0" minHeight="60.0" minWidth="600.0" prefHeight="60.0" prefWidth="600.0">
+                           <left>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <ImageView fx:id="profileImg" fitHeight="56.0" fitWidth="87.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                       <image>
+                                          <Image url="@../images/jimmy-fallon.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label fx:id="nickNameText" text="Nick Name">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </left>
+                           <right>
+                              <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label fx:id="dueDateText" maxHeight="40.0" maxWidth="160.0" minHeight="40.0" minWidth="130.0" prefHeight="40.0" prefWidth="160.0" text="2021.03.31 ~ 2021.04.05" />
+                                    <ImageView fx:id="heartImg" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
+                                       <image>
+                                          <Image url="@../images/hart2.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </right>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <opaqueInsets>
+                              <Insets top="10.0" />
+                           </opaqueInsets>
+                        </BorderPane>
+                        <Line endX="509.29290771484375" endY="-2.574920654296875E-5" startX="-100.0">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Line>
+                        <BorderPane maxHeight="30.0" maxWidth="600.0" minHeight="30.0" minWidth="600.0" prefHeight="30.0" prefWidth="600.0">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                           <opaqueInsets>
+                              <Insets top="5.0" />
+                           </opaqueInsets>
+                           <left>
+                              <Label fx:id="explainTitleText" text="iPad Pro 3rd Generation" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <BorderPane.margin>
+                                    <Insets left="10.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </left>
+                           <right>
+                              <Label fx:id="priceText" text="Time Per Price : 15000won" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </right>
+                        </BorderPane>
+                        <BorderPane maxHeight="20.0" maxWidth="600.0" minHeight="20.0" minWidth="600.0" prefHeight="20.0" prefWidth="600.0">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                           <opaqueInsets>
+                              <Insets top="10.0" />
+                           </opaqueInsets>
+                           <left>
+                              <Label fx:id="phoneNoText" text="Phone Number : 010-0000-0000" BorderPane.alignment="CENTER">
+                                 <BorderPane.margin>
+                                    <Insets left="10.0" />
+                                 </BorderPane.margin>
+                              </Label>
+                           </left>
+                           <right>
+                              <Label fx:id="statusText" text="Status : O" BorderPane.alignment="CENTER" />
+                           </right>
+                        </BorderPane>
+                        <Line endX="503.29290771484375" endY="-0.8284271955490112" startX="-100.0">
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Line>
+                        <BorderPane maxWidth="600.0" minWidth="600.0" prefWidth="600.0">
+                           <opaqueInsets>
+                              <Insets top="10.0" />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                           <center>
+                              <Label fx:id="contentText" text="Content : This is iPad Pro 3rd Generation!!" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <AnchorPane fx:id="replyList" maxWidth="793.0" minWidth="793.0" prefHeight="200.0" prefWidth="793.0" />
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+      	</children>
+      </HBox>
+   </children>
+</AnchorPane>

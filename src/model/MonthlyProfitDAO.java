@@ -18,21 +18,22 @@ public class MonthlyProfitDAO {
 	private ArrayList<MonthlyProfitVO> monthlyProfits= new ArrayList<>();
 	
 		
-	public ArrayList<MonthlyProfitVO> getMonthlyProfit(String startDate, String endDate){
+	public ArrayList<MonthlyProfitVO> getMonthlyProfit(int userId, String startDate, String endDate){
 		monthlyProfit= new MonthlyProfitVO();
-		String runSP ="{ call select_traderecord_monthly2(?,?,?)}";
+		String runSP ="{ call select_traderecord_monthly2(?,?,?,?)}";
 		
 		try {
 			conn = DBConnection.getConnection();
 			callableStatement = conn.prepareCall(runSP);
-
-			callableStatement.setString(1, startDate);
-			callableStatement.setString(2, endDate);
-			callableStatement.registerOutParameter(3, OracleTypes.CURSOR);
+			
+			callableStatement.setInt(1,userId);
+			callableStatement.setString(2, startDate);
+			callableStatement.setString(3, endDate);
+			callableStatement.registerOutParameter(4, OracleTypes.CURSOR);
 			
 			try {
 				callableStatement.execute();
-				ResultSet resultSet = (ResultSet) callableStatement.getObject(3);
+				ResultSet resultSet = (ResultSet) callableStatement.getObject(4);
 				
 				while (resultSet.next()) {
 					monthlyProfits.add(new MonthlyProfitVO(

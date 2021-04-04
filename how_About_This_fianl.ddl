@@ -57,7 +57,7 @@ ALTER TABLE board ADD CONSTRAINT board_pk PRIMARY KEY ( id );
 
 CREATE TABLE category (
     id    NUMBER(3) NOT NULL,
-    name  VARCHAR2(20) NOT NULL
+    name  VARCHAR2(30) NOT NULL
 );
 
 ALTER TABLE category ADD CONSTRAINT category_pk PRIMARY KEY ( id );

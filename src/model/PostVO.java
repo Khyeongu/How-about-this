@@ -8,10 +8,10 @@ public class PostVO {
 	private String title;
 	private String content;
 	private int price;
-	private String status;
+	private Boolean status;
 	private Date time;
-	private LocalDate start_date;
-	private LocalDate end_date;
+	private Date start_date;
+	private Date end_date;
 	private String image_url;
 	private int category_id;
 	
@@ -55,10 +55,10 @@ public class PostVO {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getStatus() {
+	public Boolean getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+	public void setStatus(Boolean status) {
 		this.status = status;
 	}
 	public Date getTime() {
@@ -67,16 +67,16 @@ public class PostVO {
 	public void setTime(Date time) {
 		this.time = time;
 	}
-	public LocalDate getStart_date() {
+	public Date getStart_date() {
 		return start_date;
 	}
-	public void setStart_date(LocalDate start_date) {
+	public void setStart_date(Date start_date) {
 		this.start_date = start_date;
 	}
-	public LocalDate getEnd_date() {
+	public Date getEnd_date() {
 		return end_date;
 	}
-	public void setEnd_date(LocalDate end_date) {
+	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
 	}
 	public String getImage_url() {

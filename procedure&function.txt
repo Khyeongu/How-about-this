@@ -1,0 +1,384 @@
+--홈화면 게시판 미리보기
+CREATE OR REPLACE procedure select_board_mini
+(select_board_mini_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_board_mini_cursor for 
+    SELECT id, title, price
+    FROM board
+    WHERE rownum<=5
+    ORDER BY ID desc;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+--홈화면 카테고리 랭크
+CREATE OR REPLACE procedure select_category_rank
+(select_category_rank_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_category_rank_cursor for
+    SELECT category_id
+    FROM(
+      SELECT category_id, count(*)
+      FROM traderecord
+      GROUP BY category_id
+      ORDER BY count(*) desc
+    );
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+--월별 매출 통계
+CREATE OR REPLACE procedure select_traderecord_monthly(
+	user_id in number, 
+	select_traderecord_monthly_cursor out sys_refcursor
+	)
+IS
+BEGIN
+  open select_traderecord_monthly_cursor for
+    select TO_CHAR(t.time, 'YYYYMM') as month, sum(b.price) as total 
+    from TRADERECORD t, board b
+    where t.member_id=user_id 
+      and t.board_id=b.id
+      and t.time >= '20210101'
+      and t.time <= '20211231' 
+      GROUP BY to_char(t.time, 'YYYYMM')
+      ORDER BY month;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+  
+CREATE OR REPLACE procedure select_traderecord_monthly2(
+    user_id in NUMBER, 
+    startDate in VARCHAR2,
+    endDate in VARCHAR2,
+    select_traderecord_monthly_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_traderecord_monthly_cursor for
+    select TO_CHAR(t.time, 'YYYYMM') as month, sum(b.price) as total 
+    from TRADERECORD t, board b
+    where t.member_id=user_id 
+      and t.board_id=b.id
+      and t.time >= startDate
+      and t.time <= endDate 
+      GROUP BY to_char(t.time, 'YYYYMM')
+      ORDER BY month;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+--월별 게시물 가져오기
+
+CREATE OR REPLACE procedure select_traderecord_monthly_post(
+    user_id in NUMBER,
+    select_year in VARCHAR2,
+    select_traderecord_monthly_post_cursor out sys_refcursor)
+IS
+BEGIN
+    open select_traderecord_monthly_post_cursor for
+    select b.title, b.price, TO_CHAR(t.time, 'YY/MM')
+    from traderecord t, board b
+    where t.member_id=user_id 
+        and t.board_id=b.id
+        and t.time like SUBSTR(select_year, 3)||'/'||'%';
+    EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+
+-- 준수
+create or replace view member_view
+as select id, login_id, name, phone_number, birthdate, nickname
+from member;
+
+
+create or replace function select_member_check
+(p_id member.login_id%type, 
+p_pw member.login_password%type)
+return number
+is
+  match_count member.id%type;
+begin
+  select id into match_count
+  from member
+  where login_id = p_id and
+           login_password = p_pw;
+
+  return match_count;
+exception
+  when no_data_found then
+    return 0;
+end;
+/
+
+
+create or replace procedure select_member_info
+  (p_id member.login_id%type, 
+   p_pw member.login_password%type,
+   p_memid out member.id%type,
+   p_memName out member.name%type,
+   p_memPhone_number out member.phone_number%type,
+   p_memBirth out member.birthdate%type,
+   p_memNickname out member.nickname%type
+)
+is
+begin
+    select id, name, phone_number, birthdate, nickname
+    into p_memid, p_memName, p_memPhone_number, p_memBirth, p_memNickname from member_view
+    where id = ( select select_member_check(p_id, p_pw) from dual);
+end;
+/
+
+create or replace procedure select_member_id_check
+(p_id member.login_id%type,
+p_cnt out number
+)
+is
+begin
+  select count(*) into p_cnt
+  from member
+  where login_id = p_id;
+end;
+/
+
+create or replace procedure select_member_nickname_check
+(p_nickname member.nickname%type,
+p_cnt out number
+)
+is
+begin
+  select count(*) into p_cnt
+  from member
+  where nickname = p_nickname;
+end;
+/
+
+create or replace procedure insert_member_signUp
+(
+  p_login_id member.login_id%type,
+  p_login_password member.login_password%type,
+  p_name member.name%type,
+  p_phone_number member.phone_number%type,
+  p_birthdate member.birthdate%type,
+  p_nickname member.nickname%type
+)
+is
+begin
+  insert into member values(member_id_seq.NEXTVAL, p_login_id, p_login_password, p_name, p_phone_number, 
+  p_birthdate, 
+  p_nickname);
+
+end;
+/
+
+select b.title, b.start_date, b.end_date, b.price, b.status, b.content, m.nickname, m.phone_number
+from board b, member m
+where b.id = 1
+and m.id = b.member_id;
+
+create or replace procedure select_board_detail
+(
+  board_id board.id%type,
+  detail_cursor out sys_refcursor
+)
+is
+begin
+  open detail_cursor for
+    select b.title, b.start_date, b.end_date, b.price, b.status, b.content, m.nickname, m.phone_number
+    from board b, member m
+    where b.id = board_id
+    and m.id = b.member_id;
+end;
+/
+
+create or replace procedure select_zzim
+(
+  p_board_id zzim.board_id%type,
+  p_member_id zzim.member_id%type,
+  p_cnt out number
+)
+is
+begin
+  select count(*) into p_cnt from zzim
+  where board_id = p_board_id and
+           member_id = p_member_id;
+end;
+/
+
+
+create or replace procedure select_reply_board
+(
+  p_board_id reply.board_id%type,
+  p_cursor out sys_refcursor
+)
+is
+begin
+  open p_cursor for
+    select * from reply
+    where board_id = p_board_id;
+end;
+/
+
+--채경--
+-- 렌트-전체 게시글 프로시저 
+CREATE OR REPLACE procedure select_board_all
+(select_board_all_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_board_all_cursor for 
+    SELECT id, title, price, image_url, time
+    FROM board;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+-- 렌트 게시글 카테고리 한건 리턴 프로시저 
+
+create or replace procedure select_board_one_category
+(p_category_id in board.category_id%type,
+ select_board_one_category_board_cursor out sys_refcursor)
+is
+begin
+  open select_board_one_category_board_cursor for 
+    select id, title, price, image_url, time
+	from board
+	where category_id = p_category_id;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+end;
+/
+
+
+-- 렌트 게시글 검색어 프로시저
+CREATE OR REPLACE PROCEDURE select_board_by_search
+(p_category_title   in board.title%type,
+ p_category_content in board.content%type,
+ select_board_by_search_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_board_by_search_cursor for
+    select id, title, price, image_url, time
+    from board
+    where title like '%'||p_category_title||'%'
+    or content like '%'||p_category_content||'%';
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+end;
+/
+
+
+
+
+-- 내 게시글 최근 순 정렬(desc by boar의 id)
+
+CREATE OR REPLACE PROCEDURE select_board_my_recent
+(p_member_id in board.member_id%type,
+ select_board_my_recent_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_board_my_recent_cursor for
+    select id, title, price, image_url, time, status
+	FROM board
+	WHERE member_id = p_member_id
+	ORDER BY time desc;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+
+
+
+
+-- 내 게시글 오래된 순 정렬(asc boar의 id)
+
+CREATE OR REPLACE PROCEDURE select_board_my_old
+(p_member_id in board.member_id%type,
+ select_board_my_old_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_board_my_old_cursor for 
+    SELECT id, title, price, image_url, time, status
+	FROM board
+	WHERE member_id = p_member_id
+	ORDER BY time ASC;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+
+
+
+
+-- 내가 찜한 게시글
+
+CREATE OR REPLACE PROCEDURE select_board_my_zzim
+(p_member_id in zzim.member_id%type,
+ select_board_my_zzim_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_board_my_zzim_cursor for 
+    SELECT id, title, price, image_url, time, status
+	FROM board
+	WHERE id IN
+    (SELECT board_id FROM zzim WHERE member_id = p_member_id); 
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+
+
+
+-- status update문
+
+CREATE OR REPLACE PROCEDURE update_board_status
+(p_board_id in board.id%type)
+IS
+BEGIN
+    UPDATE board
+	SET status = 1
+	WHERE id = p_board_id; 
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+
+
+-- 찜 delete문
+
+CREATE OR REPLACE PROCEDURE delete_zzim_list
+(p_board_id in board.id%type)
+IS
+BEGIN
+    DELETE FROM zzim
+	WHERE board_id = p_board_id;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+
