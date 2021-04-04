@@ -417,4 +417,86 @@ BEGIN
 END;
 /
 
+-- 게시판 글 등록
+create or replace procedure insert_board_post
+(
+  p_title       in board.title%type,
+  p_content     in board.content%type,
+  p_price       in board.price%type,
+  p_status      in board.status%type,
+  p_time        in board.time%type,
+  p_start_date  in board.start_date%type,
+  p_end_date    in board.end_date%type,
+  p_image_url   in board.image_url%type,
+  p_category_id in board.category_id%type,
+  p_member_id   in board.member_id%type
+)
+is
+begin
+  insert into board (id, title, content, price, status, time, start_date, end_date, image_url, category_id, member_id)
+  values (board_id_seq.NEXTVAL, p_title, p_content, p_price, p_status, p_time, p_start_date, p_end_date, p_image_url, p_category_id, p_member_id);
+  commit;
+end;
+/
+    
+-- member_id에 대응하는 리뷰 출력
+create or replace procedure select_review_member
+(
+  p_id     in  review.member_id%type,
+  p_cursor out sys_refcursor
+)
+is
+begin
+  open p_cursor for 
+    select *
+    from review
+	where member_id = p_id;
+end;
+/
 
+-- memberId로 member name 출력
+create or replace procedure select_memberid_name
+(
+  p_member_id   in  member.id%type,
+  p_member_name out member.name%type
+)
+is
+begin
+  select name
+  into p_member_name
+  from member
+  where id = p_member_id;
+end;
+/
+
+-- memberid로 member grade 출력
+create or replace procedure select_member_grade
+(
+  p_member_id    in  member.id%type,
+  p_member_grade out number
+)
+is
+begin
+  select avg(grade)
+  into p_member_grade
+  from review
+  where member_id = p_member_id;
+end;
+/
+
+-- review 작성
+create or replace procedure insert_review_post
+(
+  p_grade     in review.grade%type,
+  p_content   in review.content%type,
+  p_time      in review.time%type,
+  p_member_id in review.member_id%type
+)
+is
+begin
+  insert into review (id, grade, content, time, member_id)
+  values (review_id_seq.NEXTVAL, p_grade, p_content, p_time, p_member_id);
+  commit;
+end;
+/
+ 
