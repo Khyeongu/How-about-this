@@ -14,16 +14,18 @@ BEGIN
 END;
 /
 
---홈화면 카테고리 랭킹 (구현중)
-
 --월별 매출 통계
-CREATE OR REPLACE procedure select_traderecord_monthly(select_traderecord_monthly_cursor out sys_refcursor)
+CREATE OR REPLACE procedure select_traderecord_monthly(
+	user_id in number, 
+	select_traderecord_monthly_cursor out sys_refcursor
+	)
 IS
 BEGIN
   open select_traderecord_monthly_cursor for
     select TO_CHAR(t.time, 'YYYYMM') as month, sum(b.price) as total 
     from TRADERECORD t, board b
-    where t.board_id=b.id
+    where t.member_id=user_id 
+      and t.board_id=b.id
       and t.time >= '20210101'
       and t.time <= '20211231' 
       GROUP BY to_char(t.time, 'YYYYMM')
@@ -33,8 +35,33 @@ BEGIN
   DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
 END;
 /
+  
+CREATE OR REPLACE procedure select_traderecord_monthly2(
+    user_id in NUMBER, 
+    startDate in VARCHAR2,
+    endDate in VARCHAR2,
+    select_traderecord_monthly_cursor out sys_refcursor)
+IS
+BEGIN
+  open select_traderecord_monthly_cursor for
+    select TO_CHAR(t.time, 'YYYYMM') as month, sum(b.price) as total 
+    from TRADERECORD t, board b
+    where t.member_id=user_id 
+      and t.board_id=b.id
+      and t.time >= startDate
+      and t.time <= endDate 
+      GROUP BY to_char(t.time, 'YYYYMM')
+      ORDER BY month;
+  EXCEPTION
+  WHEN OTHERS THEN
+  DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
+END;
+/
+
+--월별 게시물 가져오기
 
 CREATE OR REPLACE procedure select_traderecord_monthly_post(
+    user_id in NUMBER,
     select_year in VARCHAR2,
     select_traderecord_monthly_post_cursor out sys_refcursor)
 IS
@@ -42,7 +69,8 @@ BEGIN
     open select_traderecord_monthly_post_cursor for
     select b.title, b.price, TO_CHAR(t.time, 'YY/MM')
     from traderecord t, board b
-    where t.board_id=b.id
+    where t.member_id=user_id 
+        and t.board_id=b.id
         and t.time like SUBSTR(select_year, 3)||'/'||'%';
     EXCEPTION
   WHEN OTHERS THEN
