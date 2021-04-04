@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -28,6 +29,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -38,6 +40,38 @@ import database.UserSession;
 public class RentDetail_Controller implements Initializable {
 	private boolean heart = false;
 	private static int board_id;
+	
+	// 카테고리별 버튼
+		@FXML
+		private Button btnAll;
+		@FXML
+		private Button btnDigital;
+		@FXML
+		private Button btnInterior;
+		@FXML
+		private Button btnKids;
+		@FXML
+		private Button btnSports;
+		@FXML
+		private Button btnWomanThing;
+		@FXML
+		private Button btnWomanCloth;
+		@FXML
+		private Button btnManThing;
+		@FXML
+		private Button btnHobby;
+		@FXML
+		private Button btnBeauty;
+		@FXML
+		private Button btnPet;
+		@FXML
+		private Button btnBook;
+		@FXML
+		private Button btnPlant;
+		@FXML
+		private Button btnEtc;
+		@FXML
+		private Label lab_ctg;
 	
 	@FXML
 	private AnchorPane ap;
@@ -83,6 +117,12 @@ public class RentDetail_Controller implements Initializable {
     
     @FXML
     private ImageView heartImg;
+    
+    @FXML
+    private TextField replyText;
+    
+    @FXML
+    private Button replyBtn;
     
     private UserSession user;
     
@@ -219,6 +259,78 @@ public class RentDetail_Controller implements Initializable {
  			}
  		});
  		replyList.getChildren().setAll(listView);
+ 	}
+ 	
+ 	public void addReply(ActionEvent actionEvent) {
+ 		if(actionEvent.getSource() == replyBtn) {
+ 			if(!replyText.getText().equals("")) {
+ 				replyDAO.addReply(replyText.getText(), board_id);
+ 				
+ 				replyVOList = replyDAO.getAllReplyList(board_id);
+ 		    	replyVOObservanbleList.setAll(replyVOList);
+ 		    	getReplyList();
+ 		    	
+ 		    	replyText.setText("");
+ 			}
+ 		} else if(actionEvent.getSource() == replyText) {
+ 			replyBtn.fire();
+ 		}
+ 	}
+ 	
+ // 카테고리별 버튼이 눌렸을 떄
+ 	public void ctgBtnClicked(ActionEvent actionEvent) {
+ 		int ctgId = 0;
+ 		if (actionEvent.getSource() == btnAll) {
+ 			ctgId = 0;
+ 			System.out.println("All pressed");
+ 		} else if (actionEvent.getSource() == btnDigital) {
+ 			ctgId = 1;
+ 			System.out.println("btnDigital pressed");
+ 		} else if (actionEvent.getSource() == btnInterior) {
+ 			ctgId = 2;
+ 			System.out.println("btnInterior pressed");
+ 		} else if (actionEvent.getSource() == btnKids) {
+ 			ctgId = 3;
+ 			System.out.println("pressed");
+ 		} else if (actionEvent.getSource() == btnSports) {
+ 			ctgId = 4;
+ 			System.out.println("pressed");
+ 		} else if (actionEvent.getSource() == btnWomanThing) {
+ 			ctgId = 5;
+ 			System.out.println("pressed");
+ 		} else if (actionEvent.getSource() == btnWomanCloth) {
+ 			ctgId = 6;
+ 			System.out.println("pressed");
+ 		} else if (actionEvent.getSource() == btnManThing) {
+ 			ctgId = 7;
+ 			System.out.println("pressed");
+ 		} else if (actionEvent.getSource() == btnHobby) {
+ 			ctgId = 8;
+ 			System.out.println("pressed");
+ 		} else if (actionEvent.getSource() == btnBeauty) {
+ 			ctgId = 9;
+ 			System.out.println("pressed");
+ 		} else if (actionEvent.getSource() == btnPet) {
+ 			ctgId = 10;
+ 			System.out.println("pressed");
+ 		} else if (actionEvent.getSource() == btnBook) {
+ 			ctgId = 11;
+ 			System.out.println("pressed");
+ 		} else if (actionEvent.getSource() == btnPlant) {
+ 			ctgId = 12;
+ 			System.out.println("pressed");
+ 		} else if (actionEvent.getSource() == btnEtc) {
+ 			ctgId = 13;
+ 			System.out.println("pressed");
+ 		} 
+ 		
+ 		try {
+			loadPage("Rent");
+			
+			System.out.println("btnAll pressed");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
  	}
     
     private void loadPage(String page) {

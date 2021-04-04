@@ -38,7 +38,7 @@
                </center></BorderPane>
             <BorderPane fx:id="warningBP" prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <Label fx:id="warningText" alignment="CENTER" prefHeight="50.0" prefWidth="1050.0" style="-fx-font-size: 15; -fx-font-family: &quot;Jalnan&quot;; -fx-text-fill: #FF0000;" text="가입하지 않은 아이디이거나, 잘못된 비밀번호입니다." textAlignment="CENTER" visible="false" BorderPane.alignment="CENTER" />
+                  <Label fx:id="warningText" alignment="CENTER" prefHeight="50.0" prefWidth="1050.0" style="-fx-font-size: 15; -fx-font-family: &quot;Jalnan&quot;; -fx-text-fill: #FFFFFF;" text="가입하지 않은 아이디이거나, 잘못된 비밀번호입니다." textAlignment="CENTER" visible="false" BorderPane.alignment="CENTER" />
                </center></BorderPane>
             <BorderPane fx:id="loginBP" prefHeight="200.0" prefWidth="200.0">
                <top>
