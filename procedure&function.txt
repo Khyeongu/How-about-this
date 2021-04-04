@@ -404,11 +404,13 @@ END;
 -- 찜 delete문
 
 CREATE OR REPLACE PROCEDURE delete_zzim_list
-(p_board_id in board.id%type)
+(p_board_id in board.id%type,
+ P_member_id in zzim.member_id%type)
 IS
 BEGIN
-    DELETE FROM zzim
-	WHERE board_id = p_board_id;
+	DELETE FROM zzim 
+	WHERE board_id = p_board_id 
+	and member_id = P_member_id;
   EXCEPTION
   WHEN OTHERS THEN
   DBMS_OUTPUT.PUT_LINE('SQL ERROR MESSAGE: ' || SQLERRM);
