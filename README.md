@@ -4,7 +4,7 @@ frontend : javafx
 
 backend : Callable statement & oracle Procedure and Function
 
-HYUNDAI IT&E Project
+Hyundai IT&E Project
 
 ![alt text](https://github.com/Khyeongu/How-about-this/blob/main/imgs/main.PNG)
 
