@@ -314,7 +314,7 @@ public class BoardDAO {
 				ResultSet resultSet = (ResultSet) callableStatement.getObject(1);
 
 				while (resultSet.next()) {
-					boardVOList.add(new BoardVO(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3)));
+					boardVOList.add(new BoardVO(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3), resultSet.getString(4)));
 				}
 
 			} catch (SQLException e) {

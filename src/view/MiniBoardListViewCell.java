@@ -32,6 +32,7 @@ public class MiniBoardListViewCell extends ListCell<BoardVO> {
 	protected void updateItem(BoardVO board, boolean empty) {
 		super.updateItem(board, empty);
 		
+		
 		if(empty || board ==null) {
 			setText(null);
 			setGraphic(null);
@@ -49,12 +50,13 @@ public class MiniBoardListViewCell extends ListCell<BoardVO> {
 
             }
 			try {
-				Image image = new Image(new FileInputStream("C:\\Users\\user\\Desktop\\현대IT&E\\project\\How-about-this\\src\\boardImg\\xbox.jpg"));
-				imageProduct.setImage(image);
+				Image image = new Image(new FileInputStream(board.getImageUrl()));
+				imageProduct.setImage(image);                
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			System.out.println(board.getImageUrl());
 			labelTitle.setText(board.getTitle());
 			labelPrice.setText(Integer.toString(board.getPrice())+" 원");
 			
