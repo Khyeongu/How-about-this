@@ -22,7 +22,7 @@ public class RentDetailDAO {
 	
 	
 	public RentDetailVO getBoardById(int boardId) {
-		String runSP = "{ call select_board_detail( ?, ? ) }";
+		String runSP = "{ call how_board_pack.select_board_detail( ?, ? ) }";
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -62,7 +62,7 @@ public class RentDetailDAO {
 	}
 	
 	public boolean isZzim(int memberId, int boardId) {
-		String runSP = "{ call select_zzim( ?, ?, ? ) }";
+		String runSP = "{ call how_board_pack.select_zzim( ?, ?, ? ) }";
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -97,7 +97,7 @@ public class RentDetailDAO {
 	}
 	
 	public int getMemberId(int boardId) {
-		String runSP = "{ call select_board_memberid( ?, ? ) }";
+		String runSP = "{ call how_board_pack.select_board_memberid( ?, ? ) }";
 		int member_id = 0;
 		
 		try {

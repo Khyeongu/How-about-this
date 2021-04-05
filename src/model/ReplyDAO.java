@@ -20,7 +20,7 @@ public class ReplyDAO {
 		public ArrayList<ReplyVO> getAllReplyList(int boardId){
 			ArrayList<ReplyVO> replyList = new ArrayList<>();
 			
-			String runSP = "{ call select_reply_board (?, ?) }";
+			String runSP = "{ call how_board_pack.select_reply_board (?, ?) }";
 			
 			try {
 				conn = DBConnection.getConnection();
@@ -59,7 +59,7 @@ public class ReplyDAO {
 		}
 		
 		public void addReply(String content, int board_id) {
-			String runSP = "{ call insert_reply_board (?, ?) }";
+			String runSP = "{ call how_board_pack.insert_reply_board (?, ?) }";
 			
 			try {
 				conn = DBConnection.getConnection();
