@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="ap" style="-fx-background-color: #E72C4B;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Login_Controller">
+<AnchorPane fx:id="ap" style="-fx-background-color: #E72C4B;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Login_Controller">
    <children>
       <VBox fx:id="vb" alignment="CENTER" prefHeight="576.0" prefWidth="1050.0">
          <children>

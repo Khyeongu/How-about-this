@@ -1,9 +1,10 @@
-package view;
+package controller;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import database.UserSession;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,28 +17,28 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import model.BoardDAO;
 import model.BoardVO;
+import model.ZzimDAO;
 
-public class MyPostListCell_Controller extends ListCell<BoardVO> {
+public class MyZzimListCell_Controller extends ListCell<BoardVO> {
 	@FXML
 	private AnchorPane ap;
 	@FXML
-	private ImageView imageView;
+	private ImageView imgBoard;
 	@FXML
-	private Label labTitle;
+	private Label labBoardTitle;
 	@FXML
-	private Label labPrice;
+	private Label labBoardPrice;
 	@FXML
-	private Label labTime;
+	private Label labBoardTime;
 	@FXML
-	private Label labStatus;
+	private Label labZzimStatus;
 	@FXML
-	private Button btnStatus;
+	private Button btnZzimHart;
 
 	private FXMLLoader mLLoader;
-	private BoardDAO boardDAO = new BoardDAO();
-
+	private ZzimDAO zzimDao = new ZzimDAO();
+	
 	@Override
 	protected void updateItem(BoardVO boardVO, boolean empty) {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -49,64 +50,62 @@ public class MyPostListCell_Controller extends ListCell<BoardVO> {
 
 		} else {
 			if (mLLoader == null) {
-				mLLoader = new FXMLLoader(getClass().getResource("../view/MyPostListCell.fxml"));
+				mLLoader = new FXMLLoader(getClass().getResource("../view/MyZzimListCell.fxml"));
 				mLLoader.setController(this);
 
 				System.out.println(boardVO.getTitle());
 				System.out.println(boardVO.getPrice());
 				System.out.println(boardVO.getStatus());
-
+				
 				try {
 					mLLoader.load();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
-
 			}
 
-			labTitle.setText("상풍명 : " + boardVO.getTitle());
-			labPrice.setText("시간당 가격 : " + Integer.toString(boardVO.getPrice()) + "원");
-			labTime.setText("포스트 날짜 : " + sdf.format(boardVO.getTime()));
-
+			labBoardTitle.setText("상풍명 : " + boardVO.getTitle());
+			labBoardPrice.setText("시간당 가격 : " + Integer.toString(boardVO.getPrice())+ "원");
+			labBoardTime.setText("포스트 날짜 : " + sdf.format(boardVO.getTime()));
+			
 			String status = Character.toString(boardVO.getStatus());
 
 			if (status.equals("0")) {
-				status = "거래 가능";
-				btnStatus.setVisible(true);
-
-				btnStatus.setOnAction(event -> {
-					boardDAO.updateStatus(boardVO.getId());
-					btnStatus.setVisible(false);
-
-					try {
-						FXMLLoader loader = new FXMLLoader(getClass().getResource("MyPostStatus.fxml"));
-						Stage stage = new Stage();
-						stage.initStyle(StageStyle.UNDECORATED);
-						Parent root = (Parent) loader.load();
-						stage.setTitle("popup");
-						stage.setScene(new Scene(root));
-						stage.show();
-						labStatus.setText("거래 완료");
-					} catch (Exception e) {
-						e.getMessage();
-					}
-				});
-
+				status = "거래 가능";			
+				
 			} else {
 				status = "거래 완료";
-				btnStatus.setVisible(false);
 			}
-
-			labStatus.setText("거래 상황 : " + status);
-
+			labZzimStatus.setText("거래 상황 : " + status);
+			
 			Image image = null;
 			try {
 				image = new Image(new FileInputStream(boardVO.getImageUrl()));
-			} catch (Exception e) {
+			} catch(Exception e) {
 				e.getMessage();
 			}
-			imageView.setImage(image);
-
+			imgBoard.setImage(image);
+			
+			UserSession test = UserSession.getInstance();
+			int memberId = test.getMemberId();
+			
+			btnZzimHart.setOnAction( event -> {
+				zzimDao.deleteZzim(boardVO.getId(), memberId);
+				btnZzimHart.setVisible(false);
+				
+				try {
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("MyZzimStatus.fxml"));
+					Stage stage = new Stage();
+					stage.initStyle(StageStyle.UNDECORATED);
+					Parent root = (Parent) loader.load();
+					stage.setTitle("popup");
+					stage.setScene(new Scene(root));
+					stage.show();
+				} catch (Exception e) {
+					e.getMessage();
+				}
+			});
+			
 			setText(null);
 			setGraphic(ap);
 		}

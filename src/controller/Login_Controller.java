@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -99,7 +99,7 @@ public class Login_Controller implements Initializable {
         	
         	if(memberDAO.loginCheck(id, pw)) {
         		try{
-            	    FXMLLoader loader = new FXMLLoader(getClass().getResource("./SideBar.fxml"));
+            	    FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/SideBar.fxml"));
             	    Parent root = (Parent) loader.load();
             	    Stage stage = new Stage();
             	    stage.initStyle(StageStyle.UNDECORATED);
@@ -131,7 +131,7 @@ public class Login_Controller implements Initializable {
         }
         if (actionEvent.getSource() == signUpBtn) {
         	try{
-        	    FXMLLoader loader = new FXMLLoader(getClass().getResource("./SignUp.fxml"));
+        	    FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/SignUp.fxml"));
         	    Parent root = (Parent) loader.load();
         	    Stage stage = new Stage();
         	    stage.setTitle("Sign Up page");

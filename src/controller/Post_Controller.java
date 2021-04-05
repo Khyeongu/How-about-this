@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -105,7 +105,8 @@ public class Post_Controller implements Initializable {
 			PostDAO.postVO.setTitle(post_title.getText());
 			PostDAO.postVO.setContent(post_contents.getText());
 			PostDAO.postVO.setPrice(Integer.parseInt(post_price.getText()));
-			PostDAO.postVO.setStatus(post_nego.isSelected());
+			// 사용할려면 협의 가능 여부 컬럼을 추가해야 합니다.
+			//PostDAO.postVO.setStatus(post_nego.isSelected());
 
 			java.util.Date start_date = java.util.Date
 					.from(post_start_date.getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -167,9 +168,9 @@ public class Post_Controller implements Initializable {
 	
 	private void loadPage(String page) {
 		try {
-			System.out.println(page + ".fxml");
+			System.out.println("../view/" + page + ".fxml");
 			Node node;
-			node = (Node) FXMLLoader.load(getClass().getResource(page + ".fxml"));
+			node = (Node) FXMLLoader.load(getClass().getResource("../view/" + page + ".fxml"));
 			post_pane.getChildren().setAll(node);
 		} catch (Exception e) {
 			e.printStackTrace();
