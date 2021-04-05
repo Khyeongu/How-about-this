@@ -176,7 +176,9 @@ begin
 end;
 /
 
-
+create or replace view member_view
+as select id, login_id, name, phone_number, birthdate, nickname
+from member;
 
 -- Oracle SQL Developer Data Modeler 요약 보고서: 
 -- 
