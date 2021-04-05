@@ -23,7 +23,7 @@ CREATE OR REPLACE PACKAGE how_statistic_pack IS
 END;
 /
 
-CREATE OR REPLACE PACKAGE BODY how_about_pack IS
+CREATE OR REPLACE PACKAGE BODY how_statistic_pack IS
 PROCEDURE select_category_rank (
         select_category_rank_cursor OUT SYS_REFCURSOR
     ) IS
