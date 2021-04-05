@@ -26,6 +26,13 @@ public class BoardVO {
 		this.title=title;
 		this.price=price;
 	}
+	
+	public BoardVO(int id, String title, int price, String imageUrl) {
+		this.categoryId=id;
+		this.title=title;
+		this.price=price;
+		this.imageUrl=imageUrl;
+	}
 
 	public BoardVO(int id, String title, int price, String imageUrl, Date time) {
 		super();
