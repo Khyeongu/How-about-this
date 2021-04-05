@@ -190,6 +190,9 @@ public class Home_Controller implements Initializable {
 		for(TradeRecordVO t : categoryRanks) {
 			labelRanks.get(idx).setText(mapCategory.get(Integer.toString(t.getCategoryId())));
 			idx++;
+			if(idx==5) {
+				break;
+			}
 		}
 	}
 

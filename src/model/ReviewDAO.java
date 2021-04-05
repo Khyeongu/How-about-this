@@ -22,7 +22,7 @@ public class ReviewDAO {
 
 	/* 멤버 이름 가져오기 */
 	public void getMemberName(int memberid) {
-		String runSP = "{ call select_memberid_name(?, ?) }";
+		String runSP = "{ call how_member_pack.select_memberid_name(?, ?) }";
 
 		try {
 			conn = DBConnection.getConnection();

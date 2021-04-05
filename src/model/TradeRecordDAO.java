@@ -17,7 +17,7 @@ public class TradeRecordDAO {
 		private ArrayList<TradeRecordVO> categoryRanks = new ArrayList<>();;
 
 		public ArrayList<TradeRecordVO> getCategoryRank() {
-			String runSP = "{ call select_category_rank(?)}";
+			String runSP = "{ call how_statistic_pack.select_category_rank(?)}";
 
 			try {
 				conn = DBConnection.getConnection();
