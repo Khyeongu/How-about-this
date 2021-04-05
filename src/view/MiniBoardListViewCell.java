@@ -49,7 +49,7 @@ public class MiniBoardListViewCell extends ListCell<BoardVO> {
 
             }
 			try {
-				Image image = new Image(new FileInputStream("C:\\Users\\user\\Desktop\\현대IT&E\\project\\How-about-this\\src\\boardImg\\xbox.jpg"));
+				Image image = new Image(new FileInputStream("C:/Users/user/Desktop/현대IT&E/project/How-about-this/src/boardImg/xbox.jpg"));
 				imageProduct.setImage(image);
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block

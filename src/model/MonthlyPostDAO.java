@@ -16,7 +16,7 @@ public class MonthlyPostDAO {
 	private ArrayList<MonthlyPostVO> monthlyPosts = new ArrayList<>();;
 
 	public ArrayList<MonthlyPostVO> getMonthlyPost(int userId, String postYear) {
-		String runSP = "{ call select_traderecord_monthly_post(?,?,?)}";
+		String runSP = "{ call how_statistic_pack.select_traderecord_monthly_post(?,?,?)}";
 
 		try {
 			conn = DBConnection.getConnection();

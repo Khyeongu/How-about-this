@@ -15,7 +15,7 @@ public class ZzimDAO {
 		 * status update
 		 */	
 		public void deleteZzim(int boardId, int memberId) {
-			String runSP = "{ call delete_zzim_list(?, ?) }";
+			String runSP = "{ call how_board_pack.delete_zzim_list(?, ?) }";
 
 			try {
 				conn = DBConnection.getConnection();
@@ -42,7 +42,7 @@ public class ZzimDAO {
 		
 		// db관련 객체
 		public void insertZzim(int board_id, int member_id) {
-			String runSP = "{ call insert_zzim_board(?, ?) }";
+			String runSP = "{ call how_board_pack.insert_zzim_board(?, ?) }";
 
 			try {
 				conn = DBConnection.getConnection();

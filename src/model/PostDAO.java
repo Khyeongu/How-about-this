@@ -21,7 +21,7 @@ public class PostDAO {
 
 	/* 게시판 글 입력*/
 	public static void insertBoardPost(int memberid) {
-		String runSP = "{ call insert_board_post(?, ?, ?, ?, ?, ?, ?, ?, ?) }";
+		String runSP = "{ call how_board_pack.insert_board_post(?, ?, ?, ?, ?, ?, ?, ?, ?) }";
 
 		try {
 			conn = DBConnection.getConnection();

@@ -27,7 +27,7 @@ public class BoardDAO {
 
 		ArrayList<BoardVO> boardVOList = new ArrayList<>();
 
-		String runSP = "{ call select_board_all(?) }";
+		String runSP = "{ call how_board_pack.select_board_all(?) }";
 
 		try {
 			conn = DBConnection.getConnection();
@@ -66,7 +66,7 @@ public class BoardDAO {
 	public ArrayList<BoardVO> getOneCtgBoardList(int ctgId) {
 		ArrayList<BoardVO> boardVOList = new ArrayList<>();
 		
-		String runSP = "{ call select_board_one_category(?, ?) }";
+		String runSP = "{ call how_board_pack.select_board_one_category(?, ?) }";
 
 		try {
 			conn = DBConnection.getConnection();
@@ -104,7 +104,7 @@ public class BoardDAO {
 	public ArrayList<BoardVO> boardListBySearch(String keyWord) {
 		ArrayList<BoardVO> boardVOList = new ArrayList<>();
 		
-		String runSP = "{ call select_board_by_search(?, ?, ?) }";
+		String runSP = "{ call how_board_pack.select_board_by_search(?, ?, ?) }";
 
 		try {
 			conn = DBConnection.getConnection();
@@ -148,7 +148,7 @@ public class BoardDAO {
 	public ArrayList<BoardVO> getMyBoardDesc(int id) {
 		ArrayList<BoardVO> boardVOList = new ArrayList<>();
 		
-		String runSP = "{ call select_board_my_recent(?, ?) }";
+		String runSP = "{ call how_board_pack.select_board_my_recent(?, ?) }";
 
 		try {
 			conn = DBConnection.getConnection();
@@ -190,7 +190,7 @@ public class BoardDAO {
 	public ArrayList<BoardVO> getMyBoardAsc(int id) {
 		ArrayList<BoardVO> boardVOList = new ArrayList<>();
 		
-		String runSP = "{ call select_board_my_old(?, ?) }";
+		String runSP = "{ call how_board_pack.select_board_my_old(?, ?) }";
     
     try {
 			conn = DBConnection.getConnection();
@@ -233,7 +233,7 @@ public class BoardDAO {
 	public ArrayList<BoardVO> getMyZzimList(int id) {
 		ArrayList<BoardVO> boardVOList = new ArrayList<>();
 		
-		String runSP = "{ call select_board_my_zzim(?, ?) }";
+		String runSP = "{ call how_board_pack.select_board_my_zzim(?, ?) }";
 
 		try {
 			conn = DBConnection.getConnection();
@@ -274,7 +274,7 @@ public class BoardDAO {
 	 * status update
 	 */	
 	public void updateStatus(int id) {
-		String runSP = "{ call update_board_status(?) }";
+		String runSP = "{ call how_board_pack.update_board_status(?) }";
 
 		try {
 			conn = DBConnection.getConnection();
@@ -301,7 +301,7 @@ public class BoardDAO {
 
 	  // 홈화면 게시판 미리보기
 	public ArrayList<BoardVO> getMiniBoardList() {
-		String runSP = "{ call select_board_mini(?) }";
+		String runSP = "{ call how_board_pack.select_board_mini(?) }";
 
 		try {
 			conn = DBConnection.getConnection();

@@ -20,7 +20,7 @@ public class MonthlyProfitDAO {
 		
 	public ArrayList<MonthlyProfitVO> getMonthlyProfit(int userId, String startDate, String endDate){
 		monthlyProfit= new MonthlyProfitVO();
-		String runSP ="{ call select_traderecord_monthly2(?,?,?,?)}";
+		String runSP ="{ call how_statistic_pack.select_traderecord_monthly2(?,?,?,?)}";
 		
 		try {
 			conn = DBConnection.getConnection();

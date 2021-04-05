@@ -24,7 +24,7 @@ public class MemberDAO {
 		private UserSession session;
 		
 		public boolean loginCheck(String id, String pw) {
-			String runSP = "{ call select_member_info(?, ?, ?, ?, ?, ?, ?) }";
+			String runSP = "{ call how_member_pack.select_member_info(?, ?, ?, ?, ?, ?, ?) }";
 			int mem_id = 0;
 
 			try {
@@ -74,7 +74,7 @@ public class MemberDAO {
 		}
 		
 		public boolean idCheck(String id) {
-			String runSP = "{ call select_member_id_check(?, ?) }";
+			String runSP = "{ call how_member_pack.select_member_id_check(?, ?) }";
 			try {
 				conn = DBConnection.getConnection();
 				callableStatement = conn.prepareCall(runSP);
@@ -104,7 +104,7 @@ public class MemberDAO {
 		}
 		
 		public boolean nickNameCheck(String nickName) {
-			String runSP = "{ call select_member_nickname_check(?, ?) }";
+			String runSP = "{ call how_member_pack.select_member_nickname_check(?, ?) }";
 			try {
 				conn = DBConnection.getConnection();
 				callableStatement = conn.prepareCall(runSP);
@@ -134,7 +134,7 @@ public class MemberDAO {
 		}
 		
 		public void signUp(MemberVO member) {
-			String runSP = "{ call insert_member_signUp(?, ?, ?, ?, ?, ?) }";
+			String runSP = "{ call how_member_pack.insert_member_signUp(?, ?, ?, ?, ?, ?) }";
 			try {
 				conn = DBConnection.getConnection();
 				callableStatement = conn.prepareCall(runSP);
