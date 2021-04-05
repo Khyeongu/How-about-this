@@ -1,20 +1,20 @@
-package view;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class MyZzimStatus_Controller {
+public class MyPostStatus_Controller {
 	@FXML
-	private Label labStaMent;
+	private Label labStatusMent;
 	@FXML
-	private Button btnBack;
+	private Button btnBackAtStatusPopUp;
 	
 	@FXML
 	private void closePopUp() {
 	  try{
-		  Stage stage = (Stage) btnBack.getScene().getWindow();
+		  Stage stage = (Stage) btnBackAtStatusPopUp.getScene().getWindow();
 		  stage.close();
 	  }catch(Exception e) {
 		  e.getMessage();

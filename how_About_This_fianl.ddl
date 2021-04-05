@@ -57,7 +57,7 @@ ALTER TABLE board ADD CONSTRAINT board_pk PRIMARY KEY ( id );
 
 CREATE TABLE category (
     id    NUMBER(3) NOT NULL,
-    name  VARCHAR2(30) NOT NULL
+    name  VARCHAR2(40) NOT NULL
 );
 
 ALTER TABLE category ADD CONSTRAINT category_pk PRIMARY KEY ( id );
@@ -179,21 +179,6 @@ end;
 create or replace view member_view
 as select id, login_id, name, phone_number, birthdate, nickname
 from member;
-
-Insert into CATEGORY (ID,NAME) values (1,'디지털/가전');
-Insert into CATEGORY (ID,NAME) values (2,'가구/인테리어');
-Insert into CATEGORY (ID,NAME) values (3,'유아동/유아도서');
-Insert into CATEGORY (ID,NAME) values (4,'스포츠/레저');
-Insert into CATEGORY (ID,NAME) values (5,'여성잡화');
-Insert into CATEGORY (ID,NAME) values (6,'여성의류');
-Insert into CATEGORY (ID,NAME) values (7,'남성패션/잡화');
-Insert into CATEGORY (ID,NAME) values (8,'게임/취미');
-Insert into CATEGORY (ID,NAME) values (9,'뷰티/미용');
-Insert into CATEGORY (ID,NAME) values (10,'반려동물용품');
-Insert into CATEGORY (ID,NAME) values (11,'도서/티켓/음반');
-Insert into CATEGORY (ID,NAME) values (12,'식물');
-Insert into CATEGORY (ID,NAME) values (13,'기타');
-commit;
 
 -- Oracle SQL Developer Data Modeler 요약 보고서: 
 -- 

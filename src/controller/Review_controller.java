@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import javafx.collections.FXCollections;
 import javafx.scene.control.TextField;
@@ -115,7 +115,7 @@ public class Review_controller implements Initializable {
 	private void loadPage(String page) {
 		try {
 			Node node;
-			node = (Node) FXMLLoader.load(getClass().getResource(page + ".fxml"));
+			node = (Node) FXMLLoader.load(getClass().getResource("../view/" + page + ".fxml"));
 			review_pane.getChildren().setAll(node);
 		} catch (Exception e) {
 			e.printStackTrace();

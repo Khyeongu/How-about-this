@@ -1,4 +1,4 @@
-package view;
+package controller;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
