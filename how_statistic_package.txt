@@ -1,0 +1,130 @@
+CREATE OR REPLACE PACKAGE how_statistic_pack IS
+    PROCEDURE select_category_rank (
+        select_category_rank_cursor OUT SYS_REFCURSOR
+    );
+
+    PROCEDURE select_traderecord_monthly (
+        user_id                            IN   NUMBER,
+        select_traderecord_monthly_cursor  OUT  SYS_REFCURSOR
+    );
+
+    PROCEDURE select_traderecord_monthly2 (
+        user_id                            IN   NUMBER,
+        startdate                          IN   VARCHAR2,
+        enddate                            IN   VARCHAR2,
+        select_traderecord_monthly_cursor  OUT  SYS_REFCURSOR
+    );
+
+    PROCEDURE select_traderecord_monthly_post (
+        user_id                                 IN   NUMBER,
+        select_year                             IN   VARCHAR2,
+        select_traderecord_monthly_post_cursor  OUT  SYS_REFCURSOR
+    );
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY how_about_pack IS
+PROCEDURE select_category_rank (
+        select_category_rank_cursor OUT SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN select_category_rank_cursor FOR SELECT
+                                                 category_id
+                                             FROM
+                                                 (
+                                                     SELECT
+                                                         category_id,
+                                                         COUNT(*)
+                                                     FROM
+                                                         traderecord
+                                                     GROUP BY
+                                                         category_id
+                                                     ORDER BY
+                                                         COUNT(*) DESC
+                                                 );
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('SQL ERROR MESSAGE: ' || sqlerrm);
+    END;
+
+    PROCEDURE select_traderecord_monthly (
+        user_id                            IN   NUMBER,
+        select_traderecord_monthly_cursor  OUT  SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN select_traderecord_monthly_cursor FOR SELECT
+                                                       to_char(t.time, 'YYYYMM')        AS month,
+                                                       SUM(b.price)                     AS total
+                                                   FROM
+                                                       traderecord  t,
+                                                       board        b
+                                                   WHERE
+                                                           t.member_id = user_id
+                                                       AND t.board_id = b.id
+                                                           AND t.time >= '20210101'
+                                                               AND t.time <= '20211231'
+                                                   GROUP BY
+                                                       to_char(t.time, 'YYYYMM')
+                                                   ORDER BY
+                                                       month;
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('SQL ERROR MESSAGE: ' || sqlerrm);
+    END;
+
+    PROCEDURE select_traderecord_monthly2 (
+        user_id                            IN   NUMBER,
+        startdate                          IN   VARCHAR2,
+        enddate                            IN   VARCHAR2,
+        select_traderecord_monthly_cursor  OUT  SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN select_traderecord_monthly_cursor FOR SELECT
+                                                       to_char(t.time, 'YYYYMM')        AS month,
+                                                       SUM(b.price)                     AS total
+                                                   FROM
+                                                       traderecord  t,
+                                                       board        b
+                                                   WHERE
+                                                           t.member_id = user_id
+                                                       AND t.board_id = b.id
+                                                           AND t.time >= startdate
+                                                               AND t.time <= enddate
+                                                   GROUP BY
+                                                       to_char(t.time, 'YYYYMM')
+                                                   ORDER BY
+                                                       month;
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('SQL ERROR MESSAGE: ' || sqlerrm);
+    END;
+
+    PROCEDURE select_traderecord_monthly_post (
+        user_id                                 IN   NUMBER,
+        select_year                             IN   VARCHAR2,
+        select_traderecord_monthly_post_cursor  OUT  SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN select_traderecord_monthly_post_cursor FOR SELECT
+                                                            b.title,
+                                                            b.price,
+                                                            to_char(t.time, 'YY/MM')
+                                                        FROM
+                                                            traderecord  t,
+                                                            board        b
+                                                        WHERE
+                                                                t.member_id = user_id
+                                                            AND t.board_id = b.id
+                                                                AND t.time LIKE substr(select_year, 3)
+                                                                                || '/'
+                                                                                   || '%';
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('SQL ERROR MESSAGE: ' || sqlerrm);
+    END;
+END;
+/

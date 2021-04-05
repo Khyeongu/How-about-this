@@ -1,0 +1,237 @@
+CREATE OR REPLACE PACKAGE how_member_pack IS
+    FUNCTION select_member_check (
+        p_id  member.login_id%TYPE,
+        p_pw  member.login_password%TYPE
+    ) RETURN NUMBER;
+
+    PROCEDURE select_member_info (
+        p_id               member.login_id%TYPE,
+        p_pw               member.login_password%TYPE,
+        p_memid            OUT  member.id%TYPE,
+        p_memname          OUT  member.name%TYPE,
+        p_memphone_number  OUT  member.phone_number%TYPE,
+        p_membirth         OUT  member.birthdate%TYPE,
+        p_memnickname      OUT  member.nickname%TYPE
+    );
+
+    PROCEDURE select_member_id_check (
+        p_id   member.login_id%TYPE,
+        p_cnt  OUT NUMBER
+    );
+
+    PROCEDURE select_member_nickname_check (
+        p_nickname  member.nickname%TYPE,
+        p_cnt       OUT NUMBER
+    );
+
+    PROCEDURE insert_member_signup (
+        p_login_id        member.login_id%TYPE,
+        p_login_password  member.login_password%TYPE,
+        p_name            member.name%TYPE,
+        p_phone_number    member.phone_number%TYPE,
+        p_birthdate       member.birthdate%TYPE,
+        p_nickname        member.nickname%TYPE
+    );
+
+    PROCEDURE select_review_member (
+        p_id      IN   review.member_id%TYPE,
+        p_cursor  OUT  SYS_REFCURSOR
+    );
+
+    PROCEDURE select_memberid_name (
+        p_member_id    IN   member.id%TYPE,
+        p_member_name  OUT  member.name%TYPE
+    );
+
+    PROCEDURE select_member_grade (
+        p_member_id     IN   member.id%TYPE,
+        p_member_grade  OUT  NUMBER
+    );
+
+    PROCEDURE insert_review_post (
+        p_grade      IN  review.grade%TYPE,
+        p_content    IN  review.content%TYPE,
+        p_time       IN  review.time%TYPE,
+        p_member_id  IN  review.member_id%TYPE
+    );
+END;
+/
+
+CREATE OR REPLACE PACKAGE BODY how_member_pack IS
+
+    FUNCTION select_member_check (
+        p_id  member.login_id%TYPE,
+        p_pw  member.login_password%TYPE
+    ) RETURN NUMBER IS
+        match_count member.id%TYPE;
+    BEGIN
+        SELECT
+            id
+        INTO match_count
+        FROM
+            member
+        WHERE
+                login_id = p_id
+            AND login_password = p_pw;
+
+        RETURN match_count;
+    EXCEPTION
+        WHEN no_data_found THEN
+            RETURN 0;
+    END;
+
+    PROCEDURE select_member_info (
+        p_id               member.login_id%TYPE,
+        p_pw               member.login_password%TYPE,
+        p_memid            OUT  member.id%TYPE,
+        p_memname          OUT  member.name%TYPE,
+        p_memphone_number  OUT  member.phone_number%TYPE,
+        p_membirth         OUT  member.birthdate%TYPE,
+        p_memnickname      OUT  member.nickname%TYPE
+    ) IS
+    BEGIN
+        SELECT
+            id,
+            name,
+            phone_number,
+            birthdate,
+            nickname
+        INTO
+            p_memid,
+            p_memname,
+            p_memphone_number,
+            p_membirth,
+            p_memnickname
+        FROM
+            member_view
+        WHERE
+            id = (
+                SELECT
+                    select_member_check(p_id, p_pw)
+                FROM
+                    dual
+            );
+
+    END;
+
+    PROCEDURE select_member_id_check (
+        p_id   member.login_id%TYPE,
+        p_cnt  OUT NUMBER
+    ) IS
+    BEGIN
+        SELECT
+            COUNT(*)
+        INTO p_cnt
+        FROM
+            member
+        WHERE
+            login_id = p_id;
+
+    END;
+
+    PROCEDURE select_member_nickname_check (
+        p_nickname  member.nickname%TYPE,
+        p_cnt       OUT NUMBER
+    ) IS
+    BEGIN
+        SELECT
+            COUNT(*)
+        INTO p_cnt
+        FROM
+            member
+        WHERE
+            nickname = p_nickname;
+
+    END;
+
+    PROCEDURE insert_member_signup (
+        p_login_id        member.login_id%TYPE,
+        p_login_password  member.login_password%TYPE,
+        p_name            member.name%TYPE,
+        p_phone_number    member.phone_number%TYPE,
+        p_birthdate       member.birthdate%TYPE,
+        p_nickname        member.nickname%TYPE
+    ) IS
+    BEGIN
+        INSERT INTO member VALUES (
+            member_id_seq.NEXTVAL,
+            p_login_id,
+            p_login_password,
+            p_name,
+            p_phone_number,
+            p_birthdate,
+            p_nickname
+        );
+
+    END;
+
+    PROCEDURE select_review_member (
+        p_id      IN   review.member_id%TYPE,
+        p_cursor  OUT  SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN p_cursor FOR SELECT
+                              *
+                          FROM
+                              review
+                          WHERE
+                              member_id = p_id;
+
+    END;
+
+    PROCEDURE select_memberid_name (
+        p_member_id    IN   member.id%TYPE,
+        p_member_name  OUT  member.name%TYPE
+    ) IS
+    BEGIN
+        SELECT
+            name
+        INTO p_member_name
+        FROM
+            member
+        WHERE
+            id = p_member_id;
+
+    END;
+
+    PROCEDURE select_member_grade (
+        p_member_id     IN   member.id%TYPE,
+        p_member_grade  OUT  NUMBER
+    ) IS
+    BEGIN
+        SELECT
+            AVG(grade)
+        INTO p_member_grade
+        FROM
+            review
+        WHERE
+            member_id = p_member_id;
+
+    END;
+
+    PROCEDURE insert_review_post (
+        p_grade      IN  review.grade%TYPE,
+        p_content    IN  review.content%TYPE,
+        p_time       IN  review.time%TYPE,
+        p_member_id  IN  review.member_id%TYPE
+    ) IS
+    BEGIN
+        INSERT INTO review (
+            id,
+            grade,
+            content,
+            time,
+            member_id
+        ) VALUES (
+            review_id_seq.NEXTVAL,
+            p_grade,
+            p_content,
+            p_time,
+            p_member_id
+        );
+
+        COMMIT;
+    END;
+
+END;
+/

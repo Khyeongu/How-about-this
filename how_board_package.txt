@@ -1,0 +1,437 @@
+-- how_board_package
+CREATE OR REPLACE PACKAGE how_board_pack IS
+    PROCEDURE select_board_mini (
+        select_board_mini_cursor OUT SYS_REFCURSOR
+    );
+
+    PROCEDURE select_board_detail (
+        board_id       board.id%TYPE,
+        detail_cursor  OUT SYS_REFCURSOR
+    );
+
+    PROCEDURE select_zzim (
+        p_board_id   zzim.board_id%TYPE,
+        p_member_id  zzim.member_id%TYPE,
+        p_cnt        OUT NUMBER
+    );
+
+    PROCEDURE select_reply_board (
+        p_board_id  reply.board_id%TYPE,
+        p_cursor    OUT SYS_REFCURSOR
+    );
+
+    PROCEDURE insert_zzim_board (
+        p_board_id   zzim.board_id%TYPE,
+        p_member_id  zzim.member_id%TYPE
+    );
+
+
+    PROCEDURE insert_reply_board (
+        p_content   reply.content%TYPE,
+        p_board_id  reply.board_id%TYPE
+    );
+
+    PROCEDURE select_board_memberid (
+        p_board_id  board.id%TYPE,
+        p_mem_id    OUT board.member_id%TYPE
+    );
+
+    PROCEDURE select_board_all (
+        select_board_all_cursor OUT SYS_REFCURSOR
+    );
+
+    PROCEDURE select_board_one_category (
+        p_category_id                           IN   board.category_id%TYPE,
+        select_board_one_category_board_cursor  OUT  SYS_REFCURSOR
+    );
+
+    PROCEDURE select_board_by_search (
+        p_category_title               IN   board.title%TYPE,
+        p_category_content             IN   board.content%TYPE,
+        select_board_by_search_cursor  OUT  SYS_REFCURSOR
+    );
+
+    PROCEDURE select_board_my_recent (
+        p_member_id                    IN   board.member_id%TYPE,
+        select_board_my_recent_cursor  OUT  SYS_REFCURSOR
+    );
+
+    PROCEDURE select_board_my_old (
+        p_member_id                 IN   board.member_id%TYPE,
+        select_board_my_old_cursor  OUT  SYS_REFCURSOR
+    );
+
+    PROCEDURE select_board_my_zzim (
+        p_member_id                  IN   zzim.member_id%TYPE,
+        select_board_my_zzim_cursor  OUT  SYS_REFCURSOR
+    );
+
+    PROCEDURE update_board_status (
+        p_board_id IN board.id%TYPE
+    );
+
+    PROCEDURE delete_zzim_list (
+        p_board_id   IN  board.id%TYPE,
+        p_member_id  IN  zzim.member_id%TYPE
+    );
+
+    PROCEDURE insert_board_post (
+        p_title        IN  board.title%TYPE,
+        p_content      IN  board.content%TYPE,
+        p_price        IN  board.price%TYPE,
+        p_status       IN  board.status%TYPE,
+        p_start_date   IN  board.start_date%TYPE,
+        p_end_date     IN  board.end_date%TYPE,
+        p_image_url    IN  board.image_url%TYPE,
+        p_category_id  IN  board.category_id%TYPE,
+        p_member_id    IN  board.member_id%TYPE
+    );
+
+END;
+/
+  
+
+-- how_board_package body
+CREATE OR REPLACE PACKAGE BODY how_board_pack IS
+
+    PROCEDURE select_board_mini (
+        select_board_mini_cursor OUT SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN select_board_mini_cursor FOR SELECT
+                                              id,
+                                              title,
+                                              price,
+                                              image_url
+                                          FROM
+                                              board
+                                          WHERE
+                                              ROWNUM <= 5
+                                          ORDER BY
+                                              id DESC;
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('SQL ERROR MESSAGE: ' || sqlerrm);
+    END;
+
+    PROCEDURE select_board_detail (
+        board_id       board.id%TYPE,
+        detail_cursor  OUT SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN detail_cursor FOR SELECT
+                                   b.title,
+                                   b.start_date,
+                                   b.end_date,
+                                   b.price,
+                                   b.status,
+                                   b.content,
+                                   m.nickname,
+                                   m.phone_number,
+                                   b.image_url
+                               FROM
+                                   board   b,
+                                   member  m
+                               WHERE
+                                       b.id = board_id
+                                   AND m.id = b.member_id;
+
+    END;
+
+    PROCEDURE select_zzim (
+        p_board_id   zzim.board_id%TYPE,
+        p_member_id  zzim.member_id%TYPE,
+        p_cnt        OUT NUMBER
+    ) IS
+    BEGIN
+        SELECT
+            COUNT(*)
+        INTO p_cnt
+        FROM
+            zzim
+        WHERE
+                board_id = p_board_id
+            AND member_id = p_member_id;
+
+    END;
+
+    PROCEDURE select_reply_board (
+        p_board_id  reply.board_id%TYPE,
+        p_cursor    OUT SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN p_cursor FOR SELECT
+                              *
+                          FROM
+                              reply
+                          WHERE
+                              board_id = p_board_id
+                          ORDER BY
+                              id;
+
+    END;
+
+    PROCEDURE insert_zzim_board (
+        p_board_id   zzim.board_id%TYPE,
+        p_member_id  zzim.member_id%TYPE
+    ) IS
+    BEGIN
+        INSERT INTO zzim VALUES (
+            p_board_id,
+            p_member_id
+        );
+
+    END;
+
+
+
+    PROCEDURE insert_reply_board (
+        p_content   reply.content%TYPE,
+        p_board_id  reply.board_id%TYPE
+    ) IS
+    BEGIN
+        INSERT INTO reply VALUES (
+            reply_id_seq.NEXTVAL,
+            p_content,
+            to_char(sysdate, 'YYYY-MM-DD'),
+            p_board_id
+        );
+
+    END;
+
+    PROCEDURE select_board_memberid (
+        p_board_id  board.id%TYPE,
+        p_mem_id    OUT board.member_id%TYPE
+    ) IS
+    BEGIN
+        SELECT
+            member_id
+        INTO p_mem_id
+        FROM
+            board
+        WHERE
+            id = p_board_id;
+
+    END;
+
+    PROCEDURE select_board_all (
+        select_board_all_cursor OUT SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN select_board_all_cursor FOR SELECT
+                                             id,
+                                             title,
+                                             price,
+                                             image_url,
+                                             time
+                                         FROM
+                                             board
+                                         ORDER BY
+                                             time DESC;
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('SQL ERROR MESSAGE: ' || sqlerrm);
+    END;
+
+    PROCEDURE select_board_one_category (
+        p_category_id                           IN   board.category_id%TYPE,
+        select_board_one_category_board_cursor  OUT  SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN select_board_one_category_board_cursor FOR SELECT
+                                                            id,
+                                                            title,
+                                                            price,
+                                                            image_url,
+                                                            time
+                                                        FROM
+                                                            board
+                                                        WHERE
+                                                            category_id = p_category_id
+                                                        ORDER BY
+                                                            time DESC;
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('SQL ERROR MESSAGE: ' || sqlerrm);
+    END;
+
+    PROCEDURE select_board_by_search (
+        p_category_title               IN   board.title%TYPE,
+        p_category_content             IN   board.content%TYPE,
+        select_board_by_search_cursor  OUT  SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN select_board_by_search_cursor FOR SELECT
+                                                   id,
+                                                   title,
+                                                   price,
+                                                   image_url,
+                                                   time
+                                               FROM
+                                                   board
+                                               WHERE
+                                                   title LIKE '%'
+                                                              || p_category_title
+                                                              || '%'
+                                                   OR content LIKE '%'
+                                                                   || p_category_content
+                                                                   || '%';
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('SQL ERROR MESSAGE: ' || sqlerrm);
+    END;
+
+    PROCEDURE select_board_my_recent (
+        p_member_id                    IN   board.member_id%TYPE,
+        select_board_my_recent_cursor  OUT  SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN select_board_my_recent_cursor FOR SELECT
+                                                   id,
+                                                   title,
+                                                   price,
+                                                   image_url,
+                                                   time,
+                                                   status
+                                               FROM
+                                                   board
+                                               WHERE
+                                                   member_id = p_member_id
+                                               ORDER BY
+                                                   time DESC;
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('SQL ERROR MESSAGE: ' || sqlerrm);
+    END;
+
+    PROCEDURE select_board_my_old (
+        p_member_id                 IN   board.member_id%TYPE,
+        select_board_my_old_cursor  OUT  SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN select_board_my_old_cursor FOR SELECT
+                                                id,
+                                                title,
+                                                price,
+                                                image_url,
+                                                time,
+                                                status
+                                            FROM
+                                                board
+                                            WHERE
+                                                member_id = p_member_id
+                                            ORDER BY
+                                                time ASC;
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('SQL ERROR MESSAGE: ' || sqlerrm);
+    END;
+
+    PROCEDURE select_board_my_zzim (
+        p_member_id                  IN   zzim.member_id%TYPE,
+        select_board_my_zzim_cursor  OUT  SYS_REFCURSOR
+    ) IS
+    BEGIN
+        OPEN select_board_my_zzim_cursor FOR SELECT
+                                                 id,
+                                                 title,
+                                                 price,
+                                                 image_url,
+                                                 time,
+                                                 status
+                                             FROM
+                                                 board
+                                             WHERE
+                                                 id IN (
+                                                     SELECT
+                                                         board_id
+                                                     FROM
+                                                         zzim
+                                                     WHERE
+                                                         member_id = p_member_id
+                                                 );
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('SQL ERROR MESSAGE: ' || sqlerrm);
+    END;
+
+    PROCEDURE update_board_status (
+        p_board_id IN board.id%TYPE
+    ) IS
+    BEGIN
+        UPDATE board
+        SET
+            status = 1
+        WHERE
+            id = p_board_id;
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('SQL ERROR MESSAGE: ' || sqlerrm);
+    END;
+
+    PROCEDURE delete_zzim_list (
+        p_board_id   IN  board.id%TYPE,
+        p_member_id  IN  zzim.member_id%TYPE
+    ) IS
+    BEGIN
+        DELETE FROM zzim
+        WHERE
+                board_id = p_board_id
+            AND member_id = p_member_id;
+
+    EXCEPTION
+        WHEN OTHERS THEN
+            dbms_output.put_line('SQL ERROR MESSAGE: ' || sqlerrm);
+    END;
+
+    PROCEDURE insert_board_post (
+        p_title        IN  board.title%TYPE,
+        p_content      IN  board.content%TYPE,
+        p_price        IN  board.price%TYPE,
+        p_status       IN  board.status%TYPE,
+        p_start_date   IN  board.start_date%TYPE,
+        p_end_date     IN  board.end_date%TYPE,
+        p_image_url    IN  board.image_url%TYPE,
+        p_category_id  IN  board.category_id%TYPE,
+        p_member_id    IN  board.member_id%TYPE
+    ) IS
+    BEGIN
+        INSERT INTO board (
+            id,
+            title,
+            content,
+            price,
+            status,
+            time,
+            start_date,
+            end_date,
+            image_url,
+            category_id,
+            member_id
+        ) VALUES (
+            board_id_seq.NEXTVAL,
+            p_title,
+            p_content,
+            p_price,
+            p_status,
+            sysdate,
+            p_start_date,
+            p_end_date,
+            p_image_url,
+            p_category_id,
+            p_member_id
+        );
+
+        COMMIT;
+    END;
+
+END;
+/

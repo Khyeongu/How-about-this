@@ -168,7 +168,13 @@ ALTER TABLE zzim
         REFERENCES member ( id );
 
 
-
+create or replace trigger tri_board_update
+after update on board
+for each row
+begin
+  insert into traderecord values (:old.id, to_char(sysdate, 'YYYY-MM-DD'), :old.member_id, :old.category_id);
+end;
+/
 
 
 
