@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import model.MemberDAO;
 import model.MemberVO;
@@ -27,6 +28,12 @@ public class SignUp_Controller implements Initializable {
 	
 	@FXML
 	private AnchorPane ap;
+	
+	@FXML
+	private Label idWarning;
+	
+	@FXML
+	private Label nickNameWarning;
 	
 	@FXML
 	private VBox titleBox;
@@ -129,19 +136,30 @@ public class SignUp_Controller implements Initializable {
         	
         	if(memberDAO.idCheck(id) && !id.equals("")) {
         		System.out.println("사용 가능한 ID");
+        		idWarning.setVisible(true);
+        		idWarning.setText("사용 가능한 ID");
+        		idWarning.setTextFill(Color.web("#000000"));
         	}
         	else {
         		System.out.println("사용 불가능한 ID");
-        		idField.setText("");
+        		idWarning.setText("사용 불가능한 ID");
+        		idWarning.setTextFill(Color.web("#FF0000"));
+        		idWarning.setVisible(true);
         	}
         }
         if (actionEvent.getSource() == nickNameCheckBtn) {
         	String nickName = nickNameField.getText();
         	
-        	if(memberDAO.nickNameCheck(nickName) && !nickName.equals("")) System.out.println("사용 가능한 닉네임");
+        	if(memberDAO.nickNameCheck(nickName) && !nickName.equals("")) {
+        		System.out.println("사용 가능한 닉네임");
+        		nickNameWarning.setVisible(true);
+        		nickNameWarning.setText("사용 가능한 닉네임");
+        	}
         	else {
         		System.out.println("사용 불가능한 닉넴");
-        		nickNameField.setText("");
+        		nickNameField.setText("사용 불가능한 닉네임");
+        		nickNameWarning.setVisible(true);
+        		nickNameWarning.setTextFill(Color.web("#FF0000"));
         	}
         }
         if(actionEvent.getSource() == signUpBtn) {

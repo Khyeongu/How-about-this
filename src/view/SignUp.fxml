@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="ap" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SignUp_Controller">
+<AnchorPane fx:id="ap" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.SignUp_Controller">
    <children>
       <VBox fx:id="titleBox" alignment="CENTER_LEFT" prefHeight="576.0" prefWidth="1050.0">
          <children>
@@ -83,7 +83,24 @@
                         </BorderPane>
                      </children>
                   </VBox>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0" />
+                  <VBox prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Label fx:id="idWarning" style="-fx-font-size: 15; -fx-font-family: &quot;Jalnan&quot;;" text="중복된 ID가 존재합니다." textFill="RED" visible="false" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" />
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" />
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" />
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" />
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <center>
+                              <Label fx:id="nickNameWarning" style="-fx-font-size: 15; -fx-font-family: &quot;Jalnan&quot;;" text="중복된 닉네임이 존재합니다." textFill="RED" visible="false" BorderPane.alignment="CENTER" />
+                           </center>
+                        </BorderPane>
+                     </children>
+                  </VBox>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="signUpBtn" layoutX="46.0" layoutY="419.0" mnemonicParsing="false" onAction="#clickAction" style="-fx-font-size: 20; -fx-font-family: &quot;Jalnan&quot;;" text="가입하기" />
